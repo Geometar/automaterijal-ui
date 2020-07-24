@@ -1,0 +1,218 @@
+<main>
+  <div class="header-detalji-robe">
+    <div class="d-flex flex-row-reverse bd-highlight dugme-div">
+      <button class="button-glavni-100 nazad-button" mat-raised-button (click)="idiNazad()">
+        <mat-icon>keyboard_arrow_left</mat-icon> Nazad
+      </button>
+    </div>
+    <div class="detalji-stranica detalji-prvi-div" *ngIf="robaDetalji != null && !ucitavanje">
+      <div class="d-flex flex-column flex-lg-row">
+        <div *ngIf="!tdArtikalJe" class="align-self-center justify-content-center p-1 flex-fill div-1-obican">
+          <h1 class="h1-proizvdojac">Proizvodjač: <span
+              class="detalji-proizvodjac boja-crvena-10">{{robaDetalji.proizvodjac.naziv}}</span></h1>
+          <h2 *ngIf="robaDetalji.podGrupa !== 'ZZZ'" class="h2-kategorije">Kategorija:
+            <span class="kategorija">{{robaDetalji.podGrupa}}</span></h2>
+          <h2 *ngIf="partner && partner.privilegije === 2047" class="komercijalista-stanje">Stanje:
+            <span>{{robaDetalji.stanje}}</span></h2>
+          <h2 class="h2-naziv">{{robaDetalji.naziv}}</h2>
+        </div>
+        <div *ngIf="!tdArtikalJe" class="p-1 flex-fill mt-auto div-2-obican-artikal">
+          <div class="slika-robe">
+            <img src={{robaDetalji.slika}} height="220px"
+              onError="this.src='assets/slike/ui/roba/slikanijedostupna.jpg'">
+          </div>
+        </div>
+        <div *ngIf="tdArtikalJe" class="p-1 flex-fill div-1">
+          <h1 class="h1-proizvdojac">Proizvodjač: <span
+              class="detalji-proizvodjac boja-crvena-10">{{robaDetalji.proizvodjac.naziv}}</span></h1>
+          <h2 *ngIf="robaDetalji.podGrupa !== 'ZZZ'" class="h2-kategorije">Kategorija:
+            <span class="kategorija">{{robaDetalji.podGrupa}}</span></h2>
+          <h2 *ngIf="partner && partner.privilegije === 2047" class="komercijalista-stanje">Stanje:
+            <span>{{robaDetalji.stanje}}</span></h2>
+          <h2 class="h2-naziv">{{robaDetalji.naziv}}</h2>
+          <div>
+            <div class="slika-robe">
+              <img src={{robaDetalji.slika}} height="200px"
+                onError="this.src='assets/slike/ui/roba/slikanijedostupna.jpg'">
+            </div>
+          </div>
+        </div>
+        <div *ngIf="tdArtikalJe" class="p-1 flex-fill mt-auto div-2">
+          <h2 class="h2-2-div boja-glavna-50">Detalji artikla</h2>
+          <h3 class="h3-2-div">Kataloški broj: <span class="boja-crvena-10">{{robaDetalji.katbr}}</span></h3>
+          <ul class="teh-detalji-ui sirina-detalja">
+            <li *ngFor="let opis of robaDetalji.tehnickiOpis" class="d-flex justify-content-center bd-highlight">
+              <div class="p-1 w-100 bd-highlight"><b>{{opis.oznaka | uppercase}}</b>
+                <span *ngIf="opis.vrednost && opis.jedinica">
+                  [{{opis.jedinica}}]:
+                </span>
+              </div>
+              <div class="p-1 flex-shrink-1 roba-vrednost">{{opis.vrednost}}</div>
+            </li>
+          </ul>
+          <div class="centriraj" *ngIf="robaDetalji.tehnickiOpis  && robaDetalji.tehnickiOpis.length === 0">
+            <div class="nema-podataka material-icons">
+              info
+            </div>
+            <div class="nema-podataka-info">
+              NEMA PODATAKA
+            </div>
+          </div>
+        </div>
+        <div class="flex-fill pozadina-siva-300 div-3">
+          <div class="d-flex flex-column bd-highlight mb-3 mobilni-kolicina-labela">
+            <div class="bd-highlight text-center roba-cena">
+              <div *ngIf="!partner || partner.privilegije !== 2047" class="pdv-cena boja-glavna-50">Cena sa pdv-om</div>
+              <div *ngIf="partner && partner.privilegije === 2047" class="pdv-cena boja-glavna-50">Cena bez pdv-a</div>
+              <div class="boja-crvena-10"> {{robaDetalji.cena | currency:" "}} RSD </div>
+            </div>
+            <span *ngIf="robaDetalji.uKorpi">
+              <i matTooltip="U korpi" class="material-icons boja-glavna-100 pozicija-informacije-korpa">
+                shopping_cart
+              </i>
+            </span>
+            <div [ngClass]="{ 'nije-u-korpi': !robaDetalji.uKorpi}" class="text-right div-3-labela">
+              <div *ngIf="robaDetalji.stanje > 0">
+                <div class="kolicina-celina p-1 bd-highlight"><b>Količina:</b>
+                  <div class="kolicina-div">
+                    <span (click)="oduzmiOdKolicine(robaDetalji)" class="izbrisi-ikona">
+                      <i class="material-icons kolicina-ikona">
+                        remove
+                      </i>
+                    </span>
+                    <span>
+                      <input type="number" min="1" (keyup.enter)="dodajUKorpu(robaDetalji)" placeholder="1"
+                        [(ngModel)]="robaDetalji.kolicina" class="pozadina-siva-300 input-kolicina-korpa">
+                    </span>
+                    <span (click)="dodajKolicini(robaDetalji)" class="dodaj-ikona">
+                      <i class="material-icons kolicina-ikona">
+                        add
+                      </i>
+                    </span>
+                  </div>
+                </div>
+                <label class="boja-glavna-50 labela-stanje">NA STANJU</label>
+                <mat-icon [class.nema-na-stanju]="!partnerLogovan" matTooltip="Ima na stanju"
+                  class="boja-zelena-50 ikona-stanje">check_circle_outline</mat-icon>
+              </div>
+              <div *ngIf="robaDetalji.stanje == 0">
+                <label class="boja-glavna-50 labela-stanje">NEMA NA STANJU</label>
+                <mat-icon matTooltip="Nema na stanju" class="boja-crvena-50 ikona-stanje">remove_circle_outline
+                </mat-icon>
+              </div>
+            </div>
+            <div class="dugme-dodaj dugme-mobilni" *ngIf="robaDetalji.stanje > 0">
+              <button mat-raised-button class="dugme button-glavni-100" [class.button-zuto-10]="!partner && !robaDetalji.dozvoljenoZaAnonimusa"  (click)='dodajUKorpu(robaDetalji)'>
+                <i class="material-icons">
+                  add_shopping_cart
+                </i>
+                Dodaj u korpu
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="kluceviRobe.length !== 0 || kljuceviAplikacija.length !== 0"
+        class="d-flex flex-column flex-lg-row sektor-detalja-2">
+        <div class="p-2 sirina-1 flex-fill bd-highlight">
+          <div class="pozadina-glavna-100 granicnik-plavi">
+          </div>
+          <h2 class="h2-sekcija-2">OE brojevi</h2>
+          <div>
+            <mat-accordion>
+              <mat-expansion-panel *ngFor="let proizvodjaci of kluceviRobe" class="pozadina-siva-400 detalji-panel">
+                <mat-expansion-panel-header>
+                  <mat-panel-title>
+                    <span class="boja-glavna-100"><b>{{proizvodjaci | uppercase }}</b> </span>
+                  </mat-panel-title>
+                </mat-expansion-panel-header>
+                <div class="div-sekcija-2 d-flex flex-wrap">
+                  <span class="oe-broj-opis" *ngFor="let model of vratiOriginalneBrojevePoProizvodjacu(proizvodjaci)">
+                    <span class="originalni-broj" (click)="traziPoBroju(model.fabrBroj)">{{model.fabrBroj}}</span>
+                  </span>
+                </div>
+              </mat-expansion-panel>
+            </mat-accordion>
+            <div class="centriraj" *ngIf="kluceviRobe  && kluceviRobe.length === 0">
+              <div class="nema-podataka material-icons">
+                info
+              </div>
+              <div class="nema-podataka-info">
+                NEMA PODATAKA
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="p-2 sirina-2 flex-fill bd-highlight">
+          <div class="pozadina-glavna-100 granicnik-plavi"></div>
+          <h2 class="h2-sekcija-2">Automobili i modeli</h2>
+          <div>
+            <mat-accordion>
+              <mat-expansion-panel *ngFor="let automobili of kljuceviAplikacija"
+                class="pozadina-siva-400 detalji-panel">
+                <mat-expansion-panel-header>
+                  <mat-panel-title>
+                    <span class="boja-glavna-100"><b>{{automobili | uppercase }}</b> </span>
+                  </mat-panel-title>
+                </mat-expansion-panel-header>
+                <div>
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col">Model</th>
+                        <th scope="col">Tip Vozila</th>
+                        <th scope="col">Godina proizvodnje</th>
+                        <th *ngIf="velikiEkran" scope="col">KW</th>
+                        <th *ngIf="velikiEkran" scope="col">Kubikaža</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let model of vratiModelePoAutomobilu(automobili)">
+                        <td>{{model.modelNaziv}}</td>
+                        <td>{{model.tipVozila}}</td>
+                        <td>{{model.proizOd | proizvodnja}} do {{model.proizDo | proizvodnja}}</td>
+                        <td *ngIf="velikiEkran">{{model.kw}}kW({{model.hp}}KS)</td>
+                        <td *ngIf="velikiEkran">{{model.ccm}}</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </mat-expansion-panel>
+              <div class="centriraj" *ngIf="kljuceviAplikacija && kljuceviAplikacija.length === 0">
+                <div class="nema-podataka material-icons">
+                  info
+                </div>
+                <div class="nema-podataka-info">
+                  NEMA PODATAKA
+                </div>
+              </div>
+            </mat-accordion>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="robaDetalji.tekst || (partner && partner.privilegije === 2047)" class="sektor-detalja-2">
+        <div class="pozadina-glavna-100 granicnik-plavi-opis"></div>
+        <h2 class="h2-sekcija-3">Opis</h2>
+        <div class="tekst-area">
+          <span *ngIf="partner && partner.privilegije === 2047 && !editTekst" class="material-icons kreiraj-tekst"
+            (click)="editTekst=true">
+            create
+          </span>
+          <span *ngIf="partner && partner.privilegije === 2047 && editTekst" class="material-icons kreiraj-tekst"
+            (click)="sacuvajTekst()">
+            done_all
+          </span>
+          <textarea *ngIf="!editTekst" class="input-tekst input-tekst-readonly" matInput cdkTextareaAutosize
+            cdkAutosizeMinRows="8" cdkAutosizeMaxRows="50" tabindex="-1" readonly=true [(ngModel)]="robaDetalji.tekst">
+                </textarea>
+          <textarea *ngIf="editTekst" class="input-tekst input-tekst-edit" matInput cdkTextareaAutosize
+            cdkAutosizeMinRows="8" cdkAutosizeMaxRows="50" [(ngModel)]="robaDetalji.tekst">
+                        </textarea>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="d-flex justify-content-center prazna-tabela" *ngIf="ucitavanje">
+    <mat-spinner></mat-spinner>
+  </div>
+</main>

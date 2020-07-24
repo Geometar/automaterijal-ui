@@ -1,0 +1,103 @@
+@import "src/automaterijal-theme.scss";
+
+.mat-list-item {
+  height: 54px !important;
+}
+
+.sidenav-container {
+  height: 100%;
+}
+.pozicija {
+  margin: 0 auto;
+  padding-bottom: 220px;
+}
+.sidenav {
+  background-image: url('/assets/slike/ui/pozadine/navigacija.png');
+  background-repeat: no-repeat;
+  background-position: bottom;
+  background-size: 90%;
+  width: 200px;
+  height: 100%;
+}
+
+.mat-toolbar.mat-primary {
+  position: sticky;
+  top: 0;
+}
+
+.header-navigacija {
+  font-size: 0.6em !important;
+  width: 199px;
+}
+
+p {
+  color: $automaterijal-grey-400 !important;
+  height: 18px;
+}
+
+mat-divider {
+  border-width: 1px;
+  border-style: solid;
+  border-color: $automaterijal-grey-300;
+}
+
+.margin-gore {
+  margin-top: 70px;
+}
+
+.side-toolbar {
+  height: 75px;
+  width: 180px;
+  padding: 0px 0px !important;
+}
+
+.header-pozicija {
+  top: 0px;
+  position: fixed;
+  z-index: 999 !important;
+  background-image: url('/assets/slike/logo/automaterijal-header.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 25%;
+}
+
+.header-glavni {
+  top: 0px;
+  position: absolute;
+  z-index: 999 !important;
+}
+
+@media screen and (max-width :1150px) { 
+  .pozicija {
+    margin-top: 60px;
+  }
+  .header-pozicija {
+    background-size: 15%;
+  }
+}
+@media screen and (max-width: 991px) {
+  .pozicija {
+    padding-bottom: 490px;
+  }
+
+}
+
+@media screen and (max-width: 950px) {
+  .pozicija {
+    margin-top: 66px;
+    padding-bottom: 490px;
+  }
+  .header-pozicija {
+    background-size: 20%;
+  }
+}
+@media screen and (max-width: 700px) {
+  .header-pozicija {
+    background-size: 25%;
+  }
+}
+@media screen and (max-width: 450px) {
+  .header-pozicija {
+    background-size: 29%;
+  }
+}

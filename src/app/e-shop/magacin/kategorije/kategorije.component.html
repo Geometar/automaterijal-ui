@@ -1,0 +1,43 @@
+<main class="main-klasa">
+    <div class="cover">
+        <div *ngFor="let wraper of kategorijeV" class="sektor prva-kategorija">
+            <mat-card class="naslov">
+                <h1>{{wraper.naslov}}</h1>
+            </mat-card>
+            <div class="d-flex sektor flex-wrap">
+                <div *ngFor="let kategorija of wraper.kategorije">
+                    <mat-card class="kartica" mat-button>
+                        <mat-card-header (click)="izabranaPodKategorija(kategorija, podkategorija)">
+                            <mat-card-title class="naslov-kartice title-card">{{kategorija.naslov}}</mat-card-title>
+                        </mat-card-header>
+                        <div class="slika-okvir">
+                            <img (click)="izabranaPodKategorija(kategorija, podkategorija)" mat-card-image
+                                src="{{kategorija.slikaId}}">
+                        </div>
+                        <mat-card-footer>
+                            <div *ngIf="kategorija.podkategorije">
+                                <button mat-button class="podkategorija" [matMenuTriggerFor]="menu">Podkategorija
+                                    <span class="dropdown-ikona material-icons">
+                                        arrow_drop_down
+                                    </span>
+                                </button>
+                                <mat-menu #menu="matMenu">
+                                    <button mat-menu-item (click)="izabranaPodKategorija(kategorija, podkategorija)"
+                                        *ngFor="let podkategorija of kategorija.podkategorije">
+                                        {{podkategorija}}
+                                    </button>
+                                </mat-menu>
+                            </div>
+                            <a href="{{kategorija.url | lowercase}}">
+                                <div *ngIf="!kategorija.podkategorije">
+                                    <button disabled mat-button class="podkategorija">Podkategorija
+                                    </button>
+                                </div>
+                            </a>
+                        </mat-card-footer>
+                    </mat-card>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>

@@ -1,0 +1,265 @@
+@import "src/automaterijal-theme.scss";
+@import "src/css/shared/_boje.scss";
+.roba-tabela th {
+  display: none;
+}
+.slika-sirina {
+  max-width: 250px;
+}
+tr.mat-header-row {
+  display: none;
+}
+.centriraj {
+  text-align: center;
+}
+tr.mat-row {
+  height: 200px;
+  border-bottom: 15px solid $automaterijal-grey-400;
+}
+.nema-na-stanju-div {
+  width: 200px;
+  text-align: right !important;
+}
+.prazan-div-ikona {
+  height: 24px;
+  margin-top: -10px;
+}
+.roba-katbr {
+  color: $automaterijal-primary-100;
+  font-weight: bold;
+  margin-left: 7px;
+}
+.roba-proizvodjac {
+  color: $automaterijal-primary-100;
+  font-weight: bold;
+  margin-left: 20px;
+}
+
+.roba-kategorija {
+  color: $automaterijal-primary-100;
+  font-weight: bold;
+  margin-left: 28px;
+}
+
+.roba-stanje {
+  color: $automaterijal-primary-100;
+  font-weight: bold;
+  margin-left: 54px;
+}
+.teh-opis-h3 {
+  font-size: 1.2rem;
+}
+.roba-naziv {
+  color: $automaterijal-primary-100;
+  font-weight: bold;
+}
+.pozicija-informacije-korpa {
+  position: relative;
+  right: 20px;
+  cursor: pointer;
+  width: 0px;
+}
+.teh-detalji-ui {
+  width: 270px;
+  margin-bottom: 12px;
+  padding-inline-start: 10px;
+  font-size: 0.8rem;
+}
+.roba-vrednost {
+  color: $automaterijal-primary-100;
+}
+.mat-raised-button[disabled][disabled] {
+  cursor: auto !important;
+}
+
+.nema-opisa-ikona {
+  font-size: 30px;
+  margin-top: 10px;
+  color: $automaterijal-accent-red-50;
+}
+.tabela-u-korpi {
+  margin-top: 18px;
+  padding-right: 50px;
+}
+.cena-stanje {
+  margin-left: 10px;
+}
+.stanje-nije-ulogovan {
+  top: -11px;
+  left: -10px;
+  font-size: 0.7rem;
+  position: relative;
+}
+.pdv-cena {
+  font-size: 0.8rem;
+  color: $automaterijal-grey-100;
+}
+.roba-cena {
+  font-weight: bold;
+  font-size: 1.2rem;
+  padding-right: 3px;
+}
+.nema-na-stanju {
+  font-size: 30px;
+}
+.korpa {
+  width: 250px !important;
+  margin-left: auto;
+  margin-right: auto;
+}
+.poslednja-kolona {
+  padding: 0px !important;
+}
+.labela-kolicina {
+  margin: 0px;
+  color: $automaterijal-primary-50;
+  font-size: 0.8rem !important;
+  font-style: italic;
+  display: block;
+}
+.kolicina-labela {
+  width: 70px !important;
+  height: 23px;
+}
+
+.mat-column-tehnickidetalji {
+  padding-right: 15px;
+}
+
+.dugme {
+  width: 80%;
+}
+.dugme-detalji {
+  margin-top: 5px;
+  color: $automaterijal-accent-red-50;
+}
+.kolicina-div {
+  display: inline-block;
+  width: 120px;
+  height: 24px;
+  border-width: 0.5px;
+  border-style: solid;
+  border-color: $automaterijal-primary-50;
+}
+.kolicina-div span {
+  width: 39px;
+  display: inline-block;
+  text-align: center;
+}
+.kolicina-ikona {
+  font-size: 16px;
+  position: relative;
+  top: 2px;
+}
+.izbrisi-ikona:hover {
+  cursor: pointer;
+  color: $automaterijal-accent-red-50;
+  user-select: none;
+}
+.dodaj-ikona:hover {
+  cursor: pointer;
+  color: $automaterijal-primary-100;
+  user-select: none;
+}
+.input-kolicina-tabela {
+  border: none;
+  text-align: center;
+  width: 42px;
+  font-size: 16px;
+  margin-top: 1px;
+}
+/* Chrome, Safari, Edge, Opera */
+.input-kolicina-tabela::-webkit-outer-spin-button,
+.input-kolicina-tabela::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+/* Firefox */
+.input-kolicina-tabela[type="number"] {
+  -moz-appearance: textfield;
+}
+
+@media screen and (max-width: 900px) {
+  .roba-cena {
+    text-align: center !important;
+    font-size: 1.15rem;
+  }
+  .roba-katbr {
+    font-size: 0.85rem;
+    margin-left: 7px;
+  }
+  .roba-proizvodjac {
+    font-size: 0.85rem;
+    margin-left: 20px;
+  }
+  .roba-stanje {
+    font-size: 0.85rem;
+    margin-left: 54px;
+  }
+  .roba-naziv {
+    font-size: 0.85rem;
+  }
+  tr.mat-row {
+    height: 500px;
+    border-bottom: 15px solid $automaterijal-grey-400;
+  }
+
+  .admin-tabela tr.mat-row {
+    height: 530px;
+  }
+
+  .teh-detalji-ui {
+    margin-bottom: 25px;
+  }
+  .roba-tabela td {
+    border: none !important;
+  }
+
+  .roba-tabela {
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .pozicija-informacije-korpa {
+    top: -155px;
+    right: 20px;
+    float: right;
+  }
+
+  .mat-column-slika {
+    height: 150px;
+    text-align: center;
+  }
+
+  .mat-column-opis {
+    height: 110px;
+    text-align: center;
+    font-size: 0.9rem;
+  }
+
+  .opis-admin {
+    height: 140px;
+  }
+
+  .kolicina-input-labela {
+    text-align: left;
+  }
+
+  .pomeranje-mob-div {
+    position: relative;
+    width: 300px;
+    text-align: left;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+@media screen and (max-width: 510px) {
+  .pomeranje-mob-div {
+    left: 0;
+    width: 300px;
+    text-align: left;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}

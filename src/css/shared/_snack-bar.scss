@@ -1,0 +1,18 @@
+@import "src/automaterijal-theme.scss";
+
+snack-bar-container {
+    background-color: $automaterijal-primary-50 !important;
+    color: $automaterijal-grey-400;
+  }
+
+.red-snackbar {
+    background-color: $automaterijal-accent-red-50 !important;
+}
+
+.green-snackbar {
+    background-color: $automaterijal-accent-green-50 !important;
+}
+
+.primary-snackbar {
+    background-color: $automaterijal-primary-100 !important;
+}

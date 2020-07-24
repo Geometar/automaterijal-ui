@@ -1,0 +1,9 @@
+<h1>Sve grupe</h1>
+<mat-dialog-content class="mat-typography">
+    <div class="d-flex flex-row glavni-div" *ngFor="let grupa of data.svaGrupa">
+        <div class="naziv">{{grupa.naziv}}</div>
+        <div class="dugme-div">
+            <button mat-raised-button [mat-dialog-close]="grupa" cdkFocusInitial color="primary">Dodaj</button>
+        </div>
+    </div>
+</mat-dialog-content>

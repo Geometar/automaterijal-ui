@@ -1,0 +1,181 @@
+<main>
+  <div class="headerKontankt">
+    <h1>Kontaktirajte nas</h1>
+  </div>
+  <div class="pozadina-bela">
+    <div class="d-flex flex-fill flex-column flex-lg-row informacije">
+      <div class="align-self-center flex-fill informacije-deo">
+        <h2>Informacije</h2>
+      </div>
+      <div class="granica-informacije"></div>
+      <div class="flex-fill informacije-deo">
+        <i class="material-icons  boja-glavna-100">
+          place
+        </i>
+        <div class="adresa">
+          <p>Kralja Milutina 159</p>
+          <p>15000 Šabac</p>
+        </div>
+      </div>
+      <div class="granica-informacije"></div>
+      <div class="flex-fill informacije-deo">
+        <i class="material-icons  boja-glavna-100">
+          access_alarm
+        </i>
+        <div class="d-flex flex-row adresa">
+          <div class="sirina-telefona">
+            <p class="telefoni">Radnim danom:</p>
+          </div>
+          <div>
+            <ul>
+              <li> 08-18h</li>
+            </ul>
+          </div>
+        </div>
+        <div class="d-flex flex-row ">
+          <div class="sirina-telefona">
+            <p class="telefoni">Subotom:</p>
+          </div>
+          <div>
+            <ul>
+              <li> 09-15h</li>
+            </ul>
+          </div>
+        </div>
+        <div class="d-flex flex-row ">
+          <div class="sirina-telefona">
+            <p class="telefoni">Nedelja:</p>
+          </div>
+          <div>
+            <ul>
+              <li>Neradan dan</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="granica-informacije"></div>
+      <div class="flex-fill informacije-deo">
+        <i class="material-icons boja-glavna-100">
+          phone
+        </i>
+        <div class="d-flex flex-row ">
+          <div class="sirina-telefona">
+            <p class="telefoni">Telefon:</p>
+          </div>
+          <div>
+            <ul>
+              <li><a class="telefon" href="tel:015319000">015/319-000</a></li>
+              <li class="telefon">015/319-001 Fax </li>
+            </ul>
+          </div>
+        </div>
+        <div class="d-flex flex-row veleprodaja-dole">
+          <div class="sirina-telefona">
+            <p class="telefoni">Email:</p>
+          </div>
+          <div>
+            <ul>
+              <li> office@automaterijal.com</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="google-mapa">
+    <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d5049.40422434905!2d19.69638864074495!3d44.74241832547923!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xd97ac9bc60b15aec!2sAUTOMATERIJAL!5e0!3m2!1ssr!2srs!4v1587470118849!5m2!1ssr!2srs" width="600" height="450" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe></div>
+
+  <div class="pozadina-bela">
+    <div class="d-flex flex-fill flex-column flex-lg-row informacije">
+      <div class="flex-fill poruke-deo">
+        <h2>Pošalji poruku</h2>
+        <div class="poruka-div">
+          <p class="poruka-informacije">
+            <i class="material-icons poruka">
+              mail_outline
+            </i>
+            Pošta </p>
+          <p class="poruka-objasnjenje"> office@automaterijal.com </p>
+        </div>
+        <div class="poruka-div">
+          <p class="poruka-informacije">
+            <i class="material-icons poruka">
+              chat_bubble_outline
+            </i>
+            Pratite nas </p>
+          <div>
+            <a href="https://sr-rs.facebook.com/automaterijal/" target="_blank" mat-fab id="drustvena-mreza"
+              matTooltip="Facebook" color="primary">f</a>
+            <a href="https://www.instagram.com/automaterijal/" target="_blank" mat-fab id="drustvena-mreza"
+              class="razmak-drus" matTooltip="Instagram" color="primary">
+              <i class="material-icons instagram">
+                photo_camera
+              </i>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="flex-fill">
+        <form role="form" [formGroup]="porukaForm">
+          <div class="forma-poruke">
+            <table cellspacing="0">
+              <tr>
+                <td>
+                  <mat-form-field>
+                    <input matInput formControlName="ime" placeholder="Ime">
+                  </mat-form-field>
+                </td>
+                <td>
+                  <mat-form-field>
+                    <input matInput formControlName="prezime" placeholder="Prezime">
+                  </mat-form-field>
+                </td>
+              </tr>
+            </table>
+            <table cellspacing="0">
+              <tr>
+                <td>
+                  <mat-form-field>
+                    <input matInput formControlName="firma" placeholder="Ima firme">
+                  </mat-form-field>
+                </td>
+                <td>
+                  <mat-form-field>
+                    <input matInput type="tel" formControlName="telefon" placeholder="Broj telefona">
+                  </mat-form-field>
+                </td>
+              </tr>
+            </table>
+            <div>
+              <mat-form-field class="duzina-input">
+                <input matInput type="email" formControlName="posta" placeholder="Pošta">
+              </mat-form-field>
+              <div *ngIf="porukaSubmited && p.posta.errors">
+                <div *ngIf="p.posta.errors.required">
+                  <p class="upozorenje">Pošta je obavezna</p>
+                </div>
+                <div *ngIf="p.posta.errors.email">
+                  <p class="upozorenje">Pošta nije validna</p>
+                </div>
+              </div>
+            </div>
+            <div>
+              <mat-form-field class="duzina-input">
+                <textarea matInput formControlName="poruka" rows="8" placeholder="Poruka"></textarea>
+              </mat-form-field>
+              <div *ngIf="porukaSubmited && p.poruka.errors">
+                <div *ngIf="p.poruka.errors.required">
+                  <p class="upozorenje">Poruka je obavezna</p>
+                </div>
+                <div *ngIf="p.poruka.errors.minlength">
+                  <p class="upozorenje">Poruka mora imate minimalno 3 karaktera</p>
+                </div>
+              </div>
+            </div>
+            <button mat-flat-button class="duzina-input" (click)="posaljiPoruku()" color="primary">Pošalji</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</main>

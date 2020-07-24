@@ -1,0 +1,32 @@
+<main>
+    <div class="sekcija-pretraga">
+        <div class="d-flex flex-column flex-lg-row align-items-center pretraga-bar sekcina-pretraga-filteri">
+            <div class="flex-grow-1 mobilni">
+                <app-pretraga [searchValue]="searchValue" (pretragaEvent)="pronaciPoTrazenojReci($event)"
+                    (filterEvent)="toogleFilterDiv($event)">
+                </app-pretraga>
+            </div>
+
+            <div class="">
+                <!-- Filter komponenta izdvojena -->
+                <app-filter [filter]="filter" [filterGrupe]="filterGrupe" [proizvodjaci]="proizvodjaci"
+                    (filterEvent)="filtriraj($event)">
+                </app-filter>
+            </div>
+        </div>
+
+        <div class="d-flex flex-column prazna-tabela" *ngIf="!pronadjenaRoba">
+            <i class="material-icons icon-size">
+                error_outline
+            </i>
+            <h1 class="h1-upozorenje">Artikal ne postoji</h1>
+        </div>
+
+        <div class="d-flex justify-content-center prazna-tabela" *ngIf="ucitavanje">
+            <mat-spinner></mat-spinner>
+        </div>
+
+        <app-tabela [rowsPerPage]="rowsPerPage" [pageIndex]="pageIndex" [tableLength]="tableLength"
+            [dataSource]="dataSource" [roba]="roba" (magacinEvent)="paginatorEvent($event)"></app-tabela>
+    </div>
+</main>

@@ -1,0 +1,147 @@
+<main>
+    <div>
+        <div class="header-porduzbenice">
+            <h1 *ngIf="partner.privilegije !== 2047" >Moje porudžbenice</h1>
+            <h1 *ngIf="partner.privilegije === 2047" >Sve porudžbenice</h1>
+            <div class="d-flex justify-content-center">
+                <div class="filter-div d-flex flex-column">
+                    <div class="d-flex justify-content-center">
+                        <h2>
+                            Filter
+                        </h2>
+                    </div>
+                    <div class="d-flex flex-column flex-xl-row input-group mb-1">
+                        <div>
+                            <label>
+                                <h3 class="filter-p boja-glavna-50">Period: </h3>
+                            </label>
+                            <mat-form-field class="filter-segment" color="primary">
+                                <input (dateChange)="periodPromenjen('datumOd', $event)" [(ngModel)]="datumOd"
+                                    (click)="picker.opened = true" matInput readonly [matDatepicker]="picker"
+                                    placeholder="Izaberite datum">
+                                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                <mat-datepicker #picker disabled="false"></mat-datepicker>
+                            </mat-form-field>
+                            <label>
+                                <p class="filter-p boja-glavna-50"> - </p>
+                            </label>
+                            <mat-form-field class="filter-segment" color="primary">
+                                <input (dateChange)="periodPromenjen('datumDo', $event)" [(ngModel)]="datumDo" matInput
+                                    readonly [matDatepicker]="picker2" placeholder="Izaberite datum"
+                                    (click)="picker2.opened = true">
+                                <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                                <mat-datepicker #picker2 disabled="false"></mat-datepicker>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div *ngIf="!ucitavanje && dataSource != null && dataSource.length > 0" class="tabela-div">
+            <table mat-table [dataSource]="dataSource">
+
+                <!-- Kataloski broj Column -->
+                <ng-container *ngIf="partner.privilegije !== 2047" matColumnDef="orderId">
+                    <th mat-header-cell *matHeaderCellDef> 
+                        <span>Broj Fakture</span>
+                    </th>
+                    <td mat-cell data-label="Broj Fakture" *matCellDef="let faktura">
+                        <p class="mat-body-2">
+                            {{faktura.orderId}}
+                        </p>
+                    </td>
+                </ng-container>
+
+                <!-- Kataloski broj Column -->
+                <ng-container *ngIf="partner.privilegije === 2047" matColumnDef="orderId">
+                    <th mat-header-cell *matHeaderCellDef> 
+                        <span>Partner</span> 
+                    </th>
+                    <td mat-cell data-label="Partner" *matCellDef="let faktura">
+                        <p class="mat-body-2">
+                            {{faktura.partner | titlecase}}
+                        </p>
+                    </td>
+                </ng-container>
+
+                <!-- Broj stavki Column -->
+                <ng-container matColumnDef="brojStavki">
+                    <th mat-header-cell *matHeaderCellDef>Broj stavki</th>
+                    <td mat-cell data-label="Broj stavki" *matCellDef="let faktura">
+                        <p>
+                            {{faktura.brojStavki}}
+                        </p>
+                    </td>
+                </ng-container>
+
+                <!-- Cena Column -->
+                <ng-container matColumnDef="iznosNarucen">
+                    <th mat-header-cell *matHeaderCellDef class="text-center"> Iznos narucen </th>
+                    <td mat-cell data-label="Iznos narucen" *matCellDef="let faktura">
+                        <p class="mat-body-2 text-right iznos-margin">
+                            {{faktura.iznosNarucen | currency:" "}} RSD
+                        </p>
+                    </td>
+                </ng-container>
+
+                <!-- Cena Column -->
+                <ng-container matColumnDef="iznosPotvrdjen">
+                    <th mat-header-cell *matHeaderCellDef class="text-center"> Iznos potvrdjen </th>
+                    <td mat-cell data-label="Iznos potvrdjen" *matCellDef="let faktura">
+                        <p class="mat-body-2 text-right iznos-margin">
+                            {{faktura.iznosPotvrdjen | currency:" "}} RSD
+                        </p>
+                    </td>
+                </ng-container>
+
+                <!-- Vreme porucivanja Column -->
+                <ng-container matColumnDef="vremePorucivanja">
+                    <th mat-header-cell *matHeaderCellDef class="text-center"> Datum </th>
+                    <td mat-cell data-label="Datum" *matCellDef="let faktura">
+                        <p class="text-center tabela-u-korpi">
+                            {{faktura.vremePorucivanja | datum}}
+                        </p>
+                    </td>
+                </ng-container>
+
+                <!-- Status Column -->
+                <ng-container matColumnDef="status">
+                    <th mat-header-cell *matHeaderCellDef> Status </th>
+                    <td mat-cell data-label="Status" *matCellDef="let faktura">
+                        <p class="mat-body-2">
+                            {{faktura.status.naziv}}
+                        </p>
+                    </td>
+                </ng-container>
+
+                <!-- Akcije Column -->
+                <ng-container matColumnDef="ackije">
+                    <th mat-header-cell *matHeaderCellDef> </th>
+                    <td mat-cell class="visina-div-dugmeta" *matCellDef="let faktura">
+                        <div class="dugme-mobilni">
+                            <button class="velicina-dugmeta button-glavni-100" mat-raised-button
+                                (click)="detaljiFakture(faktura.id)">Detalji</button>
+                        </div>
+                    </td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
+            <mat-paginator #paginator [length]="tableLength" [pageSize]="rowsPerPage" [pageSizeOptions]="[5, 10, 25]"
+                [pageIndex]="pageIndex" [length]="tableLength" [showFirstLastButtons]="true"
+                (page)="paginatorEvent($event)">
+            </mat-paginator>
+        </div>
+        <div class="d-flex justify-content-center prazna-tabela" *ngIf="ucitavanje">
+            <mat-spinner></mat-spinner>
+        </div>
+    </div>
+
+    <div class="d-flex flex-column prazna-tabela" *ngIf="error || (fakure && fakure.length === 0)">
+        <i class="material-icons icon-size">
+            error_outline
+        </i>
+        <h1 class="h1-faktura-upozorenje">Istorija porucivanja je prazna</h1>
+    </div>
+</main>

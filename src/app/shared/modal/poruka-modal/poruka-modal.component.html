@@ -1,0 +1,87 @@
+<mat-dialog-content>
+  <section *ngIf="!porukaPoslata && !ucitavanje">
+    <div class="header">
+      <h1>Pošalji poruku</h1>
+      <button type="button" class="close" (click)="zatvoriDialog()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <form role="form" [formGroup]="porukaForm">
+      <div class="forma-poruke">
+        <table cellspacing="0">
+          <tr>
+            <td>
+              <mat-form-field class="sirina-polja-unosa">
+                <input matInput formControlName="ime" placeholder="Ime">
+              </mat-form-field>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <mat-form-field class="sirina-polja-unosa">
+                <input matInput formControlName="prezime" placeholder="Prezime">
+              </mat-form-field>
+            </td>
+          </tr>
+        </table>
+        <table cellspacing="0">
+          <tr>
+            <td>
+              <mat-form-field class="sirina-polja-unosa">
+                <input matInput formControlName="firma" placeholder="Ima firme">
+              </mat-form-field>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <mat-form-field class="sirina-polja-unosa">
+                <input matInput type="tel" formControlName="telefon" placeholder="Broj telefona">
+              </mat-form-field>
+            </td>
+          </tr>
+        </table>
+        <div>
+          <mat-form-field class="sirina-polja-unosa">
+            <input matInput type="email" formControlName="posta" placeholder="Pošta">
+          </mat-form-field>
+          <div *ngIf="porukaSubmited && p.posta.errors">
+            <div *ngIf="p.posta.errors.required">
+              <p class="upozorenje">Pošta je obavezna</p>
+            </div>
+            <div *ngIf="p.posta.errors.email">
+              <p class="upozorenje">Pošta nije validna</p>
+            </div>
+          </div>
+        </div>
+        <div>
+          <mat-form-field class="sirina-polja-unosa">
+            <textarea matInput formControlName="poruka" rows="6" placeholder="Poruka"></textarea>
+          </mat-form-field>
+          <div *ngIf="porukaSubmited && p.poruka.errors">
+            <div *ngIf="p.poruka.errors.required">
+              <p class="upozorenje">Poruka je obavezna</p>
+            </div>
+            <div *ngIf="p.poruka.errors.minlength">
+              <p class="upozorenje">Poruka mora imate minimalno 3 karaktera</p>
+            </div>
+          </div>
+        </div>
+        <button mat-flat-button class="sirina-polja-unosa" (click)="posaljiPoruku()" color="primary">Pošalji</button>
+      </div>
+    </form>
+  </section>
+  <section *ngIf="porukaPoslata">
+    <button type="button" class="close" (click)="zatvoriDialog()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+    <p>Poruka je uspešno poslata. Odgovrićemo vam u najkraćem mogućem roku.</p>
+    <div class="text-center margin-top--15">
+      <button mat-flat-button color="primary" (click)="zatvoriDialog()">Zatvori</button>
+    </div>
+  </section>
+</mat-dialog-content>
+<section *ngIf="ucitavanje">
+  <div class="d-flex justify-content-center margin-bottom--10 margin-top--10">
+    <mat-spinner></mat-spinner>
+  </div>
+</section>

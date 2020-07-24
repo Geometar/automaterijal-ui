@@ -1,0 +1,39 @@
+<div class="d-flex align-items-center justify-content-center">
+  <div class="forms-input">
+    <input class="p-1 flex-grow-1 search__input" type="text" [(ngModel)]="searchValue"
+      (keyup.enter)="pronaciPoTrazenojReci(searchValue)" />
+    <span *ngIf="searchValue" (click)="searchValue = ''; pronaciPoTrazenojReci(searchValue)" class="brisanje-pretrage boja-crvena-10 material-icons">
+      clear
+    </span>
+    <div class="p-1" (click)='pronaciPoTrazenojReci(searchValue)'>
+      <button mat-mini-fab class=pozadina-glavna-100>
+        <mat-icon>search</mat-icon>
+      </button>
+    </div>
+    <div class="p-1" (click)='toogleFilterDiv()'>
+      <!-- 
+      <button matTooltip="Filter" *ngIf="!otvoriFilter" class=pozadina-glavna-100 mat-mini-fab>
+        <mat-icon>view_headline</mat-icon>
+      </button>
+      <button *ngIf="otvoriFilter" mat-mini-fab class="button-glavni-200">
+        <mat-icon>view_headline</mat-icon>
+      </button>
+       -->
+    </div>
+  </div>
+</div>
+<div class="d-flex justify-content-center">
+  <label *ngIf="pocetnoPretrazivanje">
+    <font color="#424242"> Unesite termin za pretragu</font>
+  </label>
+  <label
+    *ngIf="!pocetnoPretrazivanje && !validnaPretaga && searchValue && (searchValue.trim().length > 0 && searchValue.trim().length < 3)">
+    <font class="boja-crvena-50">Morate uneti bar dva karaktera</font>
+  </label>
+  <label
+    *ngIf="!pocetnoPretrazivanje && validnaPretaga" class="defaultna-visina">
+  </label>
+  <label
+    *ngIf="!pocetnoPretrazivanje && !validnaPretaga && !searchValue" class="defaultna-visina">
+  </label>
+</div>

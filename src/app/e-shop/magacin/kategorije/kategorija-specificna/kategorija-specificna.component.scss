@@ -1,0 +1,34 @@
+@import "src/css/shared/boje.scss";
+.forms-input {
+    margin-top: 0px !important;
+}
+
+.kategorija-pregraga-bar {
+    padding-top: 0px;
+}
+
+h2 {
+    text-align: center;
+    height: 1px;
+    position: relative;
+    bottom: 37px;
+}
+
+.sekcija-pretraga {
+    background-image: url("/assets/slike/ui/pozadine/roba.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+@media only screen and (max-width: 950px) {
+    .sekcija-pretraga {
+        background-image: none;
+    }
+}
+@media only screen and (max-width: 660px) {
+    h2 {
+        height: 40px;
+        font-size: 1.8rem;
+        bottom: 0;
+    }
+}

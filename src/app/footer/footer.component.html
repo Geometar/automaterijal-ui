@@ -1,0 +1,51 @@
+<footer>
+  <div class="granica"></div>
+  <div class="d-flex flex-lg-row flex-column">
+    <div class="slika-div">
+      <img [src]="img_logo" alt="Automaterijal">
+    </div>
+    <div class="flex-fill">
+      <ul>
+        <li class="naslov">Adresa</li>
+        <li class="detalji">Kralja Milutina 159</li>
+        <li class="detalji">15000 Šabac</li>
+        <li class="detalji"><a class="header boja-glavna-100" href="tel:015319000">015/319-000</a></li>
+        <li class="detalji">office@automaterijal.com</li>
+      </ul>
+    </div>
+    <div class="flex-fill">
+      <ul>
+        <li class="naslov">Korisni Linkovi</li>
+        <li class="detalji">
+          <a href="/#/naslovna">Naslovna</a>
+        </li>
+        <li class="detalji">
+          <a href="/#/o-nama">O nama</a>
+        </li>
+        <li class="detalji">
+          <a href="/#/kontakt">Kontakt</a>
+        </li>
+        <li class="detalji">
+          <a href="/#/roba">E-prodavnica</a>
+        </li>
+      </ul>
+    </div>
+    <div class="flex-fill">
+      <ul>
+        <li class="naslov">Korisni Upiti</li>
+        <li class="detalji">
+          <a (click)="otvoriUpitDialog()">Upit za ponudu</a>
+        </li>
+        <li class="detalji">
+          <a (click)="otvoriPorukuDialog()">Poruka</a>
+        </li>
+        <li class="detalji">
+          <a (click)="otvoriResgracijaDialog()">Registracija</a>
+        </li>
+        <li class="detalji">
+          <a (click)="otvoriZaboravljenuSifruDialog()">Zaboravljen šifra</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</footer>

@@ -1,0 +1,14 @@
+<h1>Promena robe sa identifikacijom {{data.staraSifra}}</h1>
+<div mat-dialog-content class="centar">
+    <p>Nova identifikacija?</p>
+    <mat-form-field class="example-full-width">
+        <mat-label>Identifikacija</mat-label>
+        <input matInput [(ngModel)]="data.novaSifra">
+    </mat-form-field>
+</div>
+<div mat-dialog-actions class="d-flex justify-content-center">
+    <div>
+        <button mat-button class="boja-glavna-100" [mat-dialog-close]="data.novaSifra" cdkFocusInitial>Promeni</button>
+        <button mat-button class="pomeri-dugme-desno boja-crvena-50" (click)="onNoClick()">Odustani</button>
+    </div>
+</div>

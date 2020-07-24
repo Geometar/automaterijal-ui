@@ -1,0 +1,33 @@
+.flex-login {
+    margin-top: 10%;
+    display: flex;
+    justify-content: center;
+}
+.login-form {
+    width: 400px;
+    justify-content: center;
+}
+
+h1 {
+    text-align: center;
+	text-transform: uppercase;
+}
+button{
+    margin:auto;
+    display:block;
+}
+
+p {
+      text-align: center;
+}
+
+.is-invalid {
+    border: 1px solid red;
+}
+
+.upozorenje {
+    text-align: left;
+    font-size: 0.8em;
+    color: red;
+    margin: 0px !important;
+}

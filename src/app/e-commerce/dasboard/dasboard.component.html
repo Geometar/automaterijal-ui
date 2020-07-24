@@ -1,0 +1,440 @@
+<main>
+  <section class="d-flex flex-xl-row-reverse flex-column centar sekcija-mala">
+    <div class="pomeri-levo">
+      <i class="material-icons velicina-ikone">
+        place
+      </i>
+      <p class="header">Kralja Milutina 159, Šabac</p>
+    </div>
+    <div class="pomeri-levo">
+      <i class="material-icons velicina-ikone">
+        email
+      </i>
+      <p class="header">office@automaterijal.com</p>
+    </div>
+    <div class="pomeri-levo">
+      <i class="material-icons velicina-ikone">
+        phone
+      </i>
+      <p class="header"> <a class="header boja-glavna-100" href="tel:015319000">015/319-000</a></p>
+    </div>
+  </section>
+  <section>
+    <section *ngIf="innerWidth > 1650" class="d-flex flex-xl-row flex-column">
+      <div class="detalji-magacina slika-header">
+        <mat-list class="mat-lista">
+          <mat-list-item class="list-item">
+            <span class="material-icons ikona boja-zelena-50">
+              dashboard
+            </span>
+            <div class="d-flex flex-column bd-highlight detalji-magacina-opis">
+              <div *ngIf="brojArtikala === '-'" class="p-1 bd-highlight broj centar boldiraj boja-glavna-100">
+                {{brojArtikala}}</div>
+              <div *ngIf="brojArtikala !== '-'" class="p-1 bd-highlight broj centar boldiraj boja-glavna-100">
+                {{brojArtikala | number }}</div>
+              <div class="p-1 bd-highlight centar boldiraj">Različitih artikala</div>
+            </div>
+          </mat-list-item>
+          <mat-divider></mat-divider>
+
+          <mat-list-item class="list-item">
+            <span class="material-icons ikona boja-zelena-50">
+              label_important
+            </span>
+            <div class="d-flex flex-column bd-highlight detalji-magacina-opis">
+              <div *ngIf="brojArtikala === '-'" class="p-1 bd-highlight broj centar boldiraj boja-glavna-100">
+                {{brojProizvodjaca}}</div>
+              <div *ngIf="brojArtikala !== '-'" class="p-1 bd-highlight broj centar boldiraj boja-glavna-100">
+                {{brojProizvodjaca | number}}</div>
+              <div class="p-1 bd-highlight centar boldiraj">Različitih proizvodjača</div>
+            </div>
+          </mat-list-item>
+          <mat-divider></mat-divider>
+
+          <mat-list-item class="list-item">
+            <span class="material-icons ikona boja-zelena-50">
+              compare_arrows
+            </span>
+            <div class="d-flex flex-column bd-highlight detalji-magacina-opis">
+              <div *ngIf="brojFakture === '-'" class="p-1 bd-highlight broj centar boldiraj boja-glavna-100">
+                {{brojFakture}}</div>
+              <div *ngIf="brojFakture !== '-'" class="p-1 bd-highlight broj centar boldiraj boja-glavna-100">
+                {{brojFakture | number }}</div>
+              <div class="p-1 bd-highlight centar boldiraj">Web porudžbina</div>
+            </div>
+          </mat-list-item>
+        </mat-list>
+      </div>
+    </section>
+
+    <section *ngIf="innerWidth < 1650" class="d-flex flex-column">
+      <div class="detalji-magacina slika-header2">
+      </div>
+      <div class="d-flex flex-sm-row flex-column mali-ekran-boja">
+        <div class="flex-fill">
+          <div class="d-flex flex-column bd-highlight detalji-magacina-opis m-ekran-opis">
+            <div *ngIf="brojArtikala === '-'"
+              class="p-1 bd-highlight broj centar m-ekran-broj boldiraj boja-glavna-100">
+
+              <span *ngIf="innerWidth > 850 || innerWidth < 576"
+                class="material-icons ikona ikona-mali-ekran boja-zelena-50">
+                dashboard
+              </span> <span> {{brojArtikala}} </span></div>
+            <div *ngIf="brojArtikala !== '-'"
+              class="p-1 bd-highlight broj centar boldiraj m-ekran-broj boja-glavna-100">
+
+              <span *ngIf="innerWidth > 850 || innerWidth < 576"
+                class="material-icons ikona ikona-mali-ekran boja-zelena-50">
+                dashboard
+              </span>{{brojArtikala | number }}</div>
+            <div class="p-1 bd-highlight centar boldiraj">Razlicitih artikala</div>
+          </div>
+        </div>
+        <div *ngIf="innerWidth > 850" class="granicnik"></div>
+        <div class="flex-fill">
+          <div class="d-flex flex-column bd-highlight detalji-magacina-opis m-ekran-opis">
+            <div *ngIf="brojArtikala === '-'"
+              class="p-1 bd-highlight broj centar boldiraj m-ekran-broj boja-glavna-100">
+              <span *ngIf="innerWidth > 850 || innerWidth < 576"
+                class="material-icons ikona ikona-mali-ekran pat boja-zelena-50">
+                label_important
+              </span>
+              <span> {{brojProizvodjaca}}
+              </span>
+            </div>
+            <div *ngIf="brojArtikala !== '-'"
+              class="p-1 bd-highlight broj centar boldiraj m-ekran-broj boja-glavna-100">
+              <span *ngIf="innerWidth > 850 || innerWidth < 576"
+                class="material-icons ikona ikona-mali-ekran pat boja-zelena-50">
+                label_important
+              </span>
+              <span>
+                {{brojProizvodjaca | number}}
+              </span></div>
+            <div class="p-1 bd-highlight centar boldiraj">Razlicitih proizvodjaca</div>
+          </div>
+        </div>
+        <div *ngIf="innerWidth > 850" class="granicnik"></div>
+        <div class="flex-fill">
+          <div class="d-flex flex-column bd-highlight detalji-magacina-opis m-ekran-opis">
+            <div *ngIf="brojFakture === '-'" class="p-1 bd-highlight broj centar boldiraj m-ekran-broj boja-glavna-100">
+              <span *ngIf="innerWidth > 850" class="material-icons ikona ikona-mali-ekran boja-zelena-50">
+                label_important
+              </span>
+              <span>
+                {{brojFakture}}
+              </span></div>
+            <div *ngIf="brojFakture !== '-'" class="p-1 bd-highlight broj centar boldiraj m-ekran-broj boja-glavna-100">
+              <span *ngIf="innerWidth > 850 || innerWidth < 576"
+                class="material-icons ikona ikona-mali-ekran boja-zelena-50">
+                label_important
+              </span>
+              <span>
+                {{brojFakture | number }}
+              </span></div>
+            <div class="p-1 bd-highlight centar boldiraj">Web porudzbina</div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="sekcija">
+      <h2 class="sekcija-h2">Izdvajamo iz ponude</h2>
+      <div class="cekcija-ponuda d-flex flex-wrap justify-content-center">
+        <div *ngFor="let roba of robaPonuda">
+          <mat-card class="mat-card-ponuda">
+            <span *ngIf="partner && partner.privilegije === 2047" class="material-icons edit-ikona"
+              (click)="otvoriDijalogPromeneRobePonuda(roba)">
+              edit
+            </span>
+            <mat-card-content (click)='detaljiRobe(roba.robaid)' class="opis">
+              <div class="slika-div" (click)='detaljiRobe(roba.robaid)'>
+                <img class="izdvajamo-slika" mat-card-image src="{{roba.slika}}">
+              </div>
+              <div *ngIf="innerWidth >= 1411">
+                <p>
+                  Cena: <span class="cena"> {{roba.cena | currency:" "}} RSD </span>
+                </p>
+                <p>
+                  Kataloški broj: <span class="katbr"> {{roba.katbr}} </span>
+                </p>
+                <p>
+                  Proizvodjač: <span class="proizvodjac-naziv"> {{roba.proizvodjac.naziv}} </span>
+                </p>
+                <p class="naziv">{{roba.naziv}}</p>
+              </div>
+              <div class="centriraj" *ngIf="innerWidth < 1411">
+                <p>
+                  Cena sa pdv-om
+                </p>
+                <p class="cena"> {{roba.cena | currency:" "}} RSD </p>
+                <p>
+                  Proizvodjač:
+                </p>
+                <p class="proizvodjac-naziv"> {{roba.proizvodjac.naziv}} </p>
+                <p class="naziv">{{roba.naziv}}</p>
+              </div>
+            </mat-card-content>
+            <mat-card-actions>
+              <div class="bd-highlight cena-stanje">
+                <ul class="teh-detalji-ui">
+                  <li class="d-flex justify-content-center bd-highlight">
+                    <div class="p-1 w-100 bd-highlight kolicina-input-labela" *ngIf="roba.stanje > 0">
+                      <label class="labela-kolicina">Količina:</label>
+                      <div class="kolicina-div">
+                        <span (click)="oduzmiOdKolicine(roba)" class="izbrisi-ikona">
+                          <i class="material-icons kolicina-ikona">
+                            remove
+                          </i>
+                        </span>
+                        <span>
+                          <input type="number" min="1" (keyup.enter)="dodajUKorpuPonuda(roba)" placeholder="1"
+                            max="{{roba.stanje}}" class="input-kolicina-tabela" [(ngModel)]="roba.kolicina" />
+                        </span>
+                        <span (click)="dodajKolicini(roba)" class="dodaj-ikona">
+                          <i class="material-icons kolicina-ikona">
+                            add
+                          </i>
+                        </span>
+                      </div>
+                    </div>
+                    <div class="p-1 w-100 bd-highlight kolicina-input-labela" *ngIf="roba.stanje === 0">
+                      <label class="labela-kolicina">Količina:</label>
+                      <div class="kolicina-div">
+                        <span (click)="oduzmiOdKolicine(roba)" class="izbrisi-ikona">
+                          <i class="material-icons kolicina-ikona">
+                            remove
+                          </i>
+                        </span>
+                        <span>
+                          <input type="number" min="1" placeholder="0" max="{{roba.stanje}}"
+                            class="input-kolicina-tabela" />
+                        </span>
+                        <span (click)="dodajKolicini(roba)" class="dodaj-ikona">
+                          <i class="material-icons kolicina-ikona">
+                            add
+                          </i>
+                        </span>
+                      </div>
+                    </div>
+                    <div class="lex-shrink-1 bd-highlight stanje-ikona">
+                      <div *ngIf="roba.stanje > 0" class="text-center">
+                        <span *ngIf="innerWidth > 1410">Na stanju</span>
+                        <mat-icon *ngIf="innerWidth > 440" [class.nema-na-stanju]="!partnerLogovan"
+                          class="boja-zelena-50">check_circle_outline
+                        </mat-icon>
+
+                      </div>
+                      <div *ngIf="roba.stanje == 0" class="text-center nema-na-stanju-div">
+                        <mat-icon *ngIf="innerWidth > 440" matTooltip="Nema na stanju"
+                          class="boja-crvena-50 nema-na-stanju">
+                          remove_circle_outline
+                        </mat-icon>
+                      </div>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+              <div class="bd-highlight">
+                <div *ngIf="roba.stanje > 0" class="d-flex flex-row justify-content-center text-center">
+                  <div class="dugme-mobilni">
+                    <button mat-raised-button [class.button-zuto-10]="!partner && !roba.dozvoljenoZaAnonimusa"
+                      class="dugme button-glavni-100" (click)='dodajUKorpuPonuda(roba)'>
+                      Dodaj u korpu
+                      <i class="material-icons">
+                        add_shopping_cart
+                      </i>
+                    </button>
+                  </div>
+                </div>
+                <div *ngIf="roba.stanje === 0" class="d-flex flex-row justify-content-center text-center">
+                  <div>
+                    <button mat-raised-button [disabled]="roba.stanje == 0"
+                      class="dugme-detalji-u-korpi dugme button-crveni-50" (click)='detaljiRobe(roba.robaid)'>
+
+                      Dodaj u korpu
+                      <i class="material-icons">
+                        add_shopping_cart
+                      </i>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </mat-card-actions>
+          </mat-card>
+        </div>
+      </div>
+    </section>
+
+    <section class="sekcija">
+      <h2 class="sekcija-h2">Popularne kategorije</h2>
+      <div class="cekcija-ponuda d-flex flex-wrap justify-content-center">
+        <div *ngFor="let kategorija of kategorije">
+          <mat-card class="kategorija-card" (click)="idiNaKategoriju(kategorija)">
+            <span *ngIf="innerWidth > 1311" class="material-icons ikona-kategorija-leva">
+              {{kategorija.ikonaId}}
+            </span>
+            <p class="kategorija-p">
+              {{kategorija.naslov}}
+            </p>
+            <span *ngIf="innerWidth > 1311" class="material-icons float-right mt-u-korpi boja-glavna-100">
+              play_arrow
+            </span>
+          </mat-card>
+        </div>
+      </div>
+    </section>
+    <section class="sekcija">
+      <h2 class="sekcija-h2">Najbolje prodavano</h2>
+      <div class="cekcija-ponuda d-flex flex-wrap justify-content-center">
+        <div *ngFor="let roba of robaNajbolje">
+          <mat-card class="mat-card-ponuda">
+            <span *ngIf="partner && partner.privilegije === 2047" class="material-icons edit-ikona"
+              (click)="otvoriDijalogPromeneRobeNajbolje(roba)">
+              edit
+            </span>
+            <mat-card-content (click)='detaljiRobe(roba.robaid)' class="opis">
+              <div class="slika-div">
+                <img class="izdvajamo-slika" mat-card-image src="{{roba.slika}}">
+              </div>
+              <div *ngIf="innerWidth > 1411">
+                <p>
+                  Cena: <span class="cena"> {{roba.cena | currency:" "}} RSD </span>
+                </p>
+                <p>
+                  Kataloški broj: <span class="katbr"> {{roba.katbr}} </span>
+                </p>
+                <p>
+                  Proizvodjač: <span class="proizvodjac-naziv"> {{roba.proizvodjac.naziv}} </span>
+                </p>
+                <p class="naziv">{{roba.naziv}}</p>
+              </div>
+              <div class="centriraj" *ngIf="innerWidth < 1411">
+                <p>
+                  Cena sa pdv-om
+                </p>
+                <p class="cena"> {{roba.cena | currency:" "}} RSD </p>
+                <p>
+                  Proizvodjač:
+                </p>
+                <p class="proizvodjac-naziv"> {{roba.proizvodjac.naziv}} </p>
+                <p class="naziv">{{roba.naziv}}</p>
+              </div>
+            </mat-card-content>
+            <mat-card-actions>
+              <div class="bd-highlight cena-stanje">
+                <ul class="teh-detalji-ui">
+                  <li class="d-flex justify-content-center bd-highlight">
+                    <div class="p-1 w-100 bd-highlight kolicina-input-labela" *ngIf="roba.stanje > 0">
+                      <label class="labela-kolicina">Količina:</label>
+                      <div class="kolicina-div">
+                        <span (click)="oduzmiOdKolicine(roba)" class="izbrisi-ikona">
+                          <i class="material-icons kolicina-ikona">
+                            remove
+                          </i>
+                        </span>
+                        <span>
+                          <input type="number" min="1" (keyup.enter)="dodajUKorpuNajbolje(roba)" placeholder="1"
+                            max="{{roba.stanje}}" class="input-kolicina-tabela" [(ngModel)]="roba.kolicina" />
+                        </span>
+                        <span (click)="dodajKolicini(roba)" class="dodaj-ikona">
+                          <i class="material-icons kolicina-ikona">
+                            add
+                          </i>
+                        </span>
+                      </div>
+                    </div>
+                    <div class="p-1 w-100 bd-highlight kolicina-input-labela" *ngIf="roba.stanje === 0">
+                      <label class="labela-kolicina">Količina:</label>
+                      <div class="kolicina-div">
+                        <span (click)="oduzmiOdKolicine(roba)" class="izbrisi-ikona">
+                          <i class="material-icons kolicina-ikona">
+                            remove
+                          </i>
+                        </span>
+                        <span>
+                          <input type="number" min="1" placeholder="0" max="{{roba.stanje}}"
+                            class="input-kolicina-tabela" />
+                        </span>
+                        <span (click)="dodajKolicini(roba)" class="dodaj-ikona">
+                          <i class="material-icons kolicina-ikona">
+                            add
+                          </i>
+                        </span>
+                      </div>
+                    </div>
+                    <div class="lex-shrink-1 bd-highlight stanje-ikona">
+                      <div *ngIf="roba.stanje > 0" class="text-center">
+                        <span *ngIf="innerWidth > 1410">Na stanju</span>
+                        <mat-icon *ngIf="innerWidth > 440" [class.nema-na-stanju]="!partnerLogovan"
+                          class="boja-zelena-50">check_circle_outline
+                        </mat-icon>
+
+                      </div>
+                      <div *ngIf="roba.stanje == 0" class="text-center nema-na-stanju-div">
+                        <mat-icon *ngIf="innerWidth > 440" matTooltip="Nema na stanju"
+                          class="boja-crvena-50 nema-na-stanju">
+                          remove_circle_outline
+                        </mat-icon>
+                      </div>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+              <div class="bd-highlight">
+                <div *ngIf="roba.stanje > 0" class="d-flex flex-row justify-content-center text-center">
+                  <div class="dugme-mobilni">
+                    <button mat-raised-button class="dugme"
+                      [class.button-zuto-10]="!partner && !roba.dozvoljenoZaAnonimusa"
+                      (click)='dodajUKorpuNajbolje(roba)'>
+                      Dodaj u korpu
+                      <i class="material-icons">
+                        add_shopping_cart
+                      </i>
+                    </button>
+                  </div>
+                </div>
+                <div *ngIf="roba.stanje === 0" class="d-flex flex-row justify-content-center text-center">
+                  <div>
+                    <button mat-raised-button [disabled]="roba.stanje == 0"
+                      class="dugme-detalji-u-korpi dugme button-crveni-50">
+                      Dodaj u korpu
+                      <i class="material-icons">
+                        add_shopping_cart
+                      </i>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </mat-card-actions>
+          </mat-card>
+        </div>
+      </div>
+    </section>
+    <section class="sekcija">
+      <h2 class="sekcija-h2">Popularne grupe</h2>
+      <div class="cekcija-ponuda d-flex flex-wrap justify-content-center">
+        <div *ngFor="let kategorija of grupe">
+          <mat-card class="kategorija-card" (click)="idiNaKategoriju(kategorija)">
+            <span *ngIf="innerWidth > 1311" class="material-icons ikona-kategorija-leva">
+              {{kategorija.ikonaId}}
+            </span>
+            <p class="kategorija-p">
+              {{kategorija.naslov}}
+            </p>
+            <span *ngIf="innerWidth > 1311" class="material-icons float-right mt-u-korpi boja-glavna-100">
+              play_arrow
+            </span>
+          </mat-card>
+        </div>
+      </div>
+    </section>
+    <section class="sekcija">
+      <h2 class="sekcija-h2">Distributeri smo brendova</h2>
+      <div class="cekcija-ponuda d-flex flex-wrap justify-content-center">
+        <div *ngFor="let brend of brendovi">
+          <img class="brendovi-img" (click)="otvoriDialog(brend)" src="{{brend.urlSlikeLogo}}" />
+        </div>
+      </div>
+    </section>
+  </section>
+</main>

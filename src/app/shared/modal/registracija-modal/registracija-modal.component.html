@@ -1,0 +1,172 @@
+<mat-dialog-content>
+  <main>
+    <div class="modal-naslov">
+      <h1 class="h1-modal-naslov">Registracija</h1>
+      <button type="button" class="close" (click)="zatvoriDialog()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <mat-horizontal-stepper [linear]="true" #stepper>
+      <mat-step>
+        <ng-template matStepLabel>Vrsta</ng-template>
+        <mat-radio-group class="radio-group" [(ngModel)]="vrstaRegistracije">
+          <mat-radio-button color="primary" *ngFor="let registracija of registracije" [value]="registracija">
+            {{registracija}}
+          </mat-radio-button>
+        </mat-radio-group>
+        <div>
+          <button mat-button class="boja-glavna-100" (click)="odrediFormu()" matStepperNext>Dalje</button>
+        </div>
+      </mat-step>
+      <mat-step [stepControl]="odredjenaForma">
+        <ng-template matStepLabel>Forma</ng-template>
+        <form role="form" [formGroup]="privatnoLiceForm" *ngIf="vrstaRegistracije == registracije[0]">
+          <mat-form-field class="puna-duzina">
+            <input #imeIPrezime formControlName="imeIPrezime" matInput placeholder="Ime i prezime">
+          </mat-form-field>
+          <div *ngIf="formaSubmited && privatno.imeIPrezime.errors">
+            <div *ngIf="privatno.imeIPrezime.errors.required">
+              <p class="upozorenje">Ime i prezime je obavezno</p>
+            </div>
+            <div *ngIf="privatno.imeIPrezime.errors.minlength">
+              <p class="upozorenje">Ime i prezime mora imati minimalno 3 karaktera</p>
+            </div>
+          </div>
+
+          <mat-form-field class="puna-duzina">
+            <input #grad formControlName="grad" matInput placeholder="Grad">
+          </mat-form-field>
+          <div *ngIf="formaSubmited && privatno.grad.errors">
+            <div *ngIf="privatno.grad.errors.required">
+              <p class="upozorenje">Naziv grada je obavezan</p>
+            </div>
+            <div *ngIf="privatno.grad.errors.minlength">
+              <p class="upozorenje">Grad mora imati minimalno 2 karaktera</p>
+            </div>
+          </div>
+
+          <mat-form-field class="puna-duzina">
+            <input #adresa formControlName="adresa" matInput placeholder="Adresa">
+          </mat-form-field>
+          <div *ngIf="formaSubmited && privatno.adresa.errors">
+            <div *ngIf="privatno.adresa.errors.required">
+              <p class="upozorenje">Adresa je obavezna</p>
+            </div>
+            <div *ngIf="privatno.adresa.errors.minlength">
+              <p class="upozorenje">Adresa mora imati minimalno 3 karaktera</p>
+            </div>
+          </div>
+
+          <mat-form-field class="puna-duzina">
+            <input #email formControlName="email" matInput type="email" placeholder="Email">
+          </mat-form-field>
+          <div *ngIf="formaSubmited && privatno.email.errors">
+            <div *ngIf="privatno.email.errors.required">
+              <p class="upozorenje">Email je obavezan</p>
+            </div>
+            <div *ngIf="privatno.email.errors.email">
+              <p class="upozorenje">Email nije validan</p>
+            </div>
+          </div>
+
+          <mat-form-field class="puna-duzina">
+            <input #kontaktTelefon formControlName="kontaktTelefon" matInput type="tel" placeholder="Broj telefona">
+          </mat-form-field>
+          <div *ngIf="formaSubmited && privatno.kontaktTelefon.errors">
+            <div *ngIf="privatno.kontaktTelefon.errors.required">
+              <p class="upozorenje">Broj telefona je obavezan</p>
+            </div>
+            <div *ngIf="privatno.kontaktTelefon.errors.minlength">
+              <p class="upozorenje">Broj telefona mora imati vise od 5 karakera</p>
+            </div>
+          </div>
+
+        </form>
+        <form role="form" [formGroup]="parvnoLiceForm" *ngIf="vrstaRegistracije == registracije[1]">
+          <mat-form-field class="puna-duzina">
+            <input #grad formControlName="nazivFirme" matInput placeholder="Naziv firme">
+          </mat-form-field>
+          <div *ngIf="formaSubmited && pravno.nazivFirme.errors">
+            <div *ngIf="pravno.nazivFirme.errors.required">
+              <p class="upozorenje">Naziv firme je obavezan</p>
+            </div>
+            <div *ngIf="pravno.nazivFirme.errors.minlength">
+              <p class="upozorenje">Ime i prezime mora imati minimalno 3 karaktera</p>
+            </div>
+          </div>
+          <mat-form-field class="puna-duzina">
+            <input #pib formControlName="pib" matInput placeholder="Pib">
+          </mat-form-field>
+          <div *ngIf="formaSubmited && pravno.pib.errors">
+            <div *ngIf="pravno.pib.errors.required">
+              <p class="upozorenje">Pib je obavezan</p>
+            </div>
+            <div *ngIf="pravno.pib.errors.minlength">
+              <p class="upozorenje">Pib mora imati minimalno 3 karaktera</p>
+            </div>
+          </div>
+
+          <mat-form-field class="puna-duzina">
+            <input #grad formControlName="grad" matInput placeholder="Grad">
+          </mat-form-field>
+          <div *ngIf="formaSubmited && pravno.grad.errors">
+            <div *ngIf="pravno.grad.errors.required">
+              <p class="upozorenje">Naziv grada je obavezan</p>
+            </div>
+            <div *ngIf="pravno.grad.errors.minlength">
+              <p class="upozorenje">Grad mora imati minimalno 2 karaktera</p>
+            </div>
+          </div>
+
+          <mat-form-field class="puna-duzina">
+            <input #adresa formControlName="adresa" matInput placeholder="Adresa">
+          </mat-form-field>
+          <div *ngIf="formaSubmited && pravno.adresa.errors">
+            <div *ngIf="pravno.adresa.errors.required">
+              <p class="upozorenje">Adresa je obavezna</p>
+            </div>
+            <div *ngIf="pravno.adresa.errors.minlength">
+              <p class="upozorenje">Adresa mora imati minimalno 3 karaktera</p>
+            </div>
+          </div>
+
+          <mat-form-field class="puna-duzina">
+            <input #email formControlName="email" matInput type="email" placeholder="Email">
+          </mat-form-field>
+          <div *ngIf="formaSubmited && pravno.email.errors">
+            <div *ngIf="pravno.email.errors.required">
+              <p class="upozorenje">Email je obavezan</p>
+            </div>
+            <div *ngIf="pravno.email.errors.email">
+              <p class="upozorenje">Email nije validan</p>
+            </div>
+          </div>
+          <mat-form-field class="puna-duzina">
+            <input #kontaktTelefon formControlName="kontaktTelefon" matInput type="tel" placeholder="Broj telefona">
+          </mat-form-field>
+          <div *ngIf="formaSubmited && pravno.kontaktTelefon.errors">
+            <div *ngIf="pravno.kontaktTelefon.errors.required">
+              <p class="upozorenje">Telefon je obavezan</p>
+            </div>
+            <div *ngIf="pravno.kontaktTelefon.errors.minlength">
+              <p class="upozorenje">>Telefon mora imati minimalno 5 karaktera</p>
+            </div>
+          </div>
+        </form>
+        <div>
+          <button mat-button matStepperPrevious>Nazad</button>
+          <button mat-button class="boja-glavna-100" (click)="registracijaKorisnika()" matStepperNext>Registruj
+            se</button>
+        </div>
+      </mat-step>
+      <mat-step>
+        <ng-template matStepLabel>Uspešno</ng-template>
+        <h3>Registracija je uspešno poslata</h3>
+        <p> U narednih 24h vaš zahtev će biti obradjen i dobićete mail sa detaljima vašeg naloga.</p>
+        <div>
+          <button mat-button class="boja-glavna-100" (click)="zatvoriDialog()">Zatvori</button>
+        </div>
+      </mat-step>
+    </mat-horizontal-stepper>
+  </main>
+</mat-dialog-content>

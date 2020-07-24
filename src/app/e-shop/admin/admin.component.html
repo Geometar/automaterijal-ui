@@ -1,0 +1,72 @@
+<main>
+  <div class="header-porduzbenice">
+    <h1 class="admin-h1">Admin stranica</h1>
+
+    <div class="ceo-div d-flex flex-column flex-lg-row bd-highlight">
+      <div class="p-2 flex-fill bd-highlight">
+        <h2>Dozvoljene grupe za anonimnog korisnika</h2>
+        <div class="d-flex flex-row d-grupa-glavni-div" *ngFor="let grupa of dozvoljeneGrupe">
+          <p class="p-partner">{{grupa.naziv}}</p>
+          <div class="dozvoljena-grupa-div">
+            <button mat-raised-button class="izbrisi-dugme-div" color="warn" (click)="izbrisiGrupu(grupa)">Izbrisi</button>
+          </div>
+        </div>
+        <div class="centriraj"> 
+          <button mat-raised-button class="button-glavni-100 dugme-dodaj" (click)="dodajGrupu()">Dodaj grupu</button>
+        </div>
+        <div class="d-flex justify-content-center prazna-tabela" *ngIf="ucitavanjeSesija">
+          <mat-spinner></mat-spinner>
+        </div>
+      </div>
+
+      <div *ngIf="dataSource != null && dataSource.length > 0" class="tabela-div p-2 flex-fill">
+        <h2>Logovanja partnera</h2>
+        <table mat-table [dataSource]="dataSource">
+
+          <!-- Kataloski broj Column -->
+          <ng-container matColumnDef="ppid">
+            <th mat-header-cell *matHeaderCellDef>
+              <span>Ppid</span>
+            </th>
+            <td mat-cell data-label="Ppid" *matCellDef="let logovanja">
+              <p class="mat-body-2">
+                {{logovanja.ppid}}
+              </p>
+            </td>
+          </ng-container>
+
+          <!-- Kataloski broj Column -->
+          <ng-container matColumnDef="naziv">
+            <th mat-header-cell *matHeaderCellDef>
+              <span>Naziv</span>
+            </th>
+            <td mat-cell data-label="Naziv" *matCellDef="let logovanja">
+              <p class="mat-body-2">
+                {{logovanja.naziv | titlecase}}
+              </p>
+            </td>
+          </ng-container>
+
+          <!-- Broj stavki Column -->
+          <ng-container matColumnDef="vreme">
+            <th mat-header-cell *matHeaderCellDef>Poslednji logovanje</th>
+            <td mat-cell data-label="Poslednji logovanje" *matCellDef="let logovanja">
+              <p>
+                {{logovanja.poslednjeLogovanje}}
+              </p>
+            </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+        <mat-paginator #paginator [length]="tableLength" [pageSize]="rowsPerPage" [pageSizeOptions]="[5, 10, 25]"
+          [pageIndex]="pageIndex" [length]="tableLength" [showFirstLastButtons]="true" (page)="paginatorEvent($event)">
+        </mat-paginator>
+      </div>
+      <div class="d-flex justify-content-center prazna-tabela" *ngIf="ucitavanjeLogovanja">
+        <mat-spinner></mat-spinner>
+      </div>
+    </div>
+  </div>
+</main>>

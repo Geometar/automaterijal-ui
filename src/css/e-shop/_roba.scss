@@ -1,0 +1,153 @@
+@import "src/automaterijal-theme.scss";
+
+.pretraga-bar {
+  padding-top: 20px;
+}
+
+.sekcina-pretraga-filteri {
+  max-width: 1150px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.ulje-pretraga-bar {
+  padding-top: 35px;
+}
+
+.forms-input {
+  display: flex;
+  border-radius: 45px;
+  padding: 1px;
+  background: white;
+  border: 2px solid grey;
+  width: 80%;
+  font-weight: bold;
+  text-align: center;
+}
+
+.ulja-forms {
+  margin-top: 35px !important;
+}
+
+.search__input {
+  border: none;
+  margin-left: 5%;
+}
+
+.input-group-text {
+  display: inline-block;
+  width: 140px;
+  height: 38px;
+  font-size: 0.9rem;
+}
+.custom-select {
+  width: 200px;
+  font-size: 0.83rem;
+}
+
+.filter-div-test {
+  display: flex;
+  padding: 10px;
+  width: 420px;
+}
+
+.tabela-div {
+  max-width: 1150px;
+  margin-left: auto;
+  margin-right: auto;
+}
+input[type="number"]::-webkit-inner-spin-button {
+  opacity: 1;
+}
+.kolicina-labela {
+  height: 23px;
+  width: 65px !important;
+}
+
+.razmak {
+  margin-left: 10px;
+}
+
+.iznos-margin {
+  margin-right: 5%;
+}
+
+.pdv {
+  margin: 0px;
+  padding: 0px;
+  float: right;
+  color: $automaterijal-grey-50;
+}
+@media only screen and (max-device-width: 900px) {
+  .ulje-pretraga-bar {
+    margin-bottom: 20px;
+  }
+}
+
+@media only screen and (max-device-width: 640px) {
+
+  .forms-input {
+    border-radius: 45px;
+    background: white;
+    border: 2px solid grey;
+    width: 100%;
+    margin-left: 1%;
+    margin-right: 1%;
+    font-weight: bold;
+    text-align: center;
+    display: flex;
+  }
+  .pretraga-bar {
+    padding-top: 30px;
+  }
+
+  .search__input {
+    margin-left: 5%;
+    font-weight: bold;
+    text-align: center;
+    border: none;
+  }
+
+  .tabela-div {
+    width: 98%;
+    margin-left: 1%;
+    // display: flex;
+    overflow-x: auto;
+    justify-content: center;
+  }
+  .input-group-prepend {
+    margin-top: 10px;
+    margin-left: 0px;
+  }
+}
+
+@media only screen and (max-width :992px) { 
+    .mobilni {
+        width: 80%;
+    }
+    .filter-div-test {
+      text-align: center;
+    }
+}
+
+@media only screen and (max-width :650px) { 
+    .mobilni {
+        width: 90%;
+    }
+
+    .custom-select {
+      width: 170px;
+      font-size: 0.8rem;
+    }
+    .input-group-text {
+      width: 120px;
+      font-size: 0.8rem;
+    }
+}
+
+@media only screen and (max-width :421px) { 
+
+    .filter-div-test {
+        width: 100%;
+    }
+}

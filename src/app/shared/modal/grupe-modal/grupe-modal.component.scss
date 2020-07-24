@@ -1,0 +1,33 @@
+@import "src/automaterijal-theme.scss";
+
+h1 {
+  font-size: 1.6rem;
+  text-align: center;
+  color: $automaterijal-primary-100; 
+}
+
+.dugme-div {
+    width: 100%;
+    text-align: right;
+    padding-top: 4px;
+}
+
+.glavni-div:hover {
+    color: $automaterijal-accent-green-50;
+    font-weight: bold;
+}
+
+.glavni-div {
+    border-bottom: 1px solid black;
+    height: 45px;
+}
+
+.naziv {
+    padding-top: 12px;
+    font-size: 0.85rem;
+    width: 280px;
+}
+
+button {
+    width: 90px;
+}

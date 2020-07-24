@@ -1,0 +1,24 @@
+@import "src/automaterijal-theme.scss";
+
+th {
+    text-align: center;
+}
+
+td {
+    text-align: center;
+}
+
+.pomeri-dole {
+    margin-top: 20px;
+}
+
+h3 {
+    color: $automaterijal-primary-50;
+    text-align: center;
+    display: inline;
+}
+
+.header {
+    height: 3em;
+    text-align: center;
+}

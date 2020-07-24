@@ -1,0 +1,14 @@
+@import "src/automaterijal-theme.scss";
+
+h1 {
+    font-size: 1.4em;
+    text-align: center;
+    color: $automaterijal-primary-100;
+}
+
+.upozorenje {
+    text-align: left;
+    font-size: 0.8em;
+    color: red;
+    margin-top: 2px;
+}

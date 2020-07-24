@@ -1,0 +1,77 @@
+@import "src/automaterijal-theme.scss";
+
+body, html { 
+  min-height: 100% !important; 
+  background-color: $automaterijal-grey-400;
+}
+body {
+  font-family: 'Open Sans', sans-serif; }
+
+  h1 {
+    font: bold 2em 'Work Sans', sans-serif;
+    color: $automaterijal-grey-50;
+  }
+  p {
+    color: $automaterijal-grey-50;
+    font-family: 'Open Sans', sans-serif;
+    padding: 0px;
+    margin: 0px;
+  }
+  
+  h2{
+    font: 1.8em 'Work Sans', sans-serif;
+    color: $automaterijal-grey-50;
+  }
+  
+  h3{
+    font: 1.5em 'Work Sans', sans-serif;
+    color: $automaterijal-grey-50;
+  }
+  
+  button {
+    outline: none !important;
+  }
+  
+  table {
+    width: 100%;
+    margin-top: 1%;
+  }
+  
+  input:focus {
+    outline:none;
+  }
+
+  label {
+    font: 15px 'Open Sans', sans-serif;
+  }
+
+  th {
+    color: $automaterijal-grey-400 !important;
+    background-color: $automaterijal-primary-50 !important;
+    font: 13px 'Open Sans', sans-serif !important;
+  }
+  
+  tr {
+    font-family: 'Open Sans', sans-serif !important;
+  }
+
+  td {
+    font-family: 'Open Sans', sans-serif;
+  }
+
+  ul {
+    list-style-type: none;
+    color: $automaterijal-primary-50;
+    font: 1em 'Work Sans', sans-serif;
+
+
+  }
+
+  @media only screen and (max-width : 960px) { 
+    body {
+      padding-top: 0px;
+    }
+    body {
+      width: 100%;
+    }
+  }

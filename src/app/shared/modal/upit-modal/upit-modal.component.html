@@ -1,0 +1,146 @@
+<mat-dialog-content *ngIf="!ucitavanje">
+  <section *ngIf="!porukaJePoslata">
+    <div class="header">
+      <h1>Pošalji upit</h1>
+      <button type="button" class="close" (click)="zatvoriUpitDialog()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <form role="form" [formGroup]="upitForm">
+      <div class="forma-poruke">
+        <table cellspacing="0">
+          <tr>
+            <td>
+              <mat-form-field class="sirina-polja-unosa">
+                <input matInput formControlName="email_telefon" placeholder="Vaš email ili broj telefona">
+              </mat-form-field>
+              <div *ngIf="upitSubmited && u.email_telefon.errors">
+                <div *ngIf="u.email_telefon.errors.required">
+                  <p class="upozorenje">Email ili telefon je obavezan</p>
+                </div>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <mat-form-field class="sirina-polja-unosa">
+                <input matInput formControlName="marka_model" placeholder="Marka i model automobila - (Fiat Punto)">
+              </mat-form-field>
+              <div *ngIf="upitSubmited && u.marka_model.errors">
+                <div *ngIf="u.marka_model.errors.required">
+                  <p class="upozorenje">Marka и model automobila je obavezan</p>
+                </div>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <mat-form-field class="sirina-polja-unosa">
+                <input matInput formControlName="godiste" placeholder="Godište">
+              </mat-form-field>
+              <div *ngIf="upitSubmited && u.godiste.errors">
+                <div *ngIf="u.godiste.errors.required">
+                  <p class="upozorenje">Godište automobila je obavezana</p>
+                </div>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <mat-form-field class="sirina-polja-unosa">
+                <input matInput formControlName="kubikaza" placeholder="Kubikaža">
+              </mat-form-field>
+              <div *ngIf="upitSubmited && u.kubikaza.errors">
+                <div *ngIf="u.kubikaza.errors.required">
+                  <p class="upozorenje">Kubikaža automobila je obavezana</p>
+                </div>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <mat-form-field class="sirina-polja-unosa">
+                <input matInput formControlName="kilovati" placeholder="Kilovati">
+              </mat-form-field>
+              <div *ngIf="upitSubmited && u.kilovati.errors">
+                <div *ngIf="u.kilovati.errors.required">
+                  <p class="upozorenje">Broj kilovata automobila je obavezan</p>
+                </div>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <mat-form-field class="sirina-polja-unosa">
+                <mat-select placeholder="Izaberite vrstu goriva" formControlName="gorivo" name="gorivo" multiple>
+                  <mat-option *ngFor="let gor of gorivo" [value]="gor">
+                    {{gor}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+              <div *ngIf="upitSubmited && u.gorivo.errors">
+                <div *ngIf="u.gorivo.errors.required">
+                  <p class="upozorenje">Vrsta goriva je obavezna</p>
+                </div>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <mat-form-field class="sirina-polja-unosa">
+                <mat-select placeholder="Izaberite vrstu pogona automobila" formControlName="pogon" name="pogon"
+                  multiple>
+                  <mat-option *ngFor="let pogon of pogoni" [value]="pogon">
+                    {{pogon}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+              <div *ngIf="upitSubmited && u.pogon.errors">
+                <div *ngIf="u.pogon.errors.required">
+                  <p class="upozorenje">Vrsta pogona automobila je obavezna</p>
+                </div>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <mat-form-field class="sirina-polja-unosa">
+                <mat-select placeholder="Izaberite šta vas interesuje" formControlName="interesuje_me" name="gorivo"
+                  multiple>
+                  <mat-option *ngFor="let ponuda of ponude" [value]="ponuda">
+                    {{ponuda}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+              <div *ngIf="upitSubmited && u.interesuje_me.errors">
+                <div *ngIf="u.interesuje_me.errors.required">
+                  <p class="upozorenje">Morate izabrati bar jednu opciju</p>
+                </div>
+              </div>
+            </td>
+          </tr>
+          <tr *ngIf="daLiJeObelezenoDrugo()">
+            <td>
+              <mat-form-field class="sirina-polja-unosa">
+                <textarea matInput class="visina-textarea" formControlName="drugo"
+                  placeholder="Interesuje me..."></textarea>
+              </mat-form-field>
+            </td>
+          </tr>
+        </table>
+        <button mat-flat-button class="sirina-polja-unosa" (click)="posaljiUpit()" color="primary">Pošalji</button>
+      </div>
+    </form>
+  </section>
+  <section *ngIf="porukaJePoslata">
+    <p>Ukoro ćemo obraditi vaš upit i odgovoriti vam u najkraćem mogućem roku. Hvala na poverenju.</p>
+    <div class="text-center">
+      <button mat-flat-button class="zatvori-button"color="primary" (click)="zatvoriUpitDialog()">Zatvori</button>
+    </div>
+  </section>
+</mat-dialog-content>
+<section *ngIf="ucitavanje">
+  <div class="d-flex justify-content-center margin-bottom--10 margin-top--10">
+    <mat-spinner></mat-spinner>
+  </div>
+</section>

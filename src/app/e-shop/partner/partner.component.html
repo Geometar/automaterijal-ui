@@ -1,0 +1,210 @@
+<main class="header-partner">
+  <div *ngIf="partner" class="licni-podaci">
+    <div class="d-flex flex-column  flex-xl-row">
+      <div class="strana">
+        <div class="header2">
+          <h1>Licni podaci</h1>
+        </div>
+        <ul>
+          <li>
+            <span class="leva-strana">
+              Naziv:
+            </span> <span class="desna-strana"> {{partner.naziv | titlecase}} </span>
+          </li>
+          <li><span class="leva-strana">Adresa:</span>
+            <span *ngIf="partner.adresa">{{partner.adresa | titlecase}}</span>
+            <span *ngIf="!partner.adresa" class="boja-siva-200">Ne postoji podatak</span>
+          </li>
+          <li>
+            <span class="leva-strana">Email:</span>
+            <span *ngIf="partner.email">{{partner.email | lowercase}}</span>
+            <span *ngIf="!partner.email" class="boja-siva-200">Ne postoji podatak</span>
+          </li>
+          <li><span class="leva-strana">Stanje:</span>
+            <span *ngIf="partner.stanje" [ngClass]="{'dugovanje': daLiDuguje}"><b>{{partner.stanje | currency:" "}}
+                RSD</b></span>
+            <span *ngIf="!partner.stanje" class="boja-siva-200">Ne postoji podatak</span>
+          </li>
+        </ul>
+      </div>
+      <div class="strana2">
+        <div class="header2">
+          <h1>Akcije</h1>
+        </div>
+        <mat-accordion>
+          <mat-expansion-panel class="exp-panel">
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                <p class="panel">Promenite adresu</p>
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            <form role="form" [formGroup]="adresaForm">
+              <div>
+                <mat-form-field>
+                  <input type="text" #ulica formControlName="ulica"
+                    [ngClass]="{ 'is-invalid': adresaSubmited && a.ulica.errors }" matInput placeholder="Ulica i broj">
+                </mat-form-field>
+              </div>
+              <div *ngIf="adresaSubmited && a.ulica.errors">
+                <div *ngIf="a.ulica.errors.required">
+                  <p class="upozorenje">Naziv ulice je obavezan</p>
+                </div>
+                <div *ngIf="a.ulica.errors.minlength">
+                  <p class="upozorenje">Naziv ulice mora imati minimalno 3 karaktera</p>
+                </div>
+              </div>
+              <div>
+                <mat-form-field>
+                  <input type="text" #grad formControlName="grad" matInput
+                    [ngClass]="{ 'is-invalid': adresaSubmited && a.grad.errors }" placeholder="Grad">
+                </mat-form-field>
+                <div *ngIf="adresaSubmited && a.grad.errors">
+                  <div *ngIf="a.grad.errors.required">
+                    <p class="upozorenje">Naziv grada je obavezan</p>
+                  </div>
+                  <div *ngIf="a.grad.errors.minlength">
+                    <p class="upozorenje">Naziv grada mora imati minimalno 2 karaktera</p>
+                  </div>
+                </div>
+              </div>
+              <div class="button-div">
+                <button class="button-glavni-100" (click)="promeniAdresu(ulica.value, grad.value)"
+                  mat-raised-button>Sacuvaj</button>
+                <button class="button-crveni-50 float-right"
+                  (click)="ulica.value = ''; grad.value = ''; adresaSubmited=false" mat-raised-button>Poništi</button>
+              </div>
+            </form>
+
+          </mat-expansion-panel>
+          <mat-expansion-panel class="exp-panel">
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                <p class="panel">Promenite email</p>
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            <form role="form" [formGroup]="emailForm">
+              <div>
+                <mat-form-field>
+                  <input type="email" #email formControlName="email" matInput
+                    [ngClass]="{ 'is-invalid': emailSubmited && e.email.errors }" placeholder="Novi email...">
+                </mat-form-field>
+              </div>
+              <div *ngIf="emailSubmited && e.email.errors">
+                <div *ngIf="e.email.errors.required">
+                  <p class="upozorenje">Email je obavezan</p>
+                </div>
+                <div *ngIf="e.email.errors.email">
+                  <p class="upozorenje">Email nije validan</p>
+                </div>
+              </div>
+              <div class="button-div">
+                <button class="button-glavni-100" (click)="promeniLEmail(email.value)"
+                  mat-raised-button>Sacuvaj</button>
+                <button class="button-crveni-50 float-right" (click)="email.value = ''; emailSubmited=false"
+                  mat-raised-button>Poništi</button>
+              </div>
+            </form>
+          </mat-expansion-panel>
+          <mat-expansion-panel class="exp-panel">
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                <p class="panel">Promenite korisničko ime</p>
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            <form role="form" [formGroup]="usernameForm">
+              <div>
+                <mat-form-field>
+                  <input type="text" #username formControlName="username"
+                    [ngClass]="{ 'email-selected': korisnickoImeMetod === 'email'}"
+                    (keyup)="usernameSubmited = false; korisnickoImeJeZauzeto = false;"
+                    [attr.disabled]="daLiKorisnickoImeTrebaDaBudeEmail() ? '' : null" matInput
+                    placeholder="Novo korisničko ime">
+                </mat-form-field>
+              </div>
+
+              <div *ngIf="usernameSubmited && u.username.errors">
+                <div *ngIf="u.username.errors.required && korisnickoImeMetod != 'email'">
+                  <p class="upozorenje">Korisničko ime je obavezno</p>
+                </div>
+                <div *ngIf="u.username.errors.minlength && korisnickoImeMetod != 'email'">
+                  <p class="upozorenje">Korisničko ime mora imati vise od 3 karaktera</p>
+                </div>
+              </div>
+              <div *ngIf="usernameSubmited && korisnickoImeJeZauzeto">
+                <p class="upozorenje">Korisničko ime je vec zazueto</p>
+              </div>
+              <div class="button-div">
+                <button class="button-glavni-100" (click)="promeniUsername()" mat-raised-button>Sacuvaj</button>
+                <button class="button-crveni-50 float-right"
+                  (click)="username.value = ''; usernameSubmited=false" mat-raised-button>Poništi</button>
+              </div>
+            </form>
+          </mat-expansion-panel>
+          <mat-expansion-panel class="exp-panel">
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                <p class="panel">Promenite šifru</p>
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            <form role="form" [formGroup]="passwordForm">
+              <div>
+                <mat-form-field>
+                  <input matInput type="password" #staraSifra (keyup)="losaSifra = false;"formControlName="staraSifra" placeholder="Stara šifra">
+                </mat-form-field>
+                <div *ngIf="passwordSubmited && !s.staraSifra.errors && losaSifra">
+                  <p class="upozorenje">Stara šifra nije tačna</p>
+                </div>
+                <div *ngIf="passwordSubmited && s.staraSifra.errors">
+                  <div *ngIf="s.staraSifra.errors.required">
+                    <p class=" upozorenje">Stara šifra je obavezna</p>
+                  </div>
+                  <div *ngIf="s.staraSifra.errors.minlength">
+                    <p class="upozorenje">Korisničko ime mora imati vise od 3 karaktera</p>
+                  </div>
+                </div>
+                <div>
+                  <mat-form-field>
+                    <input matInput type="password" #novaSifra formControlName="novaSifra" placeholder="Nova šifra">
+                  </mat-form-field>
+                </div>
+                <div *ngIf="passwordSubmited && s.novaSifra.errors">
+                  <div *ngIf="s.novaSifra.errors.required">
+                    <p class=" upozorenje">Nova šifra je obavezna</p>
+                  </div>
+                  <div *ngIf="s.novaSifra.errors.minlength">
+                    <p class="upozorenje">Nova sifra mora imati vise od 3 karaktera</p>
+                  </div>
+                </div>
+                <div>
+                  <mat-form-field>
+                    <input matInput type="password" #novaSifra2 formControlName="novaSifra2"
+                      placeholder="Ponovite novu šifru">
+                  </mat-form-field>
+                </div>
+                <div *ngIf="passwordSubmited && s.novaSifra2.errors">
+                  <div *ngIf="s.novaSifra2.errors.required">
+                    <p class=" upozorenje">Nova šifra je obavezna</p>
+                  </div>
+                  <div *ngIf="s.novaSifra2.errors.minlength">
+                    <p class="upozorenje">Nova sifra mora imati vise od 3 karaktera</p>
+                  </div>
+                </div>
+                <div *ngIf="novaSifra.value != novaSifra2.value && !s.novaSifra.errors && !s.novaSifra2.errors  && passwordSubmited">
+                  <p class="upozorenje">Nova sifra nije ista</p>
+                </div>
+                <div class="button-div">
+                  <button class="button-glavni-100"
+                    (click)="promeniSifru(staraSifra.value, novaSifra.value, novaSifra2.value)"
+                    mat-raised-button>Sacuvaj</button>
+                  <button *ngIf="korisnickoImeMetod != 'email'" class="button-crveni-50 float-right"
+                    (click)="staraSifra.value = ''; novaSifra.value = ''; novaSifra2.value = ''; passwordSubmited=false"
+                    mat-raised-button>Poništi</button>
+                </div>
+              </div>
+            </form>
+          </mat-expansion-panel>
+        </mat-accordion>
+      </div>
+    </div>
+  </div>
+</main>

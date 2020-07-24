@@ -1,0 +1,39 @@
+@import "src/automaterijal-theme.scss";
+
+.h1-upozorenje {
+  color: $automaterijal-grey-200 !important;
+  text-align: center;
+  font-size: 45px
+}
+
+.prazna-tabela {
+  margin-top: 150px;
+  align-items: center;
+}
+
+.prazna-korpa {
+  margin-top: 150px;
+  align-items: center;
+}
+
+.icon-size {
+  font-size: 50px !important;
+  color: $automaterijal-grey-200;
+  text-align: center;
+}
+
+@media only screen and (max-width : 960px) { 
+  .prazna-tabela {
+    margin-top: 50px;
+  }
+
+  .h1-upozorenje {
+    font-size: 30px
+  }
+}
+
+@media only screen and (max-device-width : 640px) { 
+  .prazna-tabela {
+    margin-top: 50px;
+  }
+}

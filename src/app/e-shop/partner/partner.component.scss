@@ -1,0 +1,154 @@
+@import "src/automaterijal-theme.scss";
+
+h1 {
+    font-size: 1.3em;
+    color: $automaterijal-primary-50;
+    font-weight: bold;
+    text-align: center
+}
+li {
+    padding: 10px;
+    margin-top: 12px;
+}
+.header-partner {
+    background-color: $automaterijal-grey-400;
+    background-image: url('/assets/slike/ui/pozadine/licna-karta.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 100%;
+    height: calc(100vh - 220px);
+}
+
+.exp-panel{
+    margin-top: 12px;
+}
+
+
+.header2 {
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 30px;
+}
+
+.leva-strana {
+    width: 80px;
+    float: left;
+    color: $automaterijal-primary-100;
+    font-weight: bold;
+}
+
+.desna-strana {
+    font-weight: bold;
+}
+
+.licni-podaci {
+    padding-top: 1%;
+    width: 80%;
+    margin-left: 10%;
+}
+
+.radio-group {
+    display: inline-flex;
+    flex-direction: column;
+}
+
+.panel {
+    color: $automaterijal-primary-100;
+    font-weight: bold;
+}
+
+.email-selected {
+    color: $automaterijal-grey-200 !important;
+}
+
+.dugovanje {
+    color: $automaterijal-accent-red-50;
+}
+
+.button-div {    
+    width: 70%;
+    margin-left: 15%;
+}
+
+.strana {
+    box-shadow: 0 3px 1px -2px rgba(0,0,0,.2), 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12);
+    width: 100%;
+    height: 340px;
+    margin-left: 10px;
+    margin-top: 10px;
+    padding: 10px;
+    border-bottom: 0.5px solid $automaterijal-primary-50;
+    background-color: white;
+}
+.strana2 {
+    box-shadow: 0 3px 1px -2px rgba(0,0,0,.2), 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12);
+    width: 60%;
+    margin-left: 10px;
+    margin-top: 10px;
+    z-index: 1;
+    padding: 10px;
+    border-bottom: 0.5px solid $automaterijal-primary-50;
+    background-color: white;
+}
+
+@media screen and (max-width: 1200px) { 
+    .mat-expansion-panel-header {
+        font-size: 14px;
+    }
+    .strana2 {
+        width: 100%;
+        margin-bottom: 50px;
+    }
+    .header-partner {
+     background-image: none;
+     background-color: $automaterijal-grey-400;
+     height: calc(100vh - 100px);
+    }
+}
+@media screen and (max-device-width: 1199px) { 
+    .header-partner {
+     background-image: url('/assets/slike/ui/pozadine/licna-karta.png');
+     background-color: $automaterijal-grey-400;
+     height: 100%;
+    }
+}
+
+@media only screen and (max-device-width: 850px) { 
+    .header-partner {
+        background-image: none;
+        height: 100%;
+     }
+}
+
+
+@media only screen and (max-device-width: 640px) { 
+    
+.header-partner {
+    background-image: none;
+ }
+
+    .strana {
+        // box-shadow: 0 3px 1px -2px rgba(0,0,0,.2), 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,1.12); 
+        width: 100%;
+        height: 100%;
+        margin-top: 10px;
+        border-bottom: 0.5px solid $automaterijal-primary-50;
+        background-color: white;
+    }
+    .strana2 {
+        width: 100%;
+    }
+
+    .button-div {    
+        width: 90%;
+        margin-left: 5%;
+    }
+    ul {
+        margin: 0px;
+        padding: 2px;
+    }
+    .licni-podaci {
+        width: 95%;
+        margin-left: 0%;
+    }
+}

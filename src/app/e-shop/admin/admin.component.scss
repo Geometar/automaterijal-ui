@@ -1,0 +1,65 @@
+@import "src/automaterijal-theme.scss";
+@import "src/css/shared/dugme.scss";
+.header-porduzbenice {
+    background-image: url("/assets/slike/ui/pozadine/ffascikla.png");
+    /* background-image: url('/assets/slike/ui/pozadine/roba.png'); */
+    background-repeat: no-repeat;
+    background-position: top;
+    background-size: 120%;
+}
+
+h2 {
+    text-align: center;
+    font-size: 1.4rem;
+}
+
+.admin-h1 {
+    padding-left: 5%;
+    padding-top: 2%;
+}
+
+.p-partner {
+    color: $automaterijal-primary-100;
+    font-size: 0.9rem;
+    font-weight: bold;
+    width: 300px;
+    text-align: left;
+    padding-top: 17px;
+}
+
+.ceo-div {
+    max-width: 900px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.tabela-div {
+    max-width: 472px;
+}
+
+.dozvoljena-grupa-div {
+    width: 100%;
+    text-align: right;
+    padding-top: 9px;
+}
+.d-grupa-glavni-div:hover {
+    color: $automaterijal-accent-green-50;
+}
+
+.d-grupa-glavni-div {
+    height: 55px;
+    border-bottom: 1px solid black;
+}
+
+.izbrisi-dugme-div {
+    background-color: $automaterijal-accent-red-50;
+    width: 90px;
+}
+
+.dugme-dodaj {
+    margin-top: 10px;
+}
+
+.centriraj {
+    text-align: center;
+}

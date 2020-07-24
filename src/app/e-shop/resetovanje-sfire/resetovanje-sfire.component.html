@@ -1,0 +1,42 @@
+<div class="container">
+  <div class="flex-login">
+    <div class="login-form">
+      <h1>Promeni šifru</h1>
+      <div class="alert alert-danger" role="alert" *ngIf="submitted == true && uspesnaPromena == false">
+        <p>Promena šifre nije uspela, zahtevajte ponovo poštu za resetovanje šifre.</p>
+      </div>
+      <form role="form" [formGroup]="promenaSifreForm">
+        <div class="form-group">
+          <input type="password" #pass1 formControlName="pass1" class="form-control rounded" placeholder="Nova šifra" id="pass1"
+            name="pass1" />
+          <div *ngIf="submitted && r.pass1.errors">
+            <div *ngIf="r.pass1.errors.required">
+              <p class="upozorenje">Šifra je obavezna</p>
+            </div>
+            <div *ngIf="r.pass1.errors.minlength">
+              <p class="upozorenje">Šifra mora imati minimalno 3 karaktera</p>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <input type="password" #pass2 formControlName="pass2" class="form-control rounded" placeholder="Ponovite šifru"
+            id="password" name="password" />
+          <div *ngIf="submitted && r.pass2.errors">
+            <div *ngIf="r.pass2.errors.required">
+              <p class="upozorenje">Šifra je obavezna</p>
+            </div>
+            <div *ngIf="r.pass2.errors.minlength">
+              <p class="upozorenje">Šifra mora imati minimalno 3 karaktera</p>
+            </div>
+          </div>
+          <div *ngIf="submitted && !r.pass2.errors && pass1.value != pass2.value">
+            <p class="upozorenje">Šifre nisu iste</p>
+          </div>
+        </div>
+        <div class="d-flex">
+          <button mat-raised-button (click)="promeniSifru()" class="rounded" color="primary">Promeni</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

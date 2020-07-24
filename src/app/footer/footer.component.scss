@@ -1,0 +1,80 @@
+@import "src/automaterijal-theme.scss";
+@import "src/css/shared/boje.scss";
+
+footer {
+    padding: 2% 8%;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+.granica {
+    margin-bottom: 2rem;
+    width: 100%;
+    border-top: 1px solid $automaterijal-grey-300;
+}
+.naslov {
+    font-size: 1.1em;
+    font-weight: bold;
+    margin-bottom: 0.5em;
+}
+.detalji {
+    font-size: 1em;
+    margin-left: 0.2em;
+    color: $automaterijal-grey-100;
+}
+
+ul {
+    list-style-type: none;
+}
+
+a {
+    color: $automaterijal-grey-100;
+    cursor: pointer;
+}
+
+img {
+    margin-right: 3em;
+    padding: 0px;
+    margin-top: 3%;
+    width: 250px;
+    height: 90px;
+    display: block;
+}
+
+.slika-div {
+    width: 25%;
+    padding: 0px;
+    margin: 0px;
+}
+
+a:hover {
+    color: $automaterijal-primary-100 !important;
+    text-decoration: none;
+}
+
+
+@media screen and (max-width: 990px) {
+    ul {
+        text-align: center;
+        margin: 0px;
+        margin-top: 5px;
+        padding: 0px;
+    }
+
+    .slika-div {
+        margin-left: auto;
+        margin-right: auto;
+        width: 100%;
+    }
+
+    img {
+        margin-left: auto;
+        margin-right: auto;
+        width: 250px;
+        height: 90px;
+    }
+    .detalji {
+        margin-left: 0em;
+    }
+}

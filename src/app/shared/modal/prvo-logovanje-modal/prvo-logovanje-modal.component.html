@@ -1,0 +1,65 @@
+<section>
+    <mat-horizontal-stepper [linear]="true" #stepper>
+        <mat-step>
+          <form >
+            <ng-template matStepLabel>Obaveštenje</ng-template>
+            <div>
+              <h1>Poštovani</h1>
+              <p>Dobrodošli u internet prodavnicu Automaterijala.</p>
+              <p class="margin-top--10">Da bi Vaš nalog bio kompletno fukncionalan neophodno je da promenite vašu šifru. 
+                Klikom na dugme dalje, prelazite na sledeći korak gde možete da ukucate vašu novu šifru.</p>
+            </div>
+            <div class="margin-top--15">
+              <button mat-flat-button color="primary" matStepperNext>Dalje</button>
+            </div>
+          </form>
+        </mat-step>
+        <mat-step [stepControl]="promenaSifreForm">
+          <form [formGroup]="promenaSifreForm" role="form">
+            <ng-template matStepLabel>Promena</ng-template>
+            <h1>Promena šifre</h1>
+            <div class="form-group">
+                <input type="password" #pass1 formControlName="pass1" class="form-control rounded" placeholder="Nova šifra" id="pass1"
+                  name="pass1" />
+                <div *ngIf="submitted && r.pass1.errors">
+                  <div *ngIf="r.pass1.errors.required">
+                    <p class="upozorenje">Šifra je obavezna</p>
+                  </div>
+                  <div *ngIf="r.pass1.errors.minlength">
+                    <p class="upozorenje">Šifra mora imati minimalno 3 karaktera</p>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <input type="password" #pass2 formControlName="pass2" class="form-control rounded" placeholder="Ponovite šifru"
+                  id="password" name="password" />
+                <div *ngIf="submitted && r.pass2.errors">
+                  <div *ngIf="r.pass2.errors.required">
+                    <p class="upozorenje">Šifra je obavezna</p>
+                  </div>
+                  <div *ngIf="r.pass2.errors.minlength">
+                    <p class="upozorenje">Šifra mora imati minimalno 3 karaktera</p>
+                  </div>
+                </div>
+                <div *ngIf="submitted && !r.pass2.errors && pass1.value != pass2.value">
+                  <p class="upozorenje">Šifre nisu iste</p>
+                </div>
+              </div>
+            <div>
+              <button mat-flat-button color="warm" matStepperPrevious>Back</button>
+              <button mat-flat-button color="primary" (click)="promeniSifru()" matStepperNext>Next</button>
+            </div>
+          </form>
+        </mat-step>
+        <mat-step>
+          <ng-template matStepLabel>Konačno</ng-template>
+          <div>
+              <h1>Čestitamo</h1>
+              <p>Šifra je uspešno promenjena. Vaš nalog je podešen i aktiviran.</p>
+            </div>
+          <div class="d-flex justify-content-center margin-top--15">
+            <button mat-flat-button color="primary" (click)="zatvoriDialog()" matStepperNext>Zatvori</button>
+          </div>
+        </mat-step>
+      </mat-horizontal-stepper>
+</section>

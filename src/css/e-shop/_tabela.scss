@@ -1,0 +1,90 @@
+@import "src/automaterijal-theme.scss";
+.velicina-dugmeta {
+    padding: 0 10px;
+  }
+
+@media screen and (max-width: 1250px) {
+    .dugme-mobilni {
+      margin-left: 5px;
+    }
+}
+
+
+@media screen and (max-width: 900px) {
+    .iznos-margin {
+        margin-right: 0%;
+    }
+    td.mat-cell:first-of-type, td.mat-footer-cell:first-of-type, th.mat-header-cell:first-of-type {
+        padding-left: 0px;
+    }
+    //Enable this to hide header
+    .mat-table .mat-header-cell {
+        margin: 0px;
+        padding: 0px; 
+        display: none;
+    }
+    
+    .mat-table .mat-row {
+        border-bottom: 3px double $automaterijal-grey-100;
+    }
+      
+    .mat-table .mat-cell {
+      border-bottom: 1px solid #ddd;
+      display: block;
+      font-size: 1em;
+      text-align: right;
+      height:30px;
+      margin-bottom: 2%;
+      padding-left: 10px;
+      padding-right: 10px;
+    }
+
+    .mat-table .mat-cell:before {
+      /*
+      * aria-label has no advantage, it won't be read inside a table
+      content: attr(aria-label);
+      */
+      content: attr(data-label);
+      float: left;
+      color: $automaterijal-primary-50  !important;
+      font-size: .91em;
+    }
+    
+    .mat-table .mat-cell:last-child {
+       border-bottom: 0;
+    }
+    .mat-table .mat-cell:first-child {
+       margin-top: 10px;
+       padding-left: 10px;
+    }
+    .mat-table .mat-cell:last-child {
+       margin-top: 10px;
+       padding-left: 10px;
+       padding-right: 10px;
+       height: 35px;
+    }
+    .tabela-u-korpi {
+        float: right;
+    }
+    .mat-paginator {
+        padding-left: 10px;
+        padding-right: 10px;
+        box-shadow: 0 0px 15px 2px rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+   }
+   .dugme-mobilni {
+       text-align: center;
+   }
+
+   .visina-div-dugmeta {
+    height:45px !important;
+   }
+   .visina-div-kolicine {
+    height:40px !important;
+   }
+
+   .dugme-mobilni .mat-icon{
+      float: none !important; 
+      text-align: center;
+   }
+
+}

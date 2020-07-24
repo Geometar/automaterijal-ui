@@ -1,0 +1,191 @@
+@import "src/css/shared/boje.scss";
+
+h1 {
+  font-size: 1.25rem;
+  font-weight: 100;
+  color: $automaterijal-primary-50;
+}
+
+.main-klasa {
+  height: 100%;
+}
+
+.cover {
+  background-color: $automaterijal-grey-400;
+  background-image: url("/assets/slike/ui/pozadine/licna-karta.png");
+  background-repeat: no-repeat;
+  background-position: top;
+  background-size: 100%;
+}
+
+.sektor {
+  max-width: 1260px;
+  margin-right: auto;
+  margin-left: auto;
+  justify-content: center;
+}
+
+.kartica {
+  height: 220px;
+  width: 185px;
+  margin: 5px 5px 5px 5px;
+  box-shadow: 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+  border-top: 2px solid white;
+}
+
+img {
+  max-width: 160px;
+  max-height: 150px;
+}
+
+img:focus {
+  outline: none;
+  border: 0;
+}
+
+.mat-card-header .mat-card-title {
+  font-size: 1rem;
+}
+.kartica:hover {
+  border-top: 2px solid $automaterijal-primary-100;
+}
+
+.podkategorija {
+  width: 190px;
+  color: $automaterijal-primary-100;
+  font-size: 0.93rem;
+}
+
+.podkategorija:hover .podkategorija-menu {
+  display: block;
+  margin-top: 0; // remove the gap so it doesn't close
+}
+
+.mat-card-header {
+  cursor: pointer;
+}
+.mat-card-header:focus {
+  outline: none;
+  border: 0;
+}
+
+.mat-card-image {
+  margin: 0px;
+  vertical-align: middle;
+  cursor: pointer;
+}
+
+.mat-card-footer {
+  width: 239px;
+}
+
+.dropdown-ikona {
+  position: relative;
+  left: 33px;
+}
+
+:host ::ng-deep .mat-card-header-text {
+  margin: 0px !important;
+}
+
+.naslov {
+  background: linear-gradient(45deg, $automaterijal-primary-50 0%, $automaterijal-primary-50 0%, transparent 33%), linear-gradient(-45deg, $automaterijal-primary-50 0%, $automaterijal-primary-50 0%, transparent 33%);
+  margin: 20px 0px 20px 0px;
+  max-width: 1200px;
+  color: $automaterijal-primary-50;
+  text-align: center;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.slika-okvir {
+  height: 135px;
+  padding-top: 10px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+@media screen and (max-width: 1480px) {
+  .cover {
+    background-size: 140%;
+    height: 100%;
+  }
+
+  img {
+    max-width: 145px;
+  }
+
+  .mat-card-footer {
+    width: 100%;
+  }
+
+  .kartica {
+    width: 175px;
+  }
+  .podkategorija {
+    width: 170px;
+  }
+
+  .slika-okvir {
+    height: 130px;
+    padding-top: 15px;
+  }
+  .naslov-kartice {
+    font-size: 0.95rem;
+  }
+}
+
+@media screen and (max-width: 1150px) {
+
+  .slika-okvir {
+    height: 130px !important;
+  }
+  .naslov {
+    max-width: 900px;
+  }
+
+  .prva-kategorija {
+    margin-top: 100px;
+  }
+
+  .kartica {
+    width: 150px;
+  }
+
+  img {
+    max-width: 120px;
+  }
+
+  .podkategorija {
+    width: 150px;
+  }
+
+  .dropdown-ikona {
+    left: 10px;
+  }
+
+  .naslov-kartice {
+    font-size: 0.9rem !important;
+    width: 150px;
+  }
+
+  .mat-card-footer {
+    width: 155px;
+  }
+
+  .slika-okvir {
+    height: 150px;
+    padding-top: 15px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .prva-kategorija {
+    margin-top: 80px;
+  }
+
+  .cover {
+    background-image: none;
+  }
+}

@@ -1,0 +1,16 @@
+@import "src/css/shared/boje.scss";
+
+h1 {
+    font-size: 1.1rem;
+    text-align: center;
+    color: $automaterijal-primary-100;
+    margin-bottom: 20px;
+}
+
+.centar {
+    text-align: center;
+}
+
+.pomeri-dugme-desno {
+    margin-left: 50px !important;
+}

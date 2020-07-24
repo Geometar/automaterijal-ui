@@ -1,0 +1,23 @@
+@import "src/automaterijal-theme.scss";
+h1 {
+    display: inline;
+    font-size: 1.5em;
+    color: $automaterijal-primary-100;
+}
+
+.sirina-polja-unosa {
+    width: 350px !important;
+}
+
+.header {
+    height: 3em;
+    padding: 3%;
+    text-align: center;
+}
+
+
+@media only screen and (max-device-width :1025px) { 
+    .sirina-polja-unosa {
+        width: 250px !important;
+    }
+}

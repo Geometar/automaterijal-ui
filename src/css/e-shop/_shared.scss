@@ -1,0 +1,39 @@
+
+.upozorenje {
+    text-align: left;
+    font-size: 0.8em !important;
+    color: red;
+    margin-top: -15px;
+    margin-bottom: 0px;
+ }
+
+ .nazad-button {
+    border-radius: 12px !important;
+    margin-right: 5% !important;
+    margin-top: 13px !important;
+    width: 120px !important;
+    height: 40px !important;
+}
+
+// Modal 
+    //naslov
+
+ .modal-naslov {
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+.h1-modal-naslov {
+    display: inline !important;
+    font-size: 1.5em !important;
+    color: $automaterijal-primary-50;
+}
+
+@media only screen and (max-width : 640px) { 
+
+    .nazad-button {
+        border-radius: 12px;
+        margin-right: 0% !important;
+        margin-bottom: 0.5rem !important;
+    }
+}

@@ -1,0 +1,81 @@
+<main>
+  <div class="headerONama">
+    <h1>O nama</h1>
+  </div>
+  <div class="d-flex flex-column flex-lg-row pozadina-bela">
+    <div class="parcele-slika pozadina-istorija">
+    </div>
+    <div class="parcele">
+      <p>
+        <b>AUTOMATERIJAL d.o.o. </b> Šabac je osnovano 1990. godine i, sada već preko 29 godina, bavi se snabdevanjem
+        našeg tržišta kvalitetnim delovima, mazivima materijalom za održavanje motornih vozila.
+      </p>
+      <p class="drugi-stih">Poslujemo kao maloprodaja i veleprodaja. Kao veleprodaja razvili smo svoju prodajnu mrežu na
+        regionu Zapadne Srbije (mačvanski, sremski, kolubarski i zlatiborski okrug). Naši partneri u ovom poslu su
+        fizička lica, ovlašćeni i nezavisni serviseri, vlasnici voznih parkova, proizvođačka industrijska preduzeća,
+        veleprodaje i maloprodaje delova i materijala za popravku motornih vozila.
+      </p>
+    </div>
+  </div>
+  <div class="d-flex flex-column-reverse flex-lg-row">
+    <div class="parcele parcela-najveca">
+      <p>
+        Mi zadovoljavamo potrebe naših partnera koje se najvećim delom odnose na delove i materijal za održavanje i
+        popravku motora i stajnog trapa, prvenstveno putničkih motornih vozila proizvedenih u Nemačkoj a sve više smo
+        snabdeveni i odgovarajućim artiklima za vozila proizvedena u drugim evropskim zemljama, npr.: Škoda, Fiat,
+        Renault, Peugeot, Citroen, Alfa Romeo, Saab, Volvo itd., kao i za vozila proizvedena u Japanu, Koreji i širom
+        sveta: Toyota, Honda, Mazda, Nissan, Mitsubishi, Suzuki, Kia, Hyundai, Chevrolet - Daewoo, Chrysler, Rover,
+        Daihatsu, Subaru, itd.
+      </p>
+      <p class="drugi-stih">Uz našu robu uvek plasiramo i dodatnu uslugu, prvenstveno se to odnosi na svaku vrstu pomoći
+        u pronalaženju odgovarajućeg artikla i pored svog angažmana u tu svrhu obezbeđujemo odgovarajuću dokumentaciju i
+        kataloge za servisere i trgovce. Zatim, organizujemo i realizujemo razne vrste obuka za servisere i trgovce, u
+        saradnji sa proizvođačima – uvoznicima učestvujemo u ugovornom opremanju poslovnog – radnog prostora naših
+        partnera, istrajavamo u potpunom realizovanju svih ugovorenih garancija i drugo.
+      </p>
+    </div>
+    <div class="parcele-slika pozadina-usluga">
+    </div>
+  </div>
+  <div class="d-flex flex-column flex-lg-row poslednja-parcela pozadina-bela">
+    <div class="parcele-slika pozadina-proizvodi">
+    </div>
+    <div class="parcele">
+      <p>
+        Za neke brendove smo se zaštitili kao ovlašćeni uvoznici i distributeri za definisanu teritoriju, a sa nekim
+        konkurentima i sarađujemo, tako da smo vremenom izgradili poziciju nezaobilaznog faktora na svom terenu u
+        oblasti kojom se bavimo. AUTOMATERIJAL d.o.o. je direktni uvoznik, iz Nemačke, od proizvođača "Kolbenschmidt",
+        "Pierburg", i "Victor Reinz", iz Italije "DeDaX", zastupnik koncerna "Bilstein" i "Febi", uključujući i brend
+        "Blue Print", regionalni zastupnik - ovlašćeni distributer „Magneti Marelli“, regionalni zastupnik - ovlašćeni
+        distributer „Shell“, „Castrol“ „TOTAL“, „Fuchs“, „LukOil“ i „ENEOS“ maziva, ovlašćeni distributer i serviser
+        „energizer“ akumulatora, regionalni zastupnik - originalih BMW rezervnih delova. U našoj prodaji se nalaze
+        proizvodi raznih renomiranih proizvodjača rezervnih delova i opreme.</p>
+    </div>
+  </div>
+  <div class="pozadina-bela">
+    <div class="d-flex justify-content-center logoi">
+      <div *ngIf="isLargeDiv" class="owl-carousel-moj">
+        <owl-carousel [options]="mySlideLargeOptions" [carouselClasses]="['owl-theme']">
+          <div class="item" *ngFor="let brand of mySlideBrands;let i = index">
+            <div>
+              <button mat-button class="dugme" (click)="otvoriDialog(brand)">
+                <img width="65px" height="65px" src={{brand.urlSlikeLogo}} />
+              </button>
+            </div>
+          </div>
+        </owl-carousel>
+      </div>
+      <div *ngIf="!isLargeDiv" class="owl-carousel-moj">
+        <owl-carousel [options]="mySlideSmallOptions" [carouselClasses]="['owl-theme']">
+          <div class="item" *ngFor="let brand of mySlideBrands;let i = index">
+            <div>
+              <button mat-button class="dugme" (click)="otvoriDialog(brand)">
+                <img width="65px" height="65px" src={{brand.urlSlikeLogo}} />
+              </button>
+            </div>
+          </div>
+        </owl-carousel>
+      </div>
+    </div>
+  </div>
+</main>

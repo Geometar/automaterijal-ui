@@ -1,0 +1,57 @@
+.flex-login {
+    padding-top: 9%;
+    display: flex;
+    justify-content: center;
+}
+.header-login {
+    background-color: rgb(246, 246, 246);
+    background-image: url('/assets/slike/ui/pozadine/login.png');
+    background-repeat: no-repeat;
+    background-position: bottom;
+    background-size: 100%;
+    height: calc(100vh - 220px);
+}
+.login-form {
+    width: 400px;
+    justify-content: center;
+}
+
+h1 {
+    text-align: center;
+	text-transform: uppercase;
+}
+button{
+    margin:auto;
+    display:block;
+}
+
+p {
+      text-align: center;
+}
+
+.is-invalid {
+    border: 1px solid red;
+}
+
+.upozorenje {
+    text-align: left;
+    font-size: 0.8em;
+    margin:0px !important;
+    color: red;
+}
+
+@media only screen and (max-device-width : 1000px) { 
+    .header-login {
+        background-size: 100%;
+        height: calc(100vh - 560px);
+    }
+}
+
+@media only screen and (max-device-width : 850px) { 
+    .flex-login {
+    padding-top: 6%;
+    }
+    .header-login {
+        height: calc(100vh - 64px);
+     }
+}

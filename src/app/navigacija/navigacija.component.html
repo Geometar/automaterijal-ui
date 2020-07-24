@@ -1,0 +1,115 @@
+<mat-sidenav-container class="sidenav-container pozadina-siva-400">
+  <mat-sidenav #drawer class="sidenav pozadina-glavna-50" fixedInViewport="true" [mode]="openSideNav ? 'over' : 'side'"
+    [opened]="!openSideNav">
+    <mat-toolbar *ngIf="partnerUlogovan" class="side-toolbar pozadina-glavna-50 header-glavni">
+      <div class="d-flex flex-column justify-content-center">
+        <div class="d-flex justify-content-center header-sirina">
+          <mat-icon class="boja-siva-300">person</mat-icon>
+        </div>
+        <div>
+          <p class="text-center header-navigacija">{{partner.naziv}}</p>
+        </div>
+      </div>
+    </mat-toolbar>
+    <mat-nav-list [class.margin-gore]="partnerUlogovan">
+      <mat-divider *ngIf="partnerUlogovan" class="pozadina-siva-300"></mat-divider>
+
+      <a href="/#/naslovna">
+        <mat-list-item class="material-icons" [routerLink]="['naslovna']" [routerLinkActive]="['pozadina-glavna-200']">
+          <mat-icon class="boja-siva-300" mat-list-icon>home</mat-icon>
+          <p mat-line>Naslovna</p>
+        </mat-list-item>
+      </a>
+
+      <a href="/#/o-nama">
+        <mat-list-item class="material-icons" [routerLink]="['o-nama']" [routerLinkActive]="['pozadina-glavna-200']">
+          <mat-icon class="boja-siva-300" mat-list-icon>book</mat-icon>
+          <p mat-line>O nama</p>
+        </mat-list-item>
+      </a>
+
+      <a href="/#/kontakt">
+        <mat-list-item class="material-icons" [routerLink]="['kontakt']" [routerLinkActive]="['pozadina-glavna-200']">
+          <mat-icon class="boja-siva-300" mat-list-icon>contact_phone</mat-icon>
+          <p mat-line>Kontakt</p>
+        </mat-list-item>
+      </a>
+    </mat-nav-list>
+
+    <mat-divider></mat-divider>
+    <mat-nav-list>
+      <h3 class="pozadina-glavna-50 boja-siva-300" mat-subheader>Internet prodavnica</h3>
+
+      <a href="/#/korpa">
+        <mat-list-item class="material-icons" [routerLink]="['korpa']" [routerLinkActive]="['pozadina-glavna-200']">
+          <mat-icon matBadgeColor="warn" class="boja-siva-300" matBadge="{{korpaBadge}}" mat-list-icon>shopping_cart
+          </mat-icon>
+          <p mat-line>Korpa</p>
+        </mat-list-item>
+      </a>
+
+      <a href="/#/roba">
+        <mat-list-item class="material-icons" [routerLink]="['roba']" [routerLinkActive]="['pozadina-glavna-200']"
+          [routerLinkActive]="['pozadina-glavna-200']">
+          <mat-icon class="boja-siva-300" mat-list-icon>searche</mat-icon>
+          <p mat-line>Pretraga</p>
+        </mat-list-item>
+      </a>
+
+      <a href="/#/kategorije">
+        <mat-list-item class="material-icons" [routerLink]="['kategorije']"
+          [routerLinkActive]="['pozadina-glavna-200']">
+          <mat-icon class="boja-siva-300" mat-list-icon>category</mat-icon>
+          <p mat-line>Kategorije</p>
+        </mat-list-item>
+      </a>
+    </mat-nav-list>
+
+    <mat-divider></mat-divider>
+    <mat-nav-list *ngIf="partnerUlogovan">
+      <h3 class="boja-siva-300" mat-subheader>Moj Profil</h3>
+      <a href="/#/licni-podaci">
+        <mat-list-item class="material-icons" [routerLink]="['licni-podaci']"
+          [routerLinkActive]="['pozadina-glavna-200']">
+          <mat-icon class="boja-siva-300" mat-list-icon>person</mat-icon>
+          <p mat-line>Licni Podaci</p>
+        </mat-list-item>
+      </a>
+      <a href="/#/porudzbenice">
+        <mat-list-item class="material-icons" [routerLink]="['porudzbenice']"
+          [routerLinkActive]="['pozadina-glavna-200']">
+          <mat-icon class="boja-siva-300" mat-list-icon>list</mat-icon>
+          <p mat-line>Porudzbine</p>
+        </mat-list-item>
+      </a>
+      <mat-list-item *ngIf="partner.privilegije === 2047" class="material-icons" [routerLink]="['admin']"
+        [routerLinkActive]="['pozadina-glavna-200']">
+        <mat-icon class="boja-siva-300" mat-list-icon>work</mat-icon>
+        <p mat-line>Admin</p>
+      </mat-list-item>
+    </mat-nav-list>
+    <mat-divider></mat-divider>
+    <mat-nav-list>
+      <mat-list-item *ngIf="partnerUlogovan === false" class="material-icons" [routerLink]="['login']"
+        [routerLinkActive]="['pozadina-glavna-200']">
+        <mat-icon class="boja-siva-300" mat-list-icon>exit_to_app</mat-icon>
+        <p mat-line>Login</p>
+      </mat-list-item>
+      <mat-list-item *ngIf="partnerUlogovan" class="material-icons" (click)="otvoriDialog()">
+        <mat-icon class="boja-siva-300" mat-list-icon>power_settings_new</mat-icon>
+        <p mat-line>Logout</p>
+      </mat-list-item>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar *ngIf="openSideNav" class="header-pozicija pozadina-glavna-50">
+      <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()">
+        <mat-icon class="boja-siva-300" aria-label="Side nav toggle icon">menu</mat-icon>
+      </button>
+    </mat-toolbar>
+    <div class="pozicija">
+      <router-outlet></router-outlet>
+    </div>
+    <app-footer></app-footer>
+  </mat-sidenav-content>
+</mat-sidenav-container>

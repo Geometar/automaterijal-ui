@@ -1,0 +1,13 @@
+.sekcija-pretraga {
+  background-image: url("/assets/slike/ui/pozadine/roba.png");
+  /* background-image: url('/assets/slike/ui/pozadine/roba.png'); */
+  background-repeat: no-repeat;
+  background-position: top;
+  background-size: 120%;
+}
+
+@media screen and (max-width: 1000px) {
+  .sekcija-pretraga {
+    background-image: none;
+  }
+}

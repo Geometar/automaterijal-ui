@@ -1,0 +1,10 @@
+<div class="header">
+    <h1>{{brend.ime}}</h1>
+    <button type="button" class="close" (click)="zatvoriDialog()">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<mat-dialog-content>
+    <img [src]="brend.urlSlikePozadina" />
+    <div [innerHTML]="opis"></div>
+</mat-dialog-content>

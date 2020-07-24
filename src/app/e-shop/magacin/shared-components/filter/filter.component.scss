@@ -1,0 +1,52 @@
+@import "src/automaterijal-theme.scss";
+
+:host ::ng-deep .custom-select {
+    padding: 0rem 0rem 0rem 0.5rem !important; 
+}
+
+.pozicija-filtera {
+    position: relative;
+    top: 8px;
+    left: 10px;
+}
+
+.enejblovan-filter {
+    color: $automaterijal-primary-100;
+    cursor: pointer;
+}
+
+.enejblovan-filter:hover {
+    color: $automaterijal-primary-200;
+    cursor: pointer;
+}
+
+.disejblovan-filter {
+  color: $automaterijal-grey-200;
+  cursor: default;
+
+}
+.velicina-selekta {
+    font-size: 0.85rem;
+}
+@media only screen and (max-width :1200px) { 
+
+    .razmak {
+        padding: 0px;
+        margin-left: 0px;
+        margin-top: 10px;
+    }
+}
+
+@media only screen and (max-width :336px) { 
+
+    .pozicija-filtera {
+        display: none;
+    }
+}
+
+@media only screen and (max-width :380px) { 
+
+    .pozicija-filtera {
+        left: 5px;
+    }
+}

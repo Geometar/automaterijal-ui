@@ -1,0 +1,382 @@
+<main>
+    <div class="d-flex flex-column prazna-korpa" *ngIf="!dataSource || dataSource.length == 0">
+        <i class="material-icons icon-size">
+            shopping_cart
+        </i>
+        <h1 class="h1-upozorenje">Korpa je trenutno prazna</h1>
+    </div>
+    <div class="tabela-div" *ngIf="dataSource && dataSource.length > 0">
+        <div class="headerKorpa">
+        </div>
+        <div class="margin-bottom--10">
+            <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 table-korpa">
+
+                <!--Slika dela Column -->
+                <ng-container matColumnDef="slika">
+                    <th mat-header-cell *matHeaderCellDef> Slika </th>
+                    <td mat-cell *matCellDef="let roba; let i = index;">
+                        <div class="centriraj">
+                            <img height="120" src={{roba.slikaId}}
+                                onError="this.src='assets/slike/ui/roba/slikanijedostupna.jpg'">
+                            <button *ngIf="jeMobilni" mat-icon-button (click)='izbaciIzKorpe(i)' class="dugme-brisanje"
+                                aria-label="Example icon-button with a heart icon">
+                                <mat-icon matTooltip="Izbaci iz korpe" class="ikona-brisanje">clear</mat-icon>
+                            </button>
+                        </div>
+                    </td>
+                </ng-container>
+
+                <!-- Opis dela Column -->
+                <ng-container matColumnDef="opis">
+                    <th mat-header-cell *matHeaderCellDef> Roba opis</th>
+                    <td mat-cell *matCellDef="let roba">
+                        <div class="d-flex flex-column">
+                            <div class="p-1 bd-highlight podesi-opise-div"><b>Kataloški broj:</b> <span
+                                    class="roba-katbr">
+                                    {{roba.katbr}} </span></div>
+                            <div class="p-1 bd-highlight podesi-opise-div"><b>Proizvodjač:</b> <span
+                                    class="roba-proizvodjac">
+                                    {{roba.proizvodjac.naziv}}</span></div>
+                            <div class="p-1 bd-highlight roba-naziv">{{roba.naziv}}</div>
+                        </div>
+                    </td>
+                </ng-container>
+
+                <!-- Cena o kolicina Column -->
+                <ng-container matColumnDef="cena">
+                    <th mat-header-cell *matHeaderCellDef> cena </th>
+                    <td mat-cell *matCellDef="let roba">
+                        <div class="d-flex flex-column">
+                            <div class="p-1 podesi-opise-div bd-highlight"><b>Cena sa PDV-om:</b> <span
+                                    class="roba-katbr">
+                                    {{roba.cenaKom | currency:" "}} RSD </span></div>
+                            <div class="podesi-opise-div p-1 bd-highlight"><b>Količina:</b>
+                                <div class="kolicina-div">
+                                    <span (click)="oduzmiOdKolicine(roba)" class="izbrisi-ikona">
+                                        <i class="material-icons kolicina-ikona">
+                                            remove
+                                        </i>
+                                    </span>
+                                    <span>
+                                        <input (input)="promenaKolicineManuelno(roba, $event.target.value)" min="1"
+                                            max="{{roba.stanje}}" class="input-kolicina-korpa" type="number"
+                                            value="{{roba.kolicina}}">
+                                    </span>
+                                    <span (click)="dodajKolicini(roba)" class="dodaj-ikona">
+                                        <i class="material-icons kolicina-ikona">
+                                            add
+                                        </i>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                </ng-container>
+
+                <!-- Ukupna cena Column -->
+                <ng-container matColumnDef="akcije">
+                    <th mat-header-cell *matHeaderCellDef> akcije </th>
+                    <td mat-cell *matCellDef="let roba; let i = index;">
+                        <div class="ukupna-cena-div">
+                            <label class="suma-labela">Ukupno sa PDV-om</label>
+                            <div class="suma-cena-div"> {{roba.cenaUkupno | currency:" "}} RSD </div>
+                        </div>
+                        <button *ngIf="!jeMobilni" mat-icon-button (click)='izbaciIzKorpe(i)' class="dugme-brisanje"
+                            aria-label="Example icon-button with a heart icon">
+                            <mat-icon matTooltip="Izbaci iz korpe" class="ikona-brisanje">clear</mat-icon>
+                        </button>
+                    </td>
+                </ng-container>
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
+        </div>
+        <div class="d-flex flex-column flex-xl-row">
+            <div *ngIf="partner" class="d-flex flex-column flex-xl-row flex-fill ">
+                <div class="flex-fill">
+                    <div class="d-flex flex-fill flex-column pomeri-dole">
+                        <div *ngIf="nacinPlacanja && nacinPlacanja.length > 0" class="granice">
+                            <h3>Način plaćanja</h3>
+                            <hr>
+                            <mat-radio-group class="radio-grupa" [(ngModel)]="izabranNacinPlacanja">
+                                <mat-radio-button color="primary" class="radio-dugme"
+                                    *ngFor="let placanje of nacinPlacanja" [value]="placanje">
+                                    {{placanje.naziv}}
+                                </mat-radio-button>
+                            </mat-radio-group>
+                        </div>
+                    </div>
+                    <div *ngIf="nacinPrevoza && nacinPrevoza.length > 0"
+                        class="d-flex flex-fill flex-column pomeri-dole">
+                        <div class="granice visina-prevoza">
+                            <h3>Način prevoza</h3>
+                            <hr>
+                            <mat-radio-group class="radio-grupa" [(ngModel)]="izabranNacinPrevoza">
+                                <mat-radio-button color="primary" class="radio-dugme"
+                                    *ngFor="let prevoz of nacinPrevoza" [value]="prevoz">
+                                    {{"prevoz_" + prevoz.id | translate}}
+                                </mat-radio-button>
+                            </mat-radio-group>
+                        </div>
+                        <div *ngIf="izabranNacinPrevoza.id === 2" class="granice pomeri-dole">
+                            <h4>Izaberite način dostave</h4>
+                            <mat-radio-group class="radio-grupa" [(ngModel)]="izabranaTrecaLiceOpcija">
+                                <mat-radio-button color="primary" class="radio-dugme"
+                                    *ngFor="let opcije of treceLiceOpcije" [value]="opcije">
+                                    {{opcije}}
+                                </mat-radio-button>
+                            </mat-radio-group>
+                            <div>
+                                <div *ngIf="izabranaTrecaLiceOpcija === treceLiceOpcije[0]">
+                                    <mat-form-field>
+                                        <mat-select placeholder="Kurirske sluzbe" [(ngModel)]="izabraneKurirskeSluzbe">
+                                            <mat-option *ngFor="let sluzbe of kurirskeSluzbe" [value]="sluzbe">
+                                                {{sluzbe}}
+                                            </mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </div>
+                                <div *ngIf="izabranaTrecaLiceOpcija === treceLiceOpcije[1]">
+                                    <mat-form-field role="form" [formGroup]="drugiNacinPrevoza">
+                                        <textarea matInput #prevoz formControlName="prevoz"
+                                            placeholder="Upišite drugi način prevoza..."></textarea>
+                                    </mat-form-field>
+                                    <div *ngIf="dugmeZaPorucivanjeStisnuto && d.prevoz.errors">
+                                        <div *ngIf="d.prevoz.errors.required">
+                                            <p class="upozorenje">Ovo polje je obavezno</p>
+                                        </div>
+                                        <div *ngIf="d.prevoz.errors.minlength">
+                                            <p class="upozorenje">Minimalno 3 karaktera</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex-fill">
+                    <div class="d-flex flex-fill flex-column pomeri-dole">
+                        <div *ngIf="nacinPlacanja && nacinPlacanja.length > 0" class="granice visina">
+                            <h3>Napomena</h3>
+                            <hr>
+                            <mat-form-field class="sirina-cena">
+                                <textarea matInput class="napomena" [(ngModel)]="napomena"
+                                    placeholder="Unesite napomenu..."></textarea>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <div class="d-flex flex-fill flex-column pomeri-dole">
+                        <div *ngIf="nacinPlacanja && nacinPlacanja.length > 0" class="granice">
+                            <h3>Izaberite adresu dostave</h3>
+                            <hr>
+                            <mat-radio-group class="radio-grupa" [(ngModel)]="izabraneAdresaDostave">
+                                <mat-radio-button color="primary" class="radio-dugme"
+                                    *ngFor="let adresa of adresaDostave" [value]="adresa">
+                                    {{adresa}}
+                                </mat-radio-button>
+                            </mat-radio-group>
+                        </div>
+                        <div class="granice pomeri-dole">
+                            <div *ngIf="partner && izabraneAdresaDostave === adresaDostave[0]" class="pomeri-dole">
+                                <h4>Adresa</h4>
+                                <label> {{partner.adresa}}</label>
+                            </div>
+                            <div *ngIf="izabraneAdresaDostave === adresaDostave[1]" class="pomeri-dole">
+                                <h4>Druga adresa dostave</h4>
+                                <form role="form" [formGroup]="adresaForm">
+                                    <div>
+                                        <mat-form-field role="form">
+                                            <input type="text" #ulica formControlName="ulica" matInput
+                                                placeholder="Ulica i broj">
+                                        </mat-form-field>
+                                    </div>
+                                    <div *ngIf="dugmeZaPorucivanjeStisnuto && a.ulica.errors">
+                                        <div *ngIf="a.ulica.errors.required">
+                                            <p class="upozorenje">Naziv ulice je obavezan</p>
+                                        </div>
+                                        <div *ngIf="a.ulica.errors.minlength">
+                                            <p class="upozorenje">Naziv ulice mora imati minimalno 3 karaktera</p>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <mat-form-field role="form">
+                                            <input type="text" #grad formControlName="grad" matInput placeholder="Grad">
+                                        </mat-form-field>
+                                    </div>
+                                    <div *ngIf="dugmeZaPorucivanjeStisnuto && a.grad.errors">
+                                        <div *ngIf="a.grad.errors.required">
+                                            <p class="upozorenje">Naziv grada je obavezan</p>
+                                        </div>
+                                        <div *ngIf="a.grad.errors.minlength">
+                                            <p class="upozorenje">Naziv grada mora imati minimalno 2 karaktera</p>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div *ngIf="!partner" class="anoniman-kupac">
+                <h2 class="anoniman-h2">Vaši podaci</h2>
+                <form role="form" [formGroup]="anonimanKupacForm">
+                    <div class="d-flex flex-column justify-content-center flex-sm-row">
+                        <div>
+                            <mat-form-field class="anoniman-input">
+                                <mat-label>Ime*</mat-label>
+                                <input #ime formControlName="ime" matInput>
+                            </mat-form-field>
+                            <div class="div-inline" *ngIf="dugmeZaPorucivanjeStisnuto && anoniman.ime.errors">
+                                <div class="div-inline" *ngIf="anoniman.ime.errors.required">
+                                    <p class="div-inline" class="upozorenje">Ime je obavezno</p>
+                                </div>
+                                <div *ngIf="anoniman.ime.errors.minlength">
+                                    <p class="upozorenje">Ime mora imati minimalno 3 karaktera</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <mat-form-field class="anoniman-input drugi-input">
+                                <mat-label>Prezime*</mat-label>
+                                <input #prezime formControlName="prezime" matInput>
+                            </mat-form-field>
+                            <div class="div-inline" *ngIf="dugmeZaPorucivanjeStisnuto && anoniman.prezime.errors">
+                                <div class="div-inline" *ngIf="anoniman.prezime.errors.required">
+                                    <p class="div-inline" class="upozorenje drugi-input">Prezime je obavezno</p>
+                                </div>
+                                <div *ngIf="anoniman.prezime.errors.minlength">
+                                    <p class="upozorenje drugi-input">Prezime mora imati minimalno 3 karaktera</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="d-flex flex-column justify-content-center flex-sm-row">
+                            <div>
+                                <mat-form-field class="anoniman-input">
+                                    <mat-label>Telefon*</mat-label>
+                                    <input #telefon formControlName="telefon" matInput>
+                                </mat-form-field>
+                                <div class="div-inline" *ngIf="dugmeZaPorucivanjeStisnuto && anoniman.telefon.errors">
+                                    <div class="div-inline" *ngIf="anoniman.telefon.errors.required">
+                                        <p class="div-inline" class="upozorenje">Telefon je obavezan</p>
+                                    </div>
+                                    <div *ngIf="anoniman.telefon.errors.minlength">
+                                        <p class="upozorenje">Telefon mora imati minimalno 3 karaktera</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <mat-form-field class="anoniman-input drugi-input">
+                                    <mat-label>Email*</mat-label>
+                                    <input #email formControlName="email" matInput>
+                                </mat-form-field>
+                                <div class="div-inline" *ngIf="dugmeZaPorucivanjeStisnuto && anoniman.email.errors">
+                                    <div class="div-inline" *ngIf="anoniman.email.errors.required">
+                                        <p class="div-inline" class="upozorenje drugi-input">Email je obavezan</p>
+                                    </div>
+                                    <div *ngIf="anoniman.email.errors.email">
+                                        <p class="upozorenje drugi-input">Email nije validan</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="d-flex flex-column justify-content-center flex-sm-row">
+                            <div>
+                                <mat-form-field class="anoniman-input">
+                                    <mat-label>Ulica i broj*</mat-label>
+                                    <input #ulica formControlName="ulica" matInput>
+                                </mat-form-field>
+                                <div class="div-inline" *ngIf="dugmeZaPorucivanjeStisnuto && anoniman.ulica.errors">
+                                    <div class="div-inline" *ngIf="anoniman.ulica.errors.required">
+                                        <p class="div-inline" class="upozorenje">Ulica i broj su obavezni</p>
+                                    </div>
+                                    <div *ngIf="anoniman.ulica.errors.minlength">
+                                        <p class="upozorenje">Polje mora imati minimalno 3 karaktera</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <mat-form-field class="anoniman-input drugi-input">
+                                    <mat-label>Broj stana / sprat</mat-label>
+                                    <input #stan formControlName="stan" matInput>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="d-flex flex-column justify-content-center flex-sm-row">
+                            <div>
+                                <mat-form-field class="anoniman-input">
+                                    <mat-label>Grad/Mesto*</mat-label>
+                                    <input #grad formControlName="grad" matInput>
+                                </mat-form-field>
+                                <div class="div-inline" *ngIf="dugmeZaPorucivanjeStisnuto && anoniman.grad.errors">
+                                    <div class="div-inline" *ngIf="anoniman.grad.errors.required">
+                                        <p class="div-inline" class="upozorenje">Grad/Mesto je obavezno</p>
+                                    </div>
+                                    <div *ngIf="anoniman.grad.errors.minlength">
+                                        <p class="upozorenje">Polje mora imati minimalno 3 karaktera</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <mat-form-field class="anoniman-input drugi-input">
+                                    <mat-label>Postanski broj*</mat-label>
+                                    <input #pbroj formControlName="pbroj" matInput>
+                                </mat-form-field>
+                                <div class="div-inline" *ngIf="dugmeZaPorucivanjeStisnuto && anoniman.pbroj.errors">
+                                    <div class="div-inline" *ngIf="anoniman.pbroj.errors.required">
+                                        <p class="div-inline" class="upozorenje drugi-input">Postanski broj je obavezan
+                                        </p>
+                                    </div>
+                                    <div *ngIf="anoniman.pbroj.errors.minlength">
+                                        <p class="upozorenje drugi-input">Polje mora imati minimalno 3 karaktera</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <mat-form-field class="anoniman-napomena" appearance="fill">
+                            <mat-label>Napomena</mat-label>
+                            <textarea #napomena formControlName="napomena" matAutosizeMinRows="4" matInput></textarea>
+                        </mat-form-field>
+                    </div>
+                </form>
+            </div>
+            <div class="d-flex flex-fill flex-column">
+                <div class="upozorenje-anoniman" *ngIf="!partner">
+                    <h2 class="anoniman-h2"><span class="upozorenje-ikona material-icons">
+                            priority_high
+                        </span>Obaveštenje</h2>
+                    <p class="upozorenje-p">Roba će biti poslata kurirskom službom, na navedenu adresu u roku od dva radna dana. Troškove isporuke snosi kupac.</p>
+                    <p class="upozorenje-p">Ukoliko imate bilo kakve nedoumice da li odredjeni artikal odgovara vašem
+                        vozilu, pozovite nas <a class="telefon" href="tel:015319000">015/319-000</a></p>
+                </div>
+                <table class="table sirina-cena">
+                    <tbody>
+                        <tr>
+                            <td class="pozadina-glavna-50 boja-siva-400">Bez pdv-a: </td>
+                            <td class="text-right sirina-pojedinacne-cene">{{bezPdv | currency:" "}} RSD</td>
+                        </tr>
+                        <tr>
+                            <td class="pozadina-glavna-50 boja-siva-400">Pdv: </td>
+                            <td class="text-right sirina-pojedinacne-cene">{{pdv | currency:" "}} RSD</td>
+                        </tr>
+                        <tr>
+                            <td class="pozadina-glavna-50 boja-siva-400">Ukupno za uplatu: </td>
+                            <td class="text-right sirina-pojedinacne-cene"><b>{{ukupno | currency:" "}} RSD</b></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div>
+                    <button class="button-glavni-100 dugme-sirina float-right" mat-raised-button
+                        (click)="posaljiPorudzbinu(roba)">Potvrdi</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>

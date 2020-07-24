@@ -1,0 +1,16 @@
+@import "src/automaterijal-theme.scss";
+
+
+.h1-faktura {
+    color:  $automaterijal-primary-50;
+    font-weight: bold;
+    margin-left: 6%;
+    margin-top: 25px;
+}
+
+.h1-faktura-upozorenje {
+    color: $automaterijal-grey-200 !important;
+    text-align: center;
+    font-size: 50px !important;
+    margin: 0% !important;
+}
