@@ -23,6 +23,7 @@ export class LocalStorageService {
   }
 
   public logout() {
+    window.sessionStorage.clear();
     this.storage.remove(PARTNER_KLJUC);
   }
 

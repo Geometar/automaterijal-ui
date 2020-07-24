@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
 import { LocalStorageService } from '../service/data/local-storage.service';
 import { PrvoLogovanjeModalComponent } from 'src/app/shared/modal/prvo-logovanje-modal/prvo-logovanje-modal.component';
 import { DataService } from '../service/data/data.service';
-import { takeWhile } from 'rxjs/operators';
+import { takeWhile, catchError } from 'rxjs/operators';
 import { AuthService } from '../service/auth.service';
 import { TokenStorageService } from '../service/token-storage.service';
 
@@ -58,6 +58,12 @@ export class LoginComponent implements OnInit, OnDestroy {
     }
     this.authServis.login(this.credentials)
       .pipe(takeWhile(() => this.alive))
+      .pipe(catchError(err => {
+        if (err.status === 400) {
+          this.uspesnoLogovanje = false;
+        }
+        return err;
+      }))
       .subscribe((data) => {
         this.tokenStorage.saveToken(data.token);
         this.tokenStorage.saveUser(data);
