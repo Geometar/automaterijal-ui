@@ -17,7 +17,7 @@ import { authInterceptorProviders } from './shared/interceptor/auth-interceptor'
     AppComponent
   ],
   imports: [
-    BrowserModule,
+    BrowserModule.withServerTransition({ appId: 'serverApp' }),
     ModalModule,
     StorageServiceModule,
     HttpClientModule,

@@ -24,11 +24,12 @@ export class ONamaComponent implements OnInit {
     autoplayTimeout: 2500, rewind: true
   };
 
-  public isLargeDiv = window.innerWidth > 750;
+  public isLargeDiv = true;
 
   constructor(public dialog: MatDialog) { }
 
   ngOnInit() {
+    this.isLargeDiv = window.innerWidth > 750;
     const konstante = new Konastante();
     this.mySlideBrands = konstante.brendovi;
     this.innerWidth = window.innerWidth;

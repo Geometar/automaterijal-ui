@@ -6,6 +6,8 @@ import * as _ from 'lodash';
 
 const KORPA_KLJUC = 'korpa_roba';
 const PARTNER_KLJUC = 'partner_kljuc';
+const TOKEN_KEY = 'auth-token';
+const USER_KEY = 'auth-user';
 
 @Injectable({
   providedIn: 'root'
@@ -23,8 +25,9 @@ export class LocalStorageService {
   }
 
   public logout() {
-    window.sessionStorage.clear();
     this.storage.remove(PARTNER_KLJUC);
+    this.storage.remove(TOKEN_KEY);
+    this.storage.remove(USER_KEY);
   }
 
   public procitajPartneraIzMemorije(): Partner {

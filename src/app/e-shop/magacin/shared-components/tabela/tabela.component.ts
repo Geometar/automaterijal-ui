@@ -32,7 +32,7 @@ export class TabelaComponent implements OnInit, OnDestroy, OnChanges {
   public partner: Partner;
   public partnerLogovan = false;
   private korpa: Korpa;
-  public jeMobilni = window.innerWidth > 900;
+  public jeMobilni = false;
 
   // boolean za unistavanje observera
   private alive = true;
@@ -62,6 +62,7 @@ export class TabelaComponent implements OnInit, OnDestroy, OnChanges {
   }
 
   ngOnInit() {
+    this.jeMobilni = window.innerWidth > 900;
     this.loginServis.ulogovaniPartner
       .pipe(takeWhile(() => this.alive))
       .subscribe(partner => this.partner = partner);

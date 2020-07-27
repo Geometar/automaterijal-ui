@@ -7,7 +7,7 @@ const routes: Routes = [
   { path: '', redirectTo: '/naslovna', pathMatch: 'full' },
   { path: 'naslovna', loadChildren: () => import('./e-commerce/dasboard/dasboard.module').then(m => m.DasboardModule) },
   { path: 'naslovna/:id', loadChildren: () => import('./e-commerce/dasboard/dasboard.module').then(m => m.DasboardModule) },
-  { path: 'o-nama', loadChildren: () => import('./e-commerce/o-nama/o-nama.module').then(m => m.ONamaModule) },
+  { path: 'o-nama', loadChildren: () => import('./e-commerce/o-nama/o-nama.module').then(m => m.ONamaModule)},
   { path: 'kontakt', loadChildren: () => import('./e-commerce/kontakt/kontakt.module').then(m => m.KontaktModule) },
   { path: 'roba', loadChildren: () => import('./e-shop/magacin/roba/roba.module').then(m => m.RobaModule) },
   { path: 'roba/:id', loadChildren: () => import('./e-shop/magacin/roba/roba.module').then(m => m.RobaModule) },
@@ -32,7 +32,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, { useHash: true, scrollPositionRestoration: 'enabled' })],
+  imports: [RouterModule.forRoot(routes, { scrollPositionRestoration: 'enabled' })],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

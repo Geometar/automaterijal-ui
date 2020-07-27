@@ -38,7 +38,7 @@ export class RobaDetaljiComponent implements OnInit, OnDestroy {
   public editTekst = false;
 
   innerWidth;
-  public velikiEkran = window.innerWidth > 650;
+  public velikiEkran = true;
 
   constructor(
     private robaService: RobaService,
@@ -54,6 +54,7 @@ export class RobaDetaljiComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.innerWidth = window.innerWidth;
+    this.velikiEkran = window.innerWidth > 650;
     this.dataService.trenutnaKorpa
       .pipe(takeWhile(() => this.alive))
       .subscribe(korpa => this.korpa = korpa);
