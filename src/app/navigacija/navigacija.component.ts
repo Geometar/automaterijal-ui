@@ -1,10 +1,11 @@
-import { Component, OnInit, HostListener, OnDestroy } from '@angular/core';
+import { Component, OnInit, HostListener, OnDestroy, Inject, PLATFORM_ID } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Partner } from '../e-shop/model/dto';
 import { LoginService } from '../e-shop/service/login.service';
 import { DataService } from '../e-shop/service/data/data.service';
 import { LogoutModalComponent } from '../shared/modal/logout-modal/logout-modal.component';
 import { takeWhile } from 'rxjs/operators';
+import { isPlatformBrowser } from '@angular/common';
 @Component({
   selector: 'app-navigacija',
   templateUrl: './navigacija.component.html',
@@ -23,18 +24,21 @@ export class NavigacijaComponent implements OnInit, OnDestroy {
   constructor(
     private korpaServis: DataService,
     private loginServis: LoginService,
+    @Inject(PLATFORM_ID) private platformId,
     public dialog: MatDialog
   ) { }
 
   ngOnInit() {
-    this.openSideNav = window.innerWidth < 1150;
+    if (isPlatformBrowser(this.platformId)) {
+      this.openSideNav = window.innerWidth < 1150;
+    }
     this.loginServis.ulogovaniPartner
       .pipe(takeWhile(() => this.alive))
       .subscribe(partner => this.partner = partner);
     this.loginServis.daLiJePartnerUlogovan
       .pipe(takeWhile(() => this.alive))
       .subscribe(bool => this.partnerUlogovan = bool);
-      this.korpaServis.inicijalizujKorpu();
+    this.korpaServis.inicijalizujKorpu();
     this.korpaServis.trenutnaKorpa
       .pipe(takeWhile(() => this.alive))
       .subscribe(korpa => {
@@ -44,7 +48,9 @@ export class NavigacijaComponent implements OnInit, OnDestroy {
 
   @HostListener('window:resize', ['$event'])
   onResize(event) {
-    this.openSideNav = window.innerWidth < 1150;
+    if (isPlatformBrowser(this.platformId)) {
+      this.openSideNav = window.innerWidth < 1150;
+    }
   }
 
   otvoriDialog(): void {

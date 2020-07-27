@@ -1,7 +1,8 @@
-import { Component, OnInit, HostListener } from '@angular/core';
+import { Component, OnInit, HostListener, Inject, PLATFORM_ID } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { BrendoviModalComponent } from 'src/app/shared/modal/brendovi-modal/brendovi-modal.component';
 import { Brend, Konastante } from '../dasboard/kategorija';
+import { isPlatformBrowser } from '@angular/common';
 
 @Component({
   selector: 'app-o-nama',
@@ -26,13 +27,17 @@ export class ONamaComponent implements OnInit {
 
   public isLargeDiv = true;
 
-  constructor(public dialog: MatDialog) { }
+  constructor(
+    public dialog: MatDialog,
+    @Inject(PLATFORM_ID) private platformId) { }
 
   ngOnInit() {
-    this.isLargeDiv = window.innerWidth > 750;
+    if (isPlatformBrowser(this.platformId)) {
+      this.isLargeDiv = window.innerWidth > 750;
+      this.innerWidth = window.innerWidth;
+    }
     const konstante = new Konastante();
     this.mySlideBrands = konstante.brendovi;
-    this.innerWidth = window.innerWidth;
     this.changeSlideConfiguration();
   }
 

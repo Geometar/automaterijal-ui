@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, HostListener, OnDestroy } from '@angular/core';
+import { Component, OnInit, ViewChild, HostListener, OnDestroy, Inject, PLATFORM_ID } from '@angular/core';
 import { DataService } from '../service/data/data.service';
 import { Korpa, RobaKorpa } from '../model/porudzbenica';
 import { LocalStorageService } from '../service/data/local-storage.service';
@@ -15,6 +15,7 @@ import { UspesnoPorucivanjeModalComponent } from 'src/app/shared/modal/uspesno-p
 import { NeuspesnoPorucivanjeModalComponent } from 'src/app/shared/modal/neuspesno-porucivanje-modal/neuspesno-porucivanje-modal.component';
 import { NotifikacijaService } from 'src/app/shared/service/notifikacija.service';
 import { MatSnackBarKlase } from 'src/app/shared/model/konstante';
+import { isPlatformBrowser } from '@angular/common';
 
 @Component({
   selector: 'app-korpa',
@@ -67,6 +68,7 @@ export class KorpaComponent implements OnInit, OnDestroy {
     public dialog: MatDialog,
     private formBuilder: FormBuilder,
     private fakturaServis: FakturaService,
+    @Inject(PLATFORM_ID) private platformId,
     private router: Router,
     private notifikacija: NotifikacijaService) { }
 
@@ -86,13 +88,17 @@ export class KorpaComponent implements OnInit, OnDestroy {
           });
       });
     this.inicijalizujKorpu();
-    this.innerWidth = window.innerWidth;
+    if (isPlatformBrowser(this.platformId)) {
+      this.innerWidth = window.innerWidth;
+    }
     this.changeSlideConfiguration();
   }
 
   @HostListener('window:resize', ['$event'])
   onResize(event) {
-    this.innerWidth = window.innerWidth;
+    if (isPlatformBrowser(this.platformId)) {
+      this.innerWidth = window.innerWidth;
+    }
     this.changeSlideConfiguration();
   }
 

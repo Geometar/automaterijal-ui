@@ -1,4 +1,4 @@
-import { OnInit, Component, OnDestroy, HostListener } from '@angular/core';
+import { OnInit, Component, OnDestroy, HostListener, Inject, PLATFORM_ID } from '@angular/core';
 import { DashboardService } from 'src/app/e-shop/service/dashboard.service';
 import { takeWhile } from 'rxjs/operators';
 import { Dashboard, Roba, Partner } from 'src/app/e-shop/model/dto';
@@ -13,6 +13,7 @@ import { BrendoviModalComponent } from 'src/app/shared/modal/brendovi-modal/bren
 import { DashboardPromenaRobeComponent } from 'src/app/shared/modal/dashboard-promena-robe/dashboard-promena-robe.component';
 import { LoginService } from 'src/app/e-shop/service/login.service';
 import { ZabranjenaRobaModalComponent } from 'src/app/shared/modal/zabranjena-roba-modal/zabranjena-roba-modal.component';
+import { isPlatformBrowser } from '@angular/common';
 
 @Component({
   selector: 'app-dasboard',
@@ -43,11 +44,15 @@ export class DasboardComponent implements OnInit, OnDestroy {
     private notifikacijaServis: NotifikacijaService,
     private loginServis: LoginService,
     private dataService: DataService,
+    @Inject(PLATFORM_ID) private platformId,
     public dialog: MatDialog,
     private router: Router) { }
 
   ngOnInit() {
-    this.innerWidth = window.innerWidth;
+    if (isPlatformBrowser(this.platformId)) {
+      this.innerWidth = window.innerWidth;
+    }
+
     this.loginServis.ulogovaniPartner
       .pipe(takeWhile(() => this.alive))
       .subscribe(partnerFE => {
@@ -65,11 +70,6 @@ export class DasboardComponent implements OnInit, OnDestroy {
     this.izdvajamoIzPonude();
     this.najboljeProdavano();
     this.inijalizujKategorije();
-  }
-
-  @HostListener('window:resize', ['$event'])
-  onResize(event) {
-    this.innerWidth = window.innerWidth;
   }
 
   inijalizujKategorije() {
@@ -164,7 +164,7 @@ export class DasboardComponent implements OnInit, OnDestroy {
 
   idiNaKategoriju(kategorija: Kategorija) {
     if (!kategorija.param) {
-      this.router.navigate([kategorija.url],  { queryParams: { prosliUrl: 'naslovna' }});
+      this.router.navigate([kategorija.url], { queryParams: { prosliUrl: 'naslovna' } });
     } else {
       this.router.navigate([kategorija.url], { queryParams: { grupa: kategorija.param, prosliUrl: 'naslovna' } });
     }

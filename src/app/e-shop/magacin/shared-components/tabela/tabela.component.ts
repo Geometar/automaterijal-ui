@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter, OnDestroy, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, OnDestroy, OnChanges, SimpleChanges, Inject, PLATFORM_ID } from '@angular/core';
 import { Roba, Partner } from 'src/app/e-shop/model/dto';
 import { LoginService } from 'src/app/e-shop/service/login.service';
 import { AppUtilsService } from 'src/app/e-shop/utils/app-utils.service';
@@ -11,6 +11,7 @@ import { takeWhile } from 'rxjs/operators';
 import { MatDialog } from '@angular/material/dialog';
 import { ZaboravljenaSifraModalComponent } from 'src/app/shared/modal/zaboravljena-sifra-modal/zaboravljena-sifra-modal.component';
 import { ZabranjenaRobaModalComponent } from 'src/app/shared/modal/zabranjena-roba-modal/zabranjena-roba-modal.component';
+import { isPlatformBrowser } from '@angular/common';
 
 @Component({
   selector: 'app-tabela',
@@ -50,6 +51,7 @@ export class TabelaComponent implements OnInit, OnDestroy, OnChanges {
     private loginServis: LoginService,
     private notifikacijaServis: NotifikacijaService,
     private dataService: DataService,
+    @Inject(PLATFORM_ID) private platformId,
     public dialog: MatDialog,
     private router: Router
   ) {
@@ -62,7 +64,11 @@ export class TabelaComponent implements OnInit, OnDestroy, OnChanges {
   }
 
   ngOnInit() {
-    this.jeMobilni = window.innerWidth > 900;
+
+    if (isPlatformBrowser(this.platformId)) {
+      this.jeMobilni = window.innerWidth > 900;
+      this.innerWidth = window.innerWidth;
+    }
     this.loginServis.ulogovaniPartner
       .pipe(takeWhile(() => this.alive))
       .subscribe(partner => this.partner = partner);
@@ -72,7 +78,6 @@ export class TabelaComponent implements OnInit, OnDestroy, OnChanges {
     this.loginServis.daLiJePartnerUlogovan
       .pipe(takeWhile(() => this.alive))
       .subscribe(bool => this.partnerLogovan = bool);
-    this.innerWidth = window.innerWidth;
     this.changeSlideConfiguration();
   }
 
@@ -86,7 +91,9 @@ export class TabelaComponent implements OnInit, OnDestroy, OnChanges {
 
   paginatorEvent(pageEvent) {
     this.magacinEvent.emit(pageEvent);
-    window.scroll(0, 0);
+    if (isPlatformBrowser(this.platformId)) {
+      window.scroll(0, 0);
+    }
   }
 
   getDisplayedColumns(): string[] {

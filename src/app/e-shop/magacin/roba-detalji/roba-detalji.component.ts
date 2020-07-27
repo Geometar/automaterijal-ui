@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, Inject, PLATFORM_ID } from '@angular/core';
 import { RobaService } from '../../service/roba.service';
 import { Params, ActivatedRoute, Router } from '@angular/router';
 import { Roba, RobaBrojevi, Partner } from '../../model/dto';
@@ -10,7 +10,7 @@ import { DataService } from '../../service/data/data.service';
 import { AppUtilsService } from '../../utils/app-utils.service';
 import { NotifikacijaService } from 'src/app/shared/service/notifikacija.service';
 import { MatSnackBarKlase } from 'src/app/shared/model/konstante';
-import { Location } from '@angular/common';
+import { Location, isPlatformBrowser } from '@angular/common';
 import { Korpa } from 'src/app/e-shop/model/porudzbenica';
 import { MatDialog } from '@angular/material/dialog';
 import { ZabranjenaRobaModalComponent } from 'src/app/shared/modal/zabranjena-roba-modal/zabranjena-roba-modal.component';
@@ -49,12 +49,15 @@ export class RobaDetaljiComponent implements OnInit, OnDestroy {
     private router: Router,
     public dialog: MatDialog,
     private location: Location,
+    @Inject(PLATFORM_ID) private platformId,
     private route: ActivatedRoute
   ) { }
 
   ngOnInit() {
+    if (isPlatformBrowser(this.platformId)) {
     this.innerWidth = window.innerWidth;
     this.velikiEkran = window.innerWidth > 650;
+    }
     this.dataService.trenutnaKorpa
       .pipe(takeWhile(() => this.alive))
       .subscribe(korpa => this.korpa = korpa);

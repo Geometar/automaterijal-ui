@@ -14,58 +14,69 @@
     <mat-nav-list [class.margin-gore]="partnerUlogovan">
       <mat-divider *ngIf="partnerUlogovan" class="pozadina-siva-300"></mat-divider>
 
-        <mat-list-item class="material-icons" [routerLink]="['naslovna']" [routerLinkActive]="['pozadina-glavna-200']">
-          <mat-icon class="boja-siva-300" mat-list-icon>home</mat-icon>
-          <p mat-line>Naslovna</p>
-        </mat-list-item>
+      <mat-list-item class="material-icons" [routerLink]="['naslovna']" [routerLinkActive]="['pozadina-glavna-200']">
+        <a href="/naslovna">
+        </a>
+        <mat-icon class="boja-siva-300" mat-list-icon>home</mat-icon>
+        <p mat-line>Naslovna</p>
+      </mat-list-item>
 
-        <mat-list-item class="material-icons" [routerLink]="['o-nama']" [routerLinkActive]="['pozadina-glavna-200']">
-          <mat-icon class="boja-siva-300" mat-list-icon>book</mat-icon>
-          <p mat-line>O nama</p>
-        </mat-list-item>
+      <mat-list-item class="material-icons" [routerLink]="['o-nama']" [routerLinkActive]="['pozadina-glavna-200']">
+        <a href="/o-nama">
+        </a>
+        <mat-icon class="boja-siva-300" mat-list-icon>book</mat-icon>
+        <p mat-line>O nama</p>
+      </mat-list-item>
 
-        <mat-list-item class="material-icons" [routerLink]="['kontakt']" [routerLinkActive]="['pozadina-glavna-200']">
-          <mat-icon class="boja-siva-300" mat-list-icon>contact_phone</mat-icon>
-          <p mat-line>Kontakt</p>
-        </mat-list-item>
+      <mat-list-item class="material-icons" [routerLink]="['kontakt']" [routerLinkActive]="['pozadina-glavna-200']">
+        <a href="/kontakt">
+        </a>
+        <mat-icon class="boja-siva-300" mat-list-icon>contact_phone</mat-icon>
+        <p mat-line>Kontakt</p>
+      </mat-list-item>
     </mat-nav-list>
 
     <mat-divider></mat-divider>
     <mat-nav-list>
       <h3 class="pozadina-glavna-50 boja-siva-300" mat-subheader>Internet prodavnica</h3>
 
-        <mat-list-item class="material-icons" [routerLink]="['korpa']" [routerLinkActive]="['pozadina-glavna-200']">
-          <mat-icon matBadgeColor="warn" class="boja-siva-300" matBadge="{{korpaBadge}}" mat-list-icon>shopping_cart
-          </mat-icon>
-          <p mat-line>Korpa</p>
-        </mat-list-item>
+      <mat-list-item class="material-icons" [routerLink]="['korpa']" [routerLinkActive]="['pozadina-glavna-200']">
+        <a href="/korpa">
+        </a>
+        <mat-icon matBadgeColor="warn" class="boja-siva-300" matBadge="{{korpaBadge}}" mat-list-icon>shopping_cart
+        </mat-icon>
+        <p mat-line>Korpa</p>
+      </mat-list-item>
 
-        <mat-list-item class="material-icons" [routerLink]="['roba']" [routerLinkActive]="['pozadina-glavna-200']"
-          [routerLinkActive]="['pozadina-glavna-200']">
-          <mat-icon class="boja-siva-300" mat-list-icon>searche</mat-icon>
-          <p mat-line>Pretraga</p>
-        </mat-list-item>
+      <mat-list-item class="material-icons" [routerLink]="['roba']" [routerLinkActive]="['pozadina-glavna-200']"
+        [routerLinkActive]="['pozadina-glavna-200']">
+        <a href="/roba">
+        </a>
+        <mat-icon class="boja-siva-300" mat-list-icon>searche</mat-icon>
+        <p mat-line>Pretraga</p>
+      </mat-list-item>
 
-        <mat-list-item class="material-icons" [routerLink]="['kategorije']"
-          [routerLinkActive]="['pozadina-glavna-200']">
-          <mat-icon class="boja-siva-300" mat-list-icon>category</mat-icon>
-          <p mat-line>Kategorije</p>
-        </mat-list-item>
+      <mat-list-item class="material-icons" [routerLink]="['kategorije']" [routerLinkActive]="['pozadina-glavna-200']">
+        <a href="/kategorije">
+        </a>
+        <mat-icon class="boja-siva-300" mat-list-icon>category</mat-icon>
+        <p mat-line>Kategorije</p>
+      </mat-list-item>
     </mat-nav-list>
 
     <mat-divider></mat-divider>
     <mat-nav-list *ngIf="partnerUlogovan">
       <h3 class="boja-siva-300" mat-subheader>Moj Profil</h3>
-        <mat-list-item class="material-icons" [routerLink]="['licni-podaci']"
-          [routerLinkActive]="['pozadina-glavna-200']">
-          <mat-icon class="boja-siva-300" mat-list-icon>person</mat-icon>
-          <p mat-line>Licni Podaci</p>
-        </mat-list-item>
-        <mat-list-item class="material-icons" [routerLink]="['porudzbenice']"
-          [routerLinkActive]="['pozadina-glavna-200']">
-          <mat-icon class="boja-siva-300" mat-list-icon>list</mat-icon>
-          <p mat-line>Porudzbine</p>
-        </mat-list-item>
+      <mat-list-item class="material-icons" [routerLink]="['licni-podaci']"
+        [routerLinkActive]="['pozadina-glavna-200']">
+        <mat-icon class="boja-siva-300" mat-list-icon>person</mat-icon>
+        <p mat-line>Licni Podaci</p>
+      </mat-list-item>
+      <mat-list-item class="material-icons" [routerLink]="['porudzbenice']"
+        [routerLinkActive]="['pozadina-glavna-200']">
+        <mat-icon class="boja-siva-300" mat-list-icon>list</mat-icon>
+        <p mat-line>Porudzbine</p>
+      </mat-list-item>
       <mat-list-item *ngIf="partner.privilegije === 2047" class="material-icons" [routerLink]="['admin']"
         [routerLinkActive]="['pozadina-glavna-200']">
         <mat-icon class="boja-siva-300" mat-list-icon>work</mat-icon>

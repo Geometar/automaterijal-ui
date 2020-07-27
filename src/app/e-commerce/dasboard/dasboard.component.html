@@ -142,6 +142,7 @@
       <div class="cekcija-ponuda d-flex flex-wrap justify-content-center">
         <div *ngFor="let roba of robaPonuda">
           <mat-card class="mat-card-ponuda">
+            <a href="/roba/{{roba.robaid}}"></a>
             <span *ngIf="partner && partner.privilegije === 2047" class="material-icons edit-ikona"
               (click)="otvoriDijalogPromeneRobePonuda(roba)">
               edit
@@ -270,6 +271,7 @@
       <div class="cekcija-ponuda d-flex flex-wrap justify-content-center">
         <div *ngFor="let kategorija of kategorije">
           <mat-card class="kategorija-card" (click)="idiNaKategoriju(kategorija)">
+            <a href="/kategorije/{{kategorija.naslov}}"></a>
             <span *ngIf="innerWidth > 1311" class="material-icons ikona-kategorija-leva">
               {{kategorija.ikonaId}}
             </span>
@@ -288,6 +290,7 @@
       <div class="cekcija-ponuda d-flex flex-wrap justify-content-center">
         <div *ngFor="let roba of robaNajbolje">
           <mat-card class="mat-card-ponuda">
+            <a href="/roba/{{roba.robaid}}"></a>
             <span *ngIf="partner && partner.privilegije === 2047" class="material-icons edit-ikona"
               (click)="otvoriDijalogPromeneRobeNajbolje(roba)">
               edit
@@ -415,6 +418,7 @@
       <div class="cekcija-ponuda d-flex flex-wrap justify-content-center">
         <div *ngFor="let kategorija of grupe">
           <mat-card class="kategorija-card" (click)="idiNaKategoriju(kategorija)">
+            <a href="/kategorije/{{kategorija.naslov}}"></a>
             <span *ngIf="innerWidth > 1311" class="material-icons ikona-kategorija-leva">
               {{kategorija.ikonaId}}
             </span>
