@@ -5,7 +5,7 @@ import { AppUtilsService } from '../utils/app-utils.service';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 
-const DOMAIN_URL = environment.baseUrl + '/api';
+const DOMAIN_URL = 'http://localhost:8080' + '/api';
 const ROBA_URL = '/proizvodjaci';
 
 const TIMEOUT = 15000;

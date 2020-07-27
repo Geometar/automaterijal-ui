@@ -8,7 +8,7 @@ import { environment } from 'src/environments/environment';
 import { Roba, RobaPage } from '../model/dto';
 import { Filter } from '../model/filter';
 
-const DOMAIN_URL = environment.baseUrl + '/api';
+const DOMAIN_URL = 'http://localhost:8080' + '/api';
 const ROBA_URL = '/roba';
 const FILTERI_URL = '/filteri';
 const AKUMULATORI_URL = '/akumulatori';

@@ -6,8 +6,8 @@ import { Partner, PromenaSifre } from '../model/dto';
 import { AppUtilsService } from '../utils/app-utils.service';
 import { environment } from 'src/environments/environment';
 
-const PARTNER_CITANJE_URL = environment.baseUrl + '/api/partner';
-const PARTNER_UPDATE_URL = environment.baseUrl + '/api/partner/update';
+const PARTNER_CITANJE_URL = 'http://localhost:8080' + '/api/partner';
+const PARTNER_UPDATE_URL = 'http://localhost:8080' + '/api/partner/update';
 const RESETOVANJE_SIFRE_URL = '/promena-sifre';
 
 const TIMEOUT = 15000;

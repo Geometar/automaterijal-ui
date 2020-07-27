@@ -6,7 +6,7 @@ import { AppUtilsService } from '../utils/app-utils.service';
 import { Fakutra } from '../model/dto';
 import { environment } from 'src/environments/environment';
 
-const DOMAIN_URL = environment.baseUrl + '/api';
+const DOMAIN_URL = 'http://localhost:8080' + '/api';
 const FAKTURA_URL = '/fakture';
 
 const TIMEOUT = 15000;

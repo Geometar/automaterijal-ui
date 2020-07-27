@@ -14,9 +14,9 @@ import { PrvoLogovanjeModalComponent } from 'src/app/shared/modal/prvo-logovanje
 const TIMEOUT = 15000;
 const TIMEOUT_ERROR = 'Timeout error!';
 
-const LOGIN_URL = environment.baseUrl + '/login';
-const LOGOUT_URL = environment.baseUrl + '/logout';
-const PARTNER_URL = environment.baseUrl + '/api/partner';
+const LOGIN_URL = 'http://localhost:8080' + '/login';
+const LOGOUT_URL = 'http://localhost:8080' + '/logout';
+const PARTNER_URL = 'http://localhost:8080' + '/api/partner';
 @Injectable({
   providedIn: 'root'
 })

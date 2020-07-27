@@ -6,7 +6,7 @@ import { throwError, Observable } from 'rxjs';
 import { Poruka, Upit } from 'src/app/e-commerce/model/dto';
 import { environment } from 'src/environments/environment';
 
-const DOMAIN_URL = environment.baseUrl + '/api/email';
+const DOMAIN_URL = 'http://localhost:8080' + '/api/email';
 const REGISTRACIJA_URL = '/registracija';
 const RESETOVANJE_SIFRE_URL = '/zaboravljena-sifra';
 const PORUKA_URL = '/poruka';

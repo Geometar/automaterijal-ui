@@ -7,7 +7,7 @@ import { Roba } from '../../model/dto';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 
-const DOMAIN_URL = environment.baseUrl + '/api/informacije/';
+const DOMAIN_URL = 'http://localhost:8080' + '/api/informacije/';
 const TIMEOUT = 15000;
 const TIMEOUT_ERROR = 'Timeout error!';
 
