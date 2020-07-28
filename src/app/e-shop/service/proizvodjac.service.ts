@@ -3,9 +3,9 @@ import { Observable, throwError } from 'rxjs';
 import { timeoutWith, catchError } from 'rxjs/operators';
 import { AppUtilsService } from '../utils/app-utils.service';
 import { HttpClient } from '@angular/common/http';
-import { environment } from 'src/environments/environment';
+import { environment } from '../../../environments/environment.prod';
 
-const DOMAIN_URL = 'http://localhost:8080' + '/api';
+const DOMAIN_URL = environment.baseUrl + '/api';
 const ROBA_URL = '/proizvodjaci';
 
 const TIMEOUT = 15000;

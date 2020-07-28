@@ -7,7 +7,7 @@ import { throwError } from 'rxjs';
 import { Grupa } from '../model/dto';
 
 
-const DOMAIN_URL = 'http://localhost:8080' + '/api';
+const DOMAIN_URL = environment.baseUrl + '/api';
 const ADMIN_UTL = '/admin';
 
 const TIMEOUT = 15000;

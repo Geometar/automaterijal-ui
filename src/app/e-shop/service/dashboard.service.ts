@@ -5,7 +5,7 @@ import { timeoutWith, catchError } from 'rxjs/operators';
 import { throwError } from 'rxjs';
 import { AppUtilsService } from '../utils/app-utils.service';
 
-const DOMAIN_URL = 'http://localhost:8080' + '/api';
+const DOMAIN_URL = environment.baseUrl + '/api';
 const DASHBOARD_URL = '/dashboard';
 const SPECIFIKACIJE_URL = '/specifikacije';
 const IZDVAJAMO_URL = '/izdvajamo';
