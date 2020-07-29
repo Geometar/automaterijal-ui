@@ -72,6 +72,13 @@ export class DasboardComponent implements OnInit, OnDestroy {
     this.inijalizujKategorije();
   }
 
+  @HostListener('window:resize', ['$event'])
+  onResize(event) {
+    if (isPlatformBrowser(this.platformId)) {
+      this.innerWidth = window.innerWidth;
+    }
+  }
+
   inijalizujKategorije() {
     const konstanteKategorija = new Konastante();
     this.kategorije = konstanteKategorija.kategorije;

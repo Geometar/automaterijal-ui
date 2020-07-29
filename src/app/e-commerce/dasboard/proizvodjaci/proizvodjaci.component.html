@@ -1,0 +1,14 @@
+<main class="main">
+    <div class="d-flex flex-row-reverse bd-highlight">
+        <button class="button-glavni-100 nazad-button" mat-raised-button (click)="idiNazad()">
+            <mat-icon>keyboard_arrow_left</mat-icon> Nazad
+        </button>
+    </div>
+    <div class="header">
+        <h1>{{brend.ime}}</h1>
+    </div>
+    <div>
+        <img [src]="brend.urlSlikePozadina" />
+        <div [innerHTML]="opis"></div>
+    </div>
+</main>
