@@ -68,10 +68,15 @@
       <div *ngIf="!isLargeDiv" class="owl-carousel-moj">
         <owl-carousel [options]="mySlideSmallOptions" [carouselClasses]="['owl-theme']">
           <div class="item" *ngFor="let brand of mySlideBrands;let i = index">
-            <div>
+            <div *ngIf="innerWidth > 900">
               <button mat-button class="dugme" (click)="otvoriDialog(brand)">
                 <img width="65px" height="65px" src={{brand.urlSlikeLogo}} />
               </button>
+            </div>
+            <div *ngIf="innerWidth < 900">
+              <a class="dugme" href="/naslovna/{{brand.ime}}">
+                <img width="65px" height="65px" src={{brand.urlSlikeLogo}} />
+              </a>
             </div>
           </div>
         </owl-carousel>

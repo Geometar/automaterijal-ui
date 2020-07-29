@@ -41,6 +41,15 @@ export class ONamaComponent implements OnInit {
     this.changeSlideConfiguration();
   }
 
+  @HostListener('window:resize', ['$event'])
+  onResize(event) {
+    if (isPlatformBrowser(this.platformId)) {
+      this.isLargeDiv = window.innerWidth > 750;
+      this.innerWidth = window.innerWidth;
+    }
+    this.changeSlideConfiguration();
+  }
+
   changeSlideConfiguration() {
     if (this.innerWidth < 750) {
       this.isLargeDiv = false;
