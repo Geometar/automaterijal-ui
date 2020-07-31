@@ -17,6 +17,7 @@ import { SharedMagacinModule } from 'src/app/e-shop/magacin/shared-components/sh
 import { DashboardPromenaRobeComponent } from './dashboard-promena-robe/dashboard-promena-robe.component';
 import { ZabranjenaRobaModalComponent } from './zabranjena-roba-modal/zabranjena-roba-modal.component';
 import { GrupeModalComponent } from './grupe-modal/grupe-modal.component';
+import { SlikaModalComponent } from './slika-modal/slika-modal.component';
 
 @NgModule({
   imports: [
@@ -35,6 +36,7 @@ import { GrupeModalComponent } from './grupe-modal/grupe-modal.component';
     ZabranjenaRobaModalComponent,
     NeuspesnoPorucivanjeModalComponent,
     PorukaModalComponent,
+    SlikaModalComponent,
     BrendoviModalComponent,
     DashboardPromenaRobeComponent,
     GrupeModalComponent,
@@ -43,12 +45,14 @@ import { GrupeModalComponent } from './grupe-modal/grupe-modal.component';
     PrvoLogovanjeModalComponent,
     DashboardPromenaRobeComponent,
     ZabranjenaRobaModalComponent,
-    GrupeModalComponent],
+    GrupeModalComponent,
+    SlikaModalComponent],
   entryComponents: [
     ZaboravljenaSifraModalComponent,
     ZabranjenaRobaModalComponent,
     RegistracijaModalComponent,
     IzmenaKolicineModalComponent,
+    SlikaModalComponent,
     LogoutModalComponent,
     UspesnoPorucivanjeModalComponent,
     NeuspesnoPorucivanjeModalComponent,

@@ -21,6 +21,13 @@ img {
   background-size: 120%;
 }
 
+.slika-sirina {
+  cursor: zoom-in;
+}
+.slika-sirina:hover {
+  opacity: 0.8;
+}
+
 .kategorija {
   font-size: 1rem;
   margin-left: 11px;

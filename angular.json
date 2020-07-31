@@ -20,6 +20,7 @@
             "polyfills": "src/polyfills.ts",
             "tsConfig": "src/tsconfig.app.json",
             "assets": [
+              "src/.well-known/pki-validation/godaddy.html",
               "src/favicon.ico",
               "src/sitemap.xml",
               "src/assets"

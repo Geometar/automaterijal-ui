@@ -1,0 +1,47 @@
+h1 {
+    font-size: 1.2rem;
+    text-align: center;
+}
+
+.slika-uvelicana {
+    text-align: center;
+}
+
+.slika-img {
+    height: 300px;
+    max-width: 650px;
+}
+@media screen and (max-width: 850px) {
+    .slika-img {
+        max-width: 400px;
+    }
+}
+@media screen and (max-width: 700px) {
+    h1 {
+        font-size: 1rem;
+        text-align: center;
+    }
+
+    .slika-img {
+        height: 210px;
+        max-width: 400px;
+    }
+}
+@media screen and (max-width: 700px) {
+
+    .slika-img {
+        max-width: 300px;
+    }
+}
+
+@media screen and (max-width: 420px) {
+    h1 {
+        font-size: 1rem;
+        text-align: center;
+    }
+
+    .slika-img {
+        height: 200px;
+        max-width: 250px;
+    }
+}

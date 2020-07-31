@@ -5,9 +5,15 @@
 }
 .slika-sirina {
   max-width: 250px;
+  cursor: zoom-in;
 }
+
+.slika-sirina:hover {opacity: 0.7;}
+
 tr.mat-header-row {
   display: none;
+}
+.kategorija-div {
 }
 .centriraj {
   text-align: center;

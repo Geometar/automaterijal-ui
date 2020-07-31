@@ -18,8 +18,8 @@
         </div>
         <div *ngIf="!tdArtikalJe" class="p-1 flex-fill mt-auto div-2-obican-artikal">
           <div class="slika-robe">
-            <img src={{robaDetalji.slika}} height="220px"
-              onError="this.src='assets/slike/ui/roba/slikanijedostupna.jpg'">
+            <img src={{robaDetalji.slika}} height="220px" (click)="uvelicajSliku(robaDetalji)" 
+            class="slika-sirina"  onError="this.src='assets/slike/ui/roba/slikanijedostupna.jpg'">
           </div>
         </div>
         <div *ngIf="tdArtikalJe" class="p-1 flex-fill div-1">
@@ -64,7 +64,7 @@
             <div class="bd-highlight text-center roba-cena">
               <div *ngIf="!partner || partner.privilegije !== 2047" class="pdv-cena boja-glavna-50">Cena sa pdv-om</div>
               <div *ngIf="partner && partner.privilegije === 2047" class="pdv-cena boja-glavna-50">Cena bez pdv-a</div>
-              <div class="boja-crvena-10"> {{robaDetalji.cena | currency:" "}} RSD </div>
+              <div class="boja-zelena-50"> {{robaDetalji.cena | currency:" "}} RSD </div>
             </div>
             <span *ngIf="robaDetalji.uKorpi">
               <i matTooltip="U korpi" class="material-icons boja-glavna-100 pozicija-informacije-korpa">

@@ -5,8 +5,8 @@
       <th mat-header-cell *matHeaderCellDef> Slika </th>
       <td mat-cell *matCellDef="let roba">
         <div class="centriraj">
-          <img height="160" class="slika-sirina" src={{roba.slika}} onError="this.src='assets/slike/ui/roba/slikanijedostupna.jpg'">
-        </div>
+            <img height="160" class="slika-sirina" (click)="uvelicajSliku(roba)" src={{roba.slika}} onError="this.src='assets/slike/ui/roba/slikanijedostupna.jpg'">
+       </div>
         <div class="prazan-div-ikona" *ngIf="partnerLogovan && !roba.uKorpi">
         </div>
         <div class="prazan-div-ikona" *ngIf="partnerLogovan  && roba.uKorpi">
@@ -26,7 +26,7 @@
               {{roba.katbr}} </span></div>
           <div class="p-1 pomeranje-mob-div bd-highlight"><b>Proizvodjač:</b> <span class="roba-proizvodjac">
               {{roba.proizvodjac.naziv}}</span></div>
-          <div *ngIf="roba.podGrupaNaziv !== 'ZZZ'" class="p-1 pomeranje-mob-div bd-highlight"><b>Kategorija:</b> <span class="roba-kategorija">
+          <div *ngIf="roba.podGrupaNaziv !== 'ZZZ'" class="p-1 kategorija-div pomeranje-mob-div bd-highlight"><b>Kategorija:</b> <span class="roba-kategorija">
               {{roba.podGrupaNaziv}}</span></div>
           <div *ngIf="partner && partner.privilegije === 2047" class="p-1 pomeranje-mob-div bd-highlight"><b>Stanje:</b>
             <span class="roba-stanje">

@@ -12,6 +12,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { ZaboravljenaSifraModalComponent } from 'src/app/shared/modal/zaboravljena-sifra-modal/zaboravljena-sifra-modal.component';
 import { ZabranjenaRobaModalComponent } from 'src/app/shared/modal/zabranjena-roba-modal/zabranjena-roba-modal.component';
 import { isPlatformBrowser } from '@angular/common';
+import { SlikaModalComponent } from 'src/app/shared/modal/slika-modal/slika-modal.component';
 
 @Component({
   selector: 'app-tabela',
@@ -143,6 +144,13 @@ export class TabelaComponent implements OnInit, OnDestroy, OnChanges {
         width: '700px'
       });
     }
+  }
+
+  uvelicajSliku(roba: Roba) {
+    this.dialog.open(SlikaModalComponent, {
+      width: '700px',
+      data: { roba: roba }
+    });
   }
 
   detaljiRobe(robaId: string) {

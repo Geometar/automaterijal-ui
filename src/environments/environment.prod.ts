@@ -4,7 +4,7 @@
 
 export const environment = {
   production: true,
-  baseUrl: 'http://www.automaterijal.com:8080'
+  baseUrl: 'https://www.automaterijal.com:8443'
 };
 
 /*
