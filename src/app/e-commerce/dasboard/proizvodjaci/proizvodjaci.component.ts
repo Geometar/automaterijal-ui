@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Konastante, Brend } from '../kategorija';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { takeWhile } from 'rxjs/operators';
 import { HtmlService } from '../../servis/html.service';
 import { Location } from '@angular/common';
@@ -18,8 +18,7 @@ export class ProizvodjaciComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private htmlServis: HtmlService,
-    private location: Location) { }
+    private htmlServis: HtmlService) { }
 
   ngOnInit(): void {
     const konstanteKategorija = new Konastante();
@@ -37,10 +36,6 @@ export class ProizvodjaciComponent implements OnInit {
         }
       });
     });
-  }
-
-  idiNazad() {
-    this.location.back();
   }
 
 }

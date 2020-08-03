@@ -3,7 +3,7 @@
     <!--Slika dela Column -->
     <ng-container matColumnDef="slika">
       <th mat-header-cell *matHeaderCellDef> Slika </th>
-      <td mat-cell *matCellDef="let roba">
+      <td mat-cell class="slika-td" *matCellDef="let roba">
         <div class="centriraj">
             <img height="160" class="slika-sirina" (click)="uvelicajSliku(roba)" src={{roba.slika}} onError="this.src='assets/slike/ui/roba/slikanijedostupna.jpg'">
        </div>
