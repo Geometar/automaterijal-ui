@@ -29,6 +29,8 @@ const routes: Routes = [
   { path: 'korpa', loadChildren: () => import('./e-shop/korpa/korpa.module').then(m => m.KorpaModule)},
   { path: 'kategorije', loadChildren: () => import('./e-shop/magacin/kategorije/kategorije.module').then(m => m.KategorijeModule) },
   { path: 'kategorije/:id', loadChildren: () => import('./e-shop/magacin/kategorije/kategorije.module').then(m => m.KategorijeModule) },
+  { path: '**', redirectTo: '/404' },
+  { path: '404', loadChildren: () => import('./nema-stranice/nema-stranice.module').then(m => m.NemaStraniceModule) }
 ];
 
 @NgModule({

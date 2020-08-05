@@ -1,0 +1,13 @@
+.header {
+    background-color: rgb(246, 246, 246);
+    background-image: url("/assets/slike/ui/pozadine/licna-karta.png");
+    background-repeat: no-repeat;
+    background-position: bottom;
+    background-size: 100%;
+    height: calc(100vh - 220px);
+}
+
+.obavestenje {
+    text-align: center;
+    padding-top: 20px;
+}
