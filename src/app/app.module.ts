@@ -8,6 +8,7 @@ import { NavigacijaModule } from './navigacija/navigacija.module';
 import { AuthGuard } from './shared/guard/auth-guard';
 import { HttpErrorInterceptor } from './shared/interceptor/error-interceptor';
 import { AdminGuard } from './shared/guard/admin-guard';
+import { KomercijalistaGuard } from './shared/guard/komercijalista-guard';
 import { StorageServiceModule } from 'ngx-webstorage-service';
 import { AppRoutingModule } from './app-routing.module';
 import { authInterceptorProviders } from './shared/interceptor/auth-interceptor';
@@ -28,6 +29,7 @@ import { authInterceptorProviders } from './shared/interceptor/auth-interceptor'
   providers: [
     AuthGuard,
     AdminGuard,
+    KomercijalistaGuard,
     authInterceptorProviders,
     {
       provide: HTTP_INTERCEPTORS,

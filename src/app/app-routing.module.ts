@@ -2,6 +2,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { AuthGuard } from './shared/guard/auth-guard';
 import { AdminGuard } from './shared/guard/admin-guard';
+import { KomercijalistaGuard } from './shared/guard/komercijalista-guard';
 
 const routes: Routes = [
   { path: '', redirectTo: '/naslovna', pathMatch: 'full' },
@@ -26,6 +27,7 @@ const routes: Routes = [
     path: 'porudzbenice/:id',
     loadChildren: () => import('./e-shop/faktura/fakture.module').then(m => m.FaktureModule), canActivate: [AuthGuard]
   },
+  { path: 'izvestaj', loadChildren: () => import('./komercijalista/komercijalista.module').then(m => m.KomercijalistaModule), canActivate: [KomercijalistaGuard] },
   { path: 'korpa', loadChildren: () => import('./e-shop/korpa/korpa.module').then(m => m.KorpaModule)},
   { path: 'kategorije', loadChildren: () => import('./e-shop/magacin/kategorije/kategorije.module').then(m => m.KategorijeModule) },
   { path: 'kategorije/:id', loadChildren: () => import('./e-shop/magacin/kategorije/kategorije.module').then(m => m.KategorijeModule) },

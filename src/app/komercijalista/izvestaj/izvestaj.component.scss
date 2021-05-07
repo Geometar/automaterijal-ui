@@ -1,0 +1,138 @@
+@import "src/automaterijal-theme.scss";
+    h1 {
+        padding: 5px 80px;
+    }
+
+    .min-duzina {
+        min-width: 300px;
+    }
+
+.header-porduzbenice {
+    background-image: url('/assets/slike/ui/pozadine/ffascikla.png');
+    /* background-image: url('/assets/slike/ui/pozadine/roba.png'); */
+    background-repeat: no-repeat;
+    background-position: top;
+    background-size: 120%;
+}
+
+.pretraga-bar-izvestaj {
+    cursor: auto;
+}
+
+.komerc-privilegije {
+    width: 160px;
+}
+
+.clear-pretraga {
+    padding-top: 12px;
+    cursor: pointer;
+}
+
+input {
+    cursor: pointer;
+    text-align: center;
+    color: $automaterijal-primary-50;
+    font-weight: bold;
+    font-size: 0.94em;
+}
+
+.filter-p {
+    font-size: 1.1em;
+    font-weight: bold;
+    margin: 10px;;
+}
+
+.filter-div {
+    display: flex;
+    padding: 5px 15px;
+    background: white;
+    box-shadow: 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+}
+
+.filter-segment { 
+    width: 160px !important;
+}
+
+.dugme-div {
+    padding-top: 55px;
+    margin-left: 15px;
+}
+.dugme-div2 {
+    padding-top: 90px;
+    margin-left: 15px;
+}
+
+.filter-div-izvestaj {
+    min-width: 260px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+.forms-input {
+    display: flex;
+    border-radius: 45px;
+    padding: 1px;
+    background: white;
+    border: 2px solid grey;
+    width: 80%;
+    font-weight: bold;
+    text-align: center;
+  }
+.fitler-vremena {
+    width: 200px;
+    margin-left: 30px;
+}
+
+@media screen and (max-width: 1200px) {
+h1 {
+    padding: 0px;
+}
+
+p {
+    font-size: 0.95em;
+}
+tr.mat-header-row {
+    height: 40px;
+}
+
+.fitler-vremena {
+    width: 200px;
+    margin-left: 0px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.dugme-div {
+    padding-top: 10px;
+    margin-left: 0px;
+    text-align: center;
+}
+.mobilno-vreme {
+    text-align: center;
+}
+
+}
+@media screen and (max-width: 600px) {
+
+.header-porduzbenice {
+    background-image: none;
+}
+
+.filter-segment { 
+    width: 120px !important;
+}
+
+.filter-div {
+    padding: 5px 5px;
+}
+}
+@media screen and (max-width: 350px) {
+.filter-segment { 
+  width: 100px !important;
+}
+
+.filter-div {
+  padding: 5px 5px;
+}
+}

@@ -1,0 +1,76 @@
+<main class="header-porduzbenice">
+    <div>
+        <h1>Detalji izveštaja</h1>
+    </div>
+    <div class="d-flex flex-row-reverse sektor-dugme">
+        <div (click)="idiNazad()">
+            <button class="button-glavni-100 nazad-button" mat-raised-button>
+                <mat-icon>keyboard_arrow_left</mat-icon> Nazad
+            </button>
+        </div>
+    </div>
+    <div *ngIf="izvestaj" class="d-flex flex-column sektor flex-wrap">
+        <div *ngIf="partner.privilegije === 2047" class="d-flex flex-sm-row flex-column usredini-ga">
+            <mat-form-field class="izvestaj-detalji-form" appearance="outline">
+                <mat-label>Komercijalista</mat-label>
+                <input readonly matInput value="{{izvestaj.komentarDto.komercijalista | titlecase}}">
+            </mat-form-field>
+        </div>
+        <div class="d-flex flex-sm-row flex-column usredini-ga">
+            <mat-form-field class="izvestaj-detalji-form" appearance="outline">
+                <mat-label>Ime Firme</mat-label>
+                <input readonly matInput value="{{izvestaj.firmaDto.ime}}">
+            </mat-form-field>
+            <mat-form-field class="izvestaj-detalji-form pomeriDesno" appearance="outline">
+                <mat-label>Mesto</mat-label>
+                <input readonly matInput value="{{izvestaj.firmaDto.mesto}}">
+            </mat-form-field>
+        </div>
+        <div class="d-flex flex-sm-row flex-column usredini-ga">
+            <mat-form-field class="izvestaj-detalji-form" appearance="outline">
+                <mat-label>Datum kreiranja</mat-label>
+                <input readonly matInput value="{{izvestaj.komentarDto.datumKreiranja}}">
+            </mat-form-field>
+
+            <mat-form-field class="izvestaj-detalji-form pomeriDesno" appearance="outline">
+                <mat-label>Podsetnik</mat-label>
+                <input readonly matInput value="{{izvestaj.komentarDto.podsetnik}}">
+            </mat-form-field>
+        </div>
+        <div class="d-flex flex-sm-row flex-column usredini-ga">
+            <mat-form-field class="izvestaj-detalji-form" appearance="outline">
+                <mat-label>Adresa</mat-label>
+                <input readonly matInput value="{{izvestaj.firmaDto.adresa}}">
+            </mat-form-field>
+
+            <mat-form-field class="izvestaj-detalji-form pomeriDesno" appearance="outline">
+                <mat-label>Sektor</mat-label>
+                <input readonly matInput value="{{izvestaj.firmaDto.sektor}}">
+            </mat-form-field>
+        </div>
+        <div>
+            <mat-form-field class="izvestaj-detalji-form-singular" appearance="outline">
+                <mat-label>Kontakt</mat-label>
+                <textarea readonly matInput value="{{izvestaj.firmaDto.kontakt}}"></textarea>
+            </mat-form-field>
+        </div>
+        <div>
+            <mat-form-field class="izvestaj-detalji-form-singular" appearance="outline">
+                <mat-label>Osnovni Asortiam</mat-label>
+                <textarea readonly matInput value="{{izvestaj.firmaDto.osnovniAsortiman}}"></textarea>
+            </mat-form-field>
+        </div>
+        <div>
+            <mat-form-field class="izvestaj-detalji-form-singular" appearance="outline">
+                <mat-label>Konkurenti</mat-label>
+                <textarea readonly matInput value="{{izvestaj.firmaDto.konkurent}}"></textarea>
+            </mat-form-field>
+        </div>
+        <div>
+            <mat-form-field class="izvestaj-detalji-form-singular" appearance="outline">
+                <mat-label>Izvestaj</mat-label>
+                <textarea class="komentarTxtArea" readonly matInput value="{{izvestaj.komentarDto.komentar}}"></textarea>
+            </mat-form-field>
+        </div>
+    </div>
+</main>

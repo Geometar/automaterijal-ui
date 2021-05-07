@@ -1,0 +1,73 @@
+@import "src/automaterijal-theme.scss";
+h1 {
+    padding: 5px 80px;
+}
+
+.header-porduzbenice {
+    background-image: url('/assets/slike/ui/pozadine/ffascikla.png');
+    /* background-image: url('/assets/slike/ui/pozadine/roba.png'); */
+    background-repeat: no-repeat;
+    background-position: top;
+    background-size: 120%;
+}
+.sektor-dugme {
+    max-width: 1260px;
+    margin-right: auto;
+    margin-left: auto;
+    justify-content: right;
+}
+
+.usredini-ga {
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.sektor {
+    max-width: 1260px;
+    margin-right: auto;
+    margin-left: auto;
+    text-align: center;
+}
+
+.izvestaj-detalji-form {
+    width: 250px;
+}
+
+.izvestaj-detalji-form-singular {
+    width: 500px;
+}
+
+.pomeriDesno {
+    margin-left: 15px !important;
+}
+
+textarea {
+    border: 0 none;
+    overflow: hidden; /*overflow is set to auto at max height using JS */
+    outline: none;
+    min-height:60px;
+    max-height:314px;
+    height: auto;
+    resize: none;
+    color: $automaterijal-primary-100;
+    font-weight: bold;
+  }
+
+  input {
+      color: $automaterijal-primary-100;
+      font-weight: bold;
+  }
+
+  .komentarTxtArea {
+    min-height: 100px;
+  }
+  
+@media screen and (max-width: 576px) {
+
+    .pomeriDesno {
+        margin-left: 0px !important;
+    }
+    .izvestaj-detalji-form-singular {
+        width: 300px;
+    }
+}

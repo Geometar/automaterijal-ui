@@ -1,0 +1,68 @@
+@import "src/automaterijal-theme.scss";
+h1 {
+    padding: 5px 80px;
+}
+
+.header-porduzbenice {
+    background-image: url('/assets/slike/ui/pozadine/ffascikla.png');
+    /* background-image: url('/assets/slike/ui/pozadine/roba.png'); */
+    background-repeat: no-repeat;
+    background-position: top;
+    background-size: 120%;
+}
+
+.pomeriDesno {
+    margin-left: 15px !important;
+}
+.sektor-dugme {
+    max-width: 1260px;
+    margin-right: auto;
+    margin-left: auto;
+    justify-content: right;
+}
+
+.sektor {
+    max-width: 1260px;
+    margin-right: auto;
+    margin-left: auto;
+    justify-content: center;
+    text-align: center;
+}
+
+.samostalanField {
+    width: 550px;
+}
+
+.input_firme {
+    width: 290px;
+}
+
+.sektori {
+    position: relative;
+    bottom: 13px;
+}
+
+.izvestaj-glavni {
+    height: 100px;
+}
+
+@media screen and (max-width: 991px) {
+
+    .pomeriDesno {
+        margin-left: 0px !important;
+    }
+    .sektori {
+        position: relative;
+        bottom: 0px;
+    }
+}
+@media screen and (max-width: 580px) {
+    .input-obicni {
+        width: 290px !important;
+        margin-right: auto !important;
+        margin-left: auto !important;
+    }
+    .samostalanField {
+        width: 290px;
+    }
+}

@@ -1,0 +1,91 @@
+<main class="header-porduzbenice">
+    <div>
+        <h1>Kreiraj izveštaj</h1>
+    </div>
+    <div class="d-flex flex-row-reverse sektor-dugme">
+        <div (click)="idiNazad()">
+            <button class="button-glavni-100 nazad-button" mat-raised-button>
+                <mat-icon>keyboard_arrow_left</mat-icon> Nazad
+            </button>
+        </div>
+    </div>
+    <div class="d-flex sektor flex-wrap">
+        <form [formGroup]="izvestajForm">
+            <div class="p-2 centriraj">
+                <mat-form-field class="input_firme">
+                    <mat-label>Ime firme</mat-label>
+                    <input matInput formControlName="ime" [formControl]="izvestajForm" placeholder="Mesto firme"
+                        [matAutocomplete]="auto">
+                    <mat-autocomplete (optionSelected)="izbranaFirma($event.option.value)" #auto="matAutocomplete">
+                        <mat-option *ngFor="let firma of filtriraneFirme | async" [value]="firma.ime">
+                            {{firma.ime}}
+                        </mat-option>
+                    </mat-autocomplete>
+                </mat-form-field>
+            </div>
+            <div class="p-2 d-flex flex-lg-row flex-column centriraj">
+                <mat-form-field class="input-obicni">
+                    <mat-label>Mesto</mat-label>
+                    <input matInput formControlName="mesto" placeholder="Mesto firme">
+                </mat-form-field>
+                <mat-form-field class="pomeriDesno input-obicni">
+                    <mat-label>Adresa</mat-label>
+                    <input matInput formControlName="adresa" placeholder="Adresa firme">
+                </mat-form-field>
+                <div class="sektori">
+                    <mat-form-field appearance="fill" class="pomeriDesno input-obicni">
+                        <mat-label>Sektor</mat-label>
+                        <mat-select formControlName="sektor" [(ngModel)]="izabraniSektor" name="sektor">
+                            <mat-option *ngFor="let sektor of sektori" [value]="sektor.value">
+                                {{sektor.viewValue}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="p-2">
+                <mat-form-field class="samostalanField">
+                    <mat-label>Kontakt</mat-label>
+                    <textarea matInput placeholder="Ime i Prezime: #broj telefona" formControlName="kontakt"></textarea>
+                </mat-form-field>
+            </div>
+            <div class="p-2">
+                <mat-form-field class="samostalanField">
+                    <mat-label>Osnovni Asortiam</mat-label>
+                    <textarea matInput formControlName="asortiman"></textarea>
+                </mat-form-field>
+            </div>
+            <div class="p-2">
+                <mat-form-field class="samostalanField">
+                    <mat-label>Konkurenti</mat-label>
+                    <textarea matInput formControlName="konkurenti"></textarea>
+                </mat-form-field>
+            </div>
+            <div class="p-2">
+                <mat-form-field class="samostalanField">
+                    <mat-label>Izvestaj</mat-label>
+                    <textarea matInput formControlName="komentar" class="izvestaj-glavni" placeholder="Ex. Mobil, Total"></textarea>
+                </mat-form-field>
+            </div>
+            <div class="p-2">
+                <mat-form-field appearance="fill">
+                    <mat-label>Datum Izvestaja</mat-label>
+                    <input matInput formControlName="datumKreiranja" [max]="minDate" [matDatepicker]="picker1">
+                    <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                    <mat-datepicker #picker1></mat-datepicker>
+                </mat-form-field>
+                <mat-form-field class="pomeriDesno" appearance="fill">
+                    <mat-label>Podsetnik</mat-label>
+                    <input matInput [min]="minDate" formControlName="podsetnik" [matDatepicker]="picker2">
+                    <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                    <mat-datepicker #picker2></mat-datepicker>
+                </mat-form-field>
+            </div>
+            <div class="p-2">
+                <button mat-raised-button class="dugme button-glavni-100" (click)="posaljiIzvestaj()">Kreiraj
+                    Izvestaj
+                </button>
+            </div>
+        </form>
+    </div>
+</main>

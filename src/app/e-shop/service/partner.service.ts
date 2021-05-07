@@ -9,6 +9,7 @@ import { environment } from 'src/environments/environment';
 const PARTNER_CITANJE_URL = environment.baseUrl + '/api/partner';
 const PARTNER_UPDATE_URL = environment.baseUrl + '/api/partner/update';
 const RESETOVANJE_SIFRE_URL = '/promena-sifre';
+const KOMERCIJALISTI_URL = '/komercijalsti';
 
 const TIMEOUT = 15000;
 const TIMEOUT_ERROR = 'Timeout error!';
@@ -44,6 +45,15 @@ export class PartnerService {
 
     return this.http
       .put(fullUrl, partner)
+      .pipe(
+        timeoutWith(TIMEOUT, throwError(TIMEOUT_ERROR)),
+        catchError((error: any) => throwError(error))
+      );
+  }
+
+  public vratiSveKomercijaliste() {
+    const fullUrl = PARTNER_CITANJE_URL + KOMERCIJALISTI_URL;
+    return this.http.get(fullUrl)
       .pipe(
         timeoutWith(TIMEOUT, throwError(TIMEOUT_ERROR)),
         catchError((error: any) => throwError(error))

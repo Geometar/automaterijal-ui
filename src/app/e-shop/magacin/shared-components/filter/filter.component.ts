@@ -1,5 +1,4 @@
 import { Component, OnInit, Input, Output, EventEmitter, SimpleChanges, OnDestroy, OnChanges } from '@angular/core';
-import { takeWhile } from 'rxjs/operators';
 import { Filter } from 'src/app/e-shop/model/filter';
 import { AppUtilsService } from 'src/app/e-shop/utils/app-utils.service';
 import { Proizvodjac } from 'src/app/e-shop/model/dto';

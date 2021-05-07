@@ -1,0 +1,159 @@
+<main class="header-porduzbenice">
+    <div>
+        <h1>Moji izveštaji</h1>
+    </div>
+    <div class="d-flex flex-column justify-content-center">
+        <div class="filter-div-izvestaj d-flex flex-xl-row flex-column justify-content-center">
+            <div
+                class="d-flex align-items-center justify-content-center pretraga-bar sekcina-pretraga-filteri min-duzina">
+                <div class="flex-grow-1 mobilni forms-input">
+                    <input class="p-1 pretraga-bar-izvestaj flex-grow-1 search__input" type="text"
+                        [(ngModel)]="searchValue" (keyup.enter)="pronaciPoTrazenojReci(searchValue)" />
+                    <span *ngIf="searchValue" (click)="searchValue = ''; pronaciPoTrazenojReci(searchValue)"
+                        class="brisanje-pretrage boja-crvena-10 material-icons clear-pretraga">
+                        clear
+                    </span>
+                    <div class="p-1" (click)='pronaciPoTrazenojReci(searchValue)'>
+                        <button mat-mini-fab class=pozadina-glavna-100>
+                            <mat-icon>search</mat-icon>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="d-flex flex-column fitler-vremena">
+                <div *ngIf="partner.privilegije === 2047">
+                    <mat-form-field appearance="fill" class="komerc-privilegije">
+                        <mat-label>Komercijalisti</mat-label>
+                        <mat-select (selectionChange)="promenaKomercijaliste($event)" name="komercijalist">
+                            <mat-option></mat-option>
+                            <mat-option *ngFor="let partner of komercijalisti" [value]="partner">
+                                {{partner.naziv}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <div class="mobilno-vreme">
+                    <mat-form-field class="filter-segment" color="primary">
+                        <input (dateChange)="periodPromenjen('datumOd', $event)" [(ngModel)]="datumOd"
+                            (click)="picker.opened = true" matInput readonly [matDatepicker]="picker"
+                            placeholder="Datum od">
+                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker #picker disabled="false"></mat-datepicker>
+                    </mat-form-field>
+                </div>
+                <div class="mobilno-vreme">
+                    <mat-form-field class="filter-segment" color="primary">
+                        <input (dateChange)="periodPromenjen('datumDo', $event)" [(ngModel)]="datumDo" matInput readonly
+                            [matDatepicker]="picker2" placeholder="Datum do" (click)="picker2.opened = true">
+                        <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                        <mat-datepicker #picker2 disabled="false"></mat-datepicker>
+                    </mat-form-field>
+                </div>
+            </div>
+            <div *ngIf="partner.privilegije != 2047" class="dugme-div">
+                <button class="velicina-dugmeta button-glavni-100"
+                    (click)="idiNaKreiranje()" mat-raised-button>
+                    Kreiraj izveštaj
+                </button>
+            </div>
+            <div *ngIf="partner.privilegije === 2047" class="dugme-div2">
+                <button class="velicina-dugmeta button-glavni-100"
+                    (click)="idiNaKreiranje()" mat-raised-button>
+                    Kreiraj izveštaj
+                </button>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="!ucitavanje && dataSource != null && dataSource.length > 0" class="tabela-div">
+        <table mat-table [dataSource]="dataSource">
+
+            <!-- Cena Column -->
+            <ng-container matColumnDef="datum">
+                <th mat-header-cell *matHeaderCellDef class="text-center">
+                    Datum kreiranja
+                </th>
+                <td mat-cell data-label="Datum kreiranja" *matCellDef="let izvestaj">
+                    <p class="mat-body-2 text-center iznos-margin">
+                        {{izvestaj.komentarDto.datumKreiranja}}
+                    </p>
+                </td>
+            </ng-container>
+
+            <!-- Kataloski broj Column -->
+            <ng-container matColumnDef="komercijalista" *ngIf="partner.privilegije === 2047">
+                <th mat-header-cell *matHeaderCellDef>
+                    <span>Komercijalista</span>
+                </th>
+                <td mat-cell data-label="Komercijalista" *matCellDef="let izvestaj">
+                    <p class="mat-body-2">
+                        {{izvestaj.komentarDto.komercijalista | titlecase}}
+                    </p>
+                </td>
+            </ng-container>
+
+            <!-- Kataloski broj Column -->
+            <ng-container matColumnDef="mesto">
+                <th mat-header-cell *matHeaderCellDef>
+                    <span>Mesto</span>
+                </th>
+                <td mat-cell data-label="Mesto Firme" *matCellDef="let izvestaj">
+                    <p class="mat-body-2">
+                        {{izvestaj.firmaDto.mesto | titlecase}}
+                    </p>
+                </td>
+            </ng-container>
+
+            <!-- Kataloski broj Column -->
+            <ng-container matColumnDef="firma">
+                <th mat-header-cell *matHeaderCellDef>
+                    <span>Ime Firme</span>
+                </th>
+                <td mat-cell data-label="firma" *matCellDef="let izvestaj">
+                    <p class="mat-body-2">
+                        {{izvestaj.firmaDto.ime}}
+                    </p>
+                </td>
+            </ng-container>
+
+            <!-- Broj stavki Column -->
+            <ng-container matColumnDef="adresa">
+                <th mat-header-cell *matHeaderCellDef>Adresa</th>
+                <td mat-cell data-label="Adresa firme" *matCellDef="let izvestaj">
+                    <p>
+                        {{izvestaj.firmaDto.adresa}}
+                    </p>
+                </td>
+            </ng-container>
+
+            <!-- Akcije Column -->
+            <ng-container matColumnDef="ackije">
+                <th mat-header-cell *matHeaderCellDef> </th>
+                <td mat-cell class="visina-div-dugmeta" *matCellDef="let izvestaj">
+                    <div class="dugme-mobilni">
+                        <button (click)="izvestajDetalji(izvestaj)" class="velicina-dugmeta button-glavni-100"
+                            mat-raised-button>Detalji
+                        </button>
+                    </div>
+                </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+        <mat-paginator #paginator [length]="tableLength" [pageSize]="rowsPerPage" [pageSizeOptions]="[5, 10, 25]"
+            [pageIndex]="pageIndex" [length]="tableLength" [showFirstLastButtons]="true"
+            (page)="paginatorEvent($event)">
+        </mat-paginator>
+    </div>
+
+    <div class="d-flex justify-content-center prazna-tabela" *ngIf="ucitavanje">
+        <mat-spinner></mat-spinner>
+    </div>
+
+    <div class="d-flex flex-column prazna-tabela" *ngIf="!ucitavanje && !pronadjenIzvestaj">
+        <i class="material-icons icon-size">
+            error_outline
+        </i>
+        <h1 class="h1-upozorenje">Izvestaj ne postoji</h1>
+    </div>
+</main>
