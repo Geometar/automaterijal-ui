@@ -205,7 +205,6 @@ export class IzvestajComponent implements OnInit, OnDestroy {
   }
 
   izvestajDetalji(izvestaj: Izvestaj) {
-    console.log('izvestaj ', izvestaj);
     const URL = '/izvestaj/detalji/' + izvestaj.komentarDto.id;
     this.router.navigate([URL]);
   }
