@@ -71,7 +71,7 @@ export class KreiranjeIzvestajComponent implements OnInit, OnDestroy {
         takeWhile(() => this.alive)
       ).subscribe((firme: Firma[]) => {
         this.firme = firme;
-      })
+      });
   }
 
   inicijalizujForme() {
@@ -138,7 +138,7 @@ export class KreiranjeIzvestajComponent implements OnInit, OnDestroy {
 
   // Ako se firma izabere setovati sve ostala polja te firme
   izbranaFirma(izabranaFirme: string) {
-    const firma = this.firme.filter((firma: Firma) => firma.ime === izabranaFirme)[0];
+    const firma = this.firme.filter((filterFirma: Firma) => filterFirma.ime === izabranaFirme)[0];
     this.izvestajForm.patchValue({
       firmaId: firma.id,
       ime: firma.ime,

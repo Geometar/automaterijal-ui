@@ -9,12 +9,12 @@
             </button>
         </div>
     </div>
-    <div class="d-flex sektor flex-wrap">
+    <div class="d-flex sektor flex-wrap" *ngIf="firme">
         <form [formGroup]="izvestajForm">
             <div class="p-2 centriraj">
                 <mat-form-field class="input_firme">
                     <mat-label>Ime firme</mat-label>
-                    <input matInput formControlName="ime" [formControl]="izvestajForm" placeholder="Mesto firme"
+                    <input matInput formControlName="ime" placeholder="Mesto firme"
                         [matAutocomplete]="auto">
                     <mat-autocomplete (optionSelected)="izbranaFirma($event.option.value)" #auto="matAutocomplete">
                         <mat-option *ngFor="let firma of filtriraneFirme | async" [value]="firma.ime">
@@ -62,14 +62,12 @@
                 </mat-form-field>
             </div>
             <div class="p-2">
-                <mat-form-field class="samostalanField">
-                    <mat-label>Izvestaj</mat-label>
-                    <textarea matInput formControlName="komentar" class="izvestaj-glavni" placeholder="Ex. Mobil, Total"></textarea>
-                </mat-form-field>
+                    <mat-label>Izveštaj</mat-label>
+                    <textarea matInput formControlName="komentar" class="izvestaj-glavni"></textarea>
             </div>
             <div class="p-2">
                 <mat-form-field appearance="fill">
-                    <mat-label>Datum Izvestaja</mat-label>
+                    <mat-label>Datum Izveštaja</mat-label>
                     <input matInput formControlName="datumKreiranja" [max]="minDate" [matDatepicker]="picker1">
                     <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
                     <mat-datepicker #picker1></mat-datepicker>
@@ -83,7 +81,7 @@
             </div>
             <div class="p-2">
                 <button mat-raised-button class="dugme button-glavni-100" (click)="posaljiIzvestaj()">Kreiraj
-                    Izvestaj
+                    Izveštaj
                 </button>
             </div>
         </form>

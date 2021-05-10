@@ -28,7 +28,7 @@
               {{roba.proizvodjac.naziv}}</span></div>
           <div *ngIf="roba.podGrupaNaziv !== 'ZZZ'" class="p-1 kategorija-div pomeranje-mob-div bd-highlight"><b>Kategorija:</b> <span class="roba-kategorija">
               {{roba.podGrupaNaziv}}</span></div>
-          <div *ngIf="partner && partner.privilegije === 2047" class="p-1 pomeranje-mob-div bd-highlight"><b>Stanje:</b>
+          <div *ngIf="partner && (partner.privilegije === 2047 || partner.privilegije === 2043)" class="p-1 pomeranje-mob-div bd-highlight"><b>Stanje:</b>
             <span class="roba-stanje">
               {{roba.stanje}}</span></div>
           <div class="p-1 bd-highlight roba-naziv">{{roba.naziv}}</div>

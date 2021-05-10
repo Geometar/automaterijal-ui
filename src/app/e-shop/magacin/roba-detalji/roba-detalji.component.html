@@ -12,7 +12,7 @@
               class="detalji-proizvodjac boja-crvena-10">{{robaDetalji.proizvodjac.naziv}}</span></h1>
           <h2 *ngIf="robaDetalji.podGrupa !== 'ZZZ'" class="h2-kategorije">Kategorija:
             <span class="kategorija">{{robaDetalji.podGrupa}}</span></h2>
-          <h2 *ngIf="partner && partner.privilegije === 2047" class="komercijalista-stanje">Stanje:
+          <h2 *ngIf="partner && (partner.privilegije === 2047 || partner.privilegije === 2043)" class="komercijalista-stanje">Stanje:
             <span>{{robaDetalji.stanje}}</span></h2>
           <h2 class="h2-naziv">{{robaDetalji.naziv}}</h2>
         </div>
@@ -27,7 +27,7 @@
               class="detalji-proizvodjac boja-crvena-10">{{robaDetalji.proizvodjac.naziv}}</span></h1>
           <h2 *ngIf="robaDetalji.podGrupa !== 'ZZZ'" class="h2-kategorije">Kategorija:
             <span class="kategorija">{{robaDetalji.podGrupa}}</span></h2>
-          <h2 *ngIf="partner && partner.privilegije === 2047" class="komercijalista-stanje">Stanje:
+          <h2 *ngIf="partner && (partner.privilegije === 2047 || partner.privilegije === 2043)" class="komercijalista-stanje">Stanje:
             <span>{{robaDetalji.stanje}}</span></h2>
           <h2 class="h2-naziv">{{robaDetalji.naziv}}</h2>
           <div>

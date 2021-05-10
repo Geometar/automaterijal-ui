@@ -21,7 +21,7 @@
                 </div>
             </div>
             <div class="d-flex flex-column fitler-vremena">
-                <div *ngIf="partner.privilegije === 2047">
+                <div class="centritaj-komerc" *ngIf="partner.privilegije === 2047">
                     <mat-form-field appearance="fill" class="komerc-privilegije">
                         <mat-label>Komercijalisti</mat-label>
                         <mat-select (selectionChange)="promenaKomercijaliste($event)" name="komercijalist">
@@ -154,6 +154,6 @@
         <i class="material-icons icon-size">
             error_outline
         </i>
-        <h1 class="h1-upozorenje">Izvestaj ne postoji</h1>
+        <h1 class="h1-upozorenje">Izveštaj ne postoji</h1>
     </div>
 </main>

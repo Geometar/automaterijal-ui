@@ -34,7 +34,7 @@ h1 {
 }
 
 .izvestaj-detalji-form-singular {
-    width: 500px;
+    width: 550px;
 }
 
 .pomeriDesno {
@@ -51,6 +51,8 @@ textarea {
     resize: none;
     color: $automaterijal-primary-100;
     font-weight: bold;
+    resize: both !important;
+    overflow-y: scroll !important;
   }
 
   input {
@@ -59,7 +61,7 @@ textarea {
   }
 
   .komentarTxtArea {
-    min-height: 100px;
+    min-height: 150px;
   }
   
 @media screen and (max-width: 576px) {

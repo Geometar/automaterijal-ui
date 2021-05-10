@@ -43,7 +43,9 @@ h1 {
 }
 
 .izvestaj-glavni {
-    height: 100px;
+    height: 150px;
+    border-bottom: 1px dashed black;
+    text-align: left;
 }
 
 @media screen and (max-width: 991px) {
