@@ -66,7 +66,7 @@ export class IzvestajComponent implements OnInit, OnDestroy {
         if(!partner || partner.privilegije < 2042) {
           this.router.navigate(['/naslovna']);
         }
-        this.partner = partner
+        this.partner = partner;
         if (this.partner.privilegije === 2047) {
           this.displayedColumns = ['datum', 'komercijalista', 'mesto', 'firma', 'adresa', 'ackije']
         }
@@ -111,7 +111,9 @@ export class IzvestajComponent implements OnInit, OnDestroy {
   vratiSveIzvestaje() {
     this.ucitavanje = true;
     this.pronadjenIzvestaj = true;
-    this.izvestajServis.vratiIzvestaje(this.searchValue, this.pageIndex, this.rowsPerPage, this.partner.ppid, this.datumOd, this.datumDo, this.izabraniKomercijalista)
+    this.izvestajServis.vratiIzvestaje(
+      this.searchValue, this.pageIndex, this.rowsPerPage, this.partner.ppid, this.datumOd, this.datumDo, this.izabraniKomercijalista
+      )
       .pipe(takeWhile(() => this.alive))
       .subscribe((res: IzvestajPage) => {
         this.error = false;

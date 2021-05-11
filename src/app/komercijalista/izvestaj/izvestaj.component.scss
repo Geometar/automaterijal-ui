@@ -1,14 +1,14 @@
 @import "src/automaterijal-theme.scss";
-    h1 {
-        padding: 5px 80px;
-    }
+h1 {
+    padding: 5px 80px;
+}
 
-    .min-duzina {
-        min-width: 300px;
-    }
+.min-duzina {
+    min-width: 300px;
+}
 
 .header-porduzbenice {
-    background-image: url('/assets/slike/ui/pozadine/ffascikla.png');
+    background-image: url("/assets/slike/ui/pozadine/ffascikla.png");
     /* background-image: url('/assets/slike/ui/pozadine/roba.png'); */
     background-repeat: no-repeat;
     background-position: top;
@@ -39,7 +39,7 @@ input {
 .filter-p {
     font-size: 1.1em;
     font-weight: bold;
-    margin: 10px;;
+    margin: 10px;
 }
 
 .filter-div {
@@ -49,7 +49,7 @@ input {
     box-shadow: 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
 }
 
-.filter-segment { 
+.filter-segment {
     width: 160px !important;
 }
 
@@ -68,7 +68,6 @@ input {
     margin-right: auto;
 }
 
-
 .forms-input {
     display: flex;
     border-radius: 45px;
@@ -78,72 +77,77 @@ input {
     width: 80%;
     font-weight: bold;
     text-align: center;
-  }
+}
 .fitler-vremena {
     width: 200px;
     margin-left: 30px;
 }
 
 @media screen and (max-width: 1200px) {
-h1 {
-    padding: 0px;
-}
+    h1 {
+        padding: 0px;
+    }
 
-p {
-    font-size: 0.95em;
-}
-tr.mat-header-row {
-    height: 40px;
-}
+    p {
+        font-size: 0.95em;
+    }
+    tr.mat-header-row {
+        height: 40px;
+    }
 
-.fitler-vremena {
-    width: 200px;
-    margin-left: 0px;
-    margin-right: auto;
-    margin-left: auto;
-}
+    .fitler-vremena {
+        width: 200px;
+        margin-left: 0px;
+        margin-right: auto;
+        margin-left: auto;
+    }
 
-.dugme-div {
-    padding-top: 10px;
-    margin-left: 0px;
-    text-align: center;
-}
+    .dugme-div {
+        padding-top: 10px;
+        margin-left: 0px;
+        text-align: center;
+    }
 
-.dugme-div2 {
-    padding-top: 10px;
-    margin-left: 0px;
-    text-align: center;
-}
-.mobilno-vreme {
-    text-align: center;
-}
-
+    .dugme-div2 {
+        padding-top: 10px;
+        margin-left: 0px;
+        text-align: center;
+    }
+    .mobilno-vreme {
+        text-align: center;
+    }
 }
 @media screen and (max-width: 600px) {
 
-.header-porduzbenice {
-    background-image: none;
-}
+    .header-porduzbenice {
+        background-image: none;
+    }
 
-.filter-segment { 
-    width: 120px !important;
-}
+    .filter-segment {
+        width: 120px !important;
+    }
 
-.filter-div {
-    padding: 5px 5px;
-}
+    .filter-div {
+        padding: 5px 5px;
+    }
 
-.centritaj-komerc {
-    margin-top: 20px;
-    text-align: center;
-}
+    .centritaj-komerc {
+        margin-top: 20px;
+        text-align: center;
+    }
+    .vreme-mob {
+        text-align: right !important;
+    }
 }
 @media screen and (max-width: 350px) {
-.filter-segment { 
-  width: 100px !important;
-}
+    .vreme-mob {
+        text-align: right !important;
+    }
+    .filter-segment {
+        width: 100px !important;
+    }
 
-.filter-div {
-  padding: 5px 5px;
-}
+    .filter-div {
+        padding: 5px 5px;
+    }
 }

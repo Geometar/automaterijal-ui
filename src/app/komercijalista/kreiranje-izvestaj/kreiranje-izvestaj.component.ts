@@ -32,6 +32,7 @@ export class KreiranjeIzvestajComponent implements OnInit, OnDestroy {
   public izvestajSubmited = false;
 
   minDate: Date;
+  originalnoImeFirme = '';
 
   sektori = SEKTORI;
   firme: Firma[] = [];
@@ -117,8 +118,9 @@ export class KreiranjeIzvestajComponent implements OnInit, OnDestroy {
 
   // Popunjavanje izvestaja iz forme
   popuniIzvestaj() {
+    const izvestajTrimovanIme = (this.izvestaj.ime.value as string).trim();
     const izvestaj = new KreirajIzvestaj();
-    izvestaj.ime = this.izvestaj.ime.value;
+    izvestaj.ime = izvestajTrimovanIme;
     izvestaj.mesto = this.izvestaj.mesto.value;
     izvestaj.adresa = this.izvestaj.adresa.value;
     izvestaj.sektor = this.izvestaj.sektor.value;
@@ -130,7 +132,7 @@ export class KreiranjeIzvestajComponent implements OnInit, OnDestroy {
     if (this.izvestaj.podsetnik.value) {
       izvestaj.podsetnik = (this.izvestaj.podsetnik.value as Date).getTime();
     }
-    if (this.izvestaj.firmaId.value) {
+    if (this.izvestaj.firmaId.value && this.originalnoImeFirme === izvestajTrimovanIme) {
       izvestaj.firmaId = this.izvestaj.firmaId.value;
     }
     return izvestaj;
@@ -139,6 +141,7 @@ export class KreiranjeIzvestajComponent implements OnInit, OnDestroy {
   // Ako se firma izabere setovati sve ostala polja te firme
   izbranaFirma(izabranaFirme: string) {
     const firma = this.firme.filter((filterFirma: Firma) => filterFirma.ime === izabranaFirme)[0];
+    this.originalnoImeFirme = firma.ime.trim();
     this.izvestajForm.patchValue({
       firmaId: firma.id,
       ime: firma.ime,
