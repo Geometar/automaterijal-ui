@@ -6,11 +6,16 @@ import { SharedMagacinModule } from '../magacin/shared-components/shared-magacin
 import { RouterModule, Routes } from '@angular/router';
 import { PipeModule } from 'src/app/shared/pipes/pipe.module';
 import { AdminComponent } from './admin.component';
+import { LogPartneraComponent } from './log-partnera/log-partnera.component';
 
 const routes: Routes = [
   {
     path: '',
     component: AdminComponent
+  },
+  {
+    path: 'logovi',
+    component: LogPartneraComponent
   }
 ];
 
@@ -24,7 +29,7 @@ const routes: Routes = [
     SharedMagacinModule,
     RouterModule.forChild(routes)
   ],
-  declarations: [AdminComponent],
+  declarations: [AdminComponent, LogPartneraComponent],
   exports: [AdminComponent]
 })
 export class AdminModule { }

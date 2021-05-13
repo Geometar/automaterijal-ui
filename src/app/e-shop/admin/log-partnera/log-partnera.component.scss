@@ -1,0 +1,20 @@
+
+.header-porduzbenice {
+    background-image: url('/assets/slike/ui/pozadine/ffascikla.png');
+    /* background-image: url('/assets/slike/ui/pozadine/roba.png'); */
+    background-repeat: no-repeat;
+    background-position: top;
+    background-size: 120%;
+}
+
+.h3-partner {
+    text-align: center;
+    margin: 30px;
+}
+
+
+@media screen and (max-width: 800px) {
+    .text-center-datum {
+        text-align: right !important;
+    }
+  }

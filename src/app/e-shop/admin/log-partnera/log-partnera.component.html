@@ -1,0 +1,94 @@
+<main class="header-porduzbenice">
+    <div *ngIf="partnerKojegGledam" class="h3-partner">
+        <h3>Logovi - {{partnerKojegGledam.naziv}}</h3>
+    </div>
+    <div class="d-flex flex-row-reverse sektor-dugme">
+        <div (click)="idiNazad()">
+            <button class="button-glavni-100 nazad-button" mat-raised-button>
+                <mat-icon>keyboard_arrow_left</mat-icon> Nazad
+            </button>
+        </div>
+    </div>
+    <div *ngIf="!ucitavanje && dataSource != null && dataSource.length > 0" class="tabela-div">
+        <table mat-table [dataSource]="dataSource">
+
+            <!-- Cena Column -->
+            <ng-container matColumnDef="vremePretrage">
+                <th mat-header-cell *matHeaderCellDef class="text-center">
+                    Datum kreiranja
+                </th>
+                <td mat-cell data-label="Datum kreiranja" *matCellDef="let log">
+                    <p class="mat-body-2 text-center vreme-mob iznos-margin text-center-datum"
+                        *ngIf="(log.vremePretrage | date: 'dd-MM-yyyy') !== (danas | date: 'dd-MM-yyyy')">
+                        {{log.vremePretrage | date: 'dd-MM-yyyy'}}
+                    </p>
+                    <p class="mat-body-2 text-center vreme-mob iznos-margin text-center-datum"
+                        *ngIf="(log.vremePretrage | date: 'dd-MM-yyyy') === (danas | date: 'dd-MM-yyyy')">
+                        Danas
+                    </p>
+                </td>
+            </ng-container>
+
+            <!-- Kataloski broj Column -->
+            <ng-container matColumnDef="pretraga">
+                <th mat-header-cell *matHeaderCellDef>
+                    <span>Pretraga</span>
+                </th>
+                <td mat-cell data-label="Mesto Firme" *matCellDef="let log">
+                    <p class="mat-body-2" *ngIf="log.pretraga">
+                        {{log.pretraga}}
+                    </p>
+                    <p class="mat-body-2" *ngIf="!log.pretraga">
+                        --
+                    </p>
+                </td>
+            </ng-container>
+
+            <!-- Kataloski broj Column -->
+            <ng-container matColumnDef="filter">
+                <th mat-header-cell *matHeaderCellDef>
+                    <span>Filter</span>
+                </th>
+                <td mat-cell data-label="firma" *matCellDef="let log">
+                    <p class="mat-body-2" *ngIf="log.filter">
+                        {{log.filter}}
+                    </p>
+                    <p class="mat-body-2" *ngIf="!log.filter">
+                        --
+                    </p>
+                </td>
+            </ng-container>
+
+            <!-- Broj stavki Column -->
+            <ng-container matColumnDef="proizvodjac">
+                <th mat-header-cell *matHeaderCellDef>Proizvodjac</th>
+                <td mat-cell data-label="Adresa firme" *matCellDef="let log">
+                    <p class="mat-body-2" *ngIf="log.proizvodjac">
+                        {{log.proizvodjac}}
+                    </p>
+                    <p class="mat-body-2" *ngIf="!log.proizvodjac">
+                        --
+                    </p>
+                </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+        <mat-paginator #paginator [length]="tableLength" [pageSize]="rowsPerPage" [pageSizeOptions]="[5, 10, 25]"
+            [pageIndex]="pageIndex" [length]="tableLength" [showFirstLastButtons]="true"
+            (page)="paginatorEvent($event)">
+        </mat-paginator>
+    </div>
+
+    <div class="d-flex justify-content-center prazna-tabela" *ngIf="ucitavanje">
+        <mat-spinner></mat-spinner>
+    </div>
+
+    <div class="d-flex flex-column prazna-tabela" *ngIf="!ucitavanje && !pronadjenLog">
+        <i class="material-icons icon-size">
+            error_outline
+        </i>
+        <h1 class="h1-upozorenje">Log ne postoji</h1>
+    </div>
+</main>

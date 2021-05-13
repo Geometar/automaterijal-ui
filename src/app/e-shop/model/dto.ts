@@ -157,3 +157,16 @@ export class RobaAplikacija {
     kw?: string;
     ccm?: string;
 }
+
+export class WebLogPage extends Page {
+    content: WebLog[] = null;
+}
+
+export class WebLog {
+    id?: string;
+    ppid?: string;
+    proizvodjac?: string;
+    filter?: string;
+    pretraga?: string;
+    vremePretrage?: Date;
+}

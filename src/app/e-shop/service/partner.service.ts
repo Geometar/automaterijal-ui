@@ -36,6 +36,15 @@ export class PartnerService {
         catchError((error: any) => throwError(error))
       );
   }
+  public vratiPartnera(ppid: number): Observable<any> {
+    const fullUrl = PARTNER_CITANJE_URL + '/' + ppid;
+    return this.http
+      .get(fullUrl)
+      .pipe(
+        timeoutWith(TIMEOUT, throwError(TIMEOUT_ERROR)),
+        catchError((error: any) => throwError(error))
+      );
+  }
 
   public updejtujPartnera(partner: Partner, vrstaPromene: string): Observable<Partner> {
     const parameterObject = {};

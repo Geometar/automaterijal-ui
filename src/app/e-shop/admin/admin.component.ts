@@ -1,11 +1,13 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { AdminServiceService } from '../service/admin-service.service';
-import { LogovanjaPage, Logovanja, Grupa } from '../model/dto';
+import { LogovanjaPage, Logovanja, Grupa, Partner } from '../model/dto';
 import { takeWhile } from 'rxjs/operators';
 import { NotifikacijaService } from 'src/app/shared/service/notifikacija.service';
 import { MatSnackBarKlase } from 'src/app/shared/model/konstante';
 import { MatDialog } from '@angular/material/dialog';
 import { GrupeModalComponent } from 'src/app/shared/modal/grupe-modal/grupe-modal.component';
+import { Router } from '@angular/router';
+import { PartnerService } from '../service/partner.service';
 
 @Component({
   selector: 'app-admin',
@@ -17,12 +19,13 @@ export class AdminComponent implements OnInit, OnDestroy {
   public logovanja: Logovanja[];
   public dozvoljeneGrupe: Grupa[];
   public dataSource: any;
+  public komercijalistiPpid: number[] = [];
 
-  public ucitavanjeLogovanja = false;
+  public ucitavanje = false;
   public ucitavanjeSesija = false;
 
   // Paging and Sorting elements
-  public displayedColumns: string[] = ['ppid', 'naziv', 'vreme'];
+  public displayedColumns: string[] = ['ppid', 'naziv', 'vreme', 'akcije'];
   public rowsPerPage = 10;
   public pageIndex = 0;
   public tableLength;
@@ -30,16 +33,26 @@ export class AdminComponent implements OnInit, OnDestroy {
   // boolean za unistavanje observera
   private alive = true;
 
-  constructor(private adminServis: AdminServiceService,
+  constructor(
+    private partnerServis: PartnerService,
+    private adminServis: AdminServiceService,
     private notifikacija: NotifikacijaService,
+    private router: Router,
     public dialog: MatDialog) { }
 
   ngOnInit() {
+    this.vratiSveKomercijaliste();
     this.uzmiSveAdminPodatke();
   }
 
+  vratiSveKomercijaliste() {
+    this.partnerServis.vratiSveKomercijaliste().subscribe((komercijalisti: Partner[]) => {
+      this.komercijalistiPpid = komercijalisti.map(komercijalista => komercijalista.ppid);
+    })
+  }
+
   uzmiSveAdminPodatke() {
-    this.ucitavanjeLogovanja = true;
+    this.ucitavanje = true;
     this.adminServis.vratiSvaLogovanja(this.pageIndex, this.rowsPerPage)
       .pipe(takeWhile(() => this.alive))
       .subscribe((res: LogovanjaPage) => {
@@ -48,7 +61,7 @@ export class AdminComponent implements OnInit, OnDestroy {
         this.rowsPerPage = res.size;
         this.pageIndex = res.number;
         this.tableLength = res.totalElements;
-        this.ucitavanjeLogovanja = false;
+        this.ucitavanje = false;
       });
 
     this.ucitavanjeSesija = true;
@@ -87,6 +100,12 @@ export class AdminComponent implements OnInit, OnDestroy {
             });
         });
       });
+  }
+
+  idiULogove(ppid: number) {
+    const parameterObject = {};
+    parameterObject['ppid'] = ppid;
+    this.router.navigate(['/admin/logovi'], { queryParams: parameterObject })
   }
 
   paginatorEvent(pageEvent) {

@@ -27,6 +27,11 @@ h2 {
     padding-top: 17px;
 }
 
+.dugme-sivo {
+    background-color: $automaterijal-grey-200 !important;
+    cursor: auto;
+}
+
 .ceo-div {
     max-width: 900px;
     margin-right: auto;
@@ -34,7 +39,7 @@ h2 {
 }
 
 .tabela-div {
-    max-width: 472px;
+    max-width: 600px;
 }
 
 .dozvoljena-grupa-div {
@@ -61,5 +66,9 @@ h2 {
 }
 
 .centriraj {
+    text-align: center;
+}
+
+.dugme-log {
     text-align: center;
 }
