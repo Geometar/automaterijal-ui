@@ -6,8 +6,9 @@ import { NotifikacijaService } from 'src/app/shared/service/notifikacija.service
 import { MatSnackBarKlase } from 'src/app/shared/model/konstante';
 import { MatDialog } from '@angular/material/dialog';
 import { GrupeModalComponent } from 'src/app/shared/modal/grupe-modal/grupe-modal.component';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { PartnerService } from '../service/partner.service';
+import { HttpParams } from '@angular/common/http';
 
 @Component({
   selector: 'app-admin',
@@ -37,12 +38,31 @@ export class AdminComponent implements OnInit, OnDestroy {
     private partnerServis: PartnerService,
     private adminServis: AdminServiceService,
     private notifikacija: NotifikacijaService,
+    private aktivnaRuta: ActivatedRoute,
     private router: Router,
     public dialog: MatDialog) { }
 
   ngOnInit() {
     this.vratiSveKomercijaliste();
-    this.uzmiSveAdminPodatke();
+    this.uzmiParametreIzUrla();
+  }
+
+  uzmiParametreIzUrla() {
+    this.dataSource = null;
+    this.ucitavanje = true;
+    this.ucitavanje = true;
+    this.aktivnaRuta.queryParams
+      .pipe(takeWhile(() => this.alive))
+      .subscribe(params => {
+        if (params['strana']) {
+          this.pageIndex = params['strana'];
+        }
+        if (params['brojKolona']) {
+          this.rowsPerPage = params['brojKolona'];
+        }
+
+        this.uzmiSveAdminPodatke();
+      });
   }
 
   vratiSveKomercijaliste() {
@@ -112,7 +132,14 @@ export class AdminComponent implements OnInit, OnDestroy {
     this.dataSource = [];
     this.rowsPerPage = pageEvent.pageSize;
     this.pageIndex = pageEvent.pageIndex;
-    this.uzmiSveAdminPodatke();
+    this.dodajParametreUURL();
+  }
+
+  dodajParametreUURL() {
+    const parameterObject = {};
+    parameterObject['strana'] = this.pageIndex;
+    parameterObject['brojKolona'] = this.rowsPerPage;
+    this.router.navigate(['/admin'], { queryParams: parameterObject });
   }
 
   ngOnDestroy() {

@@ -34,8 +34,8 @@
                 <th mat-header-cell *matHeaderCellDef>
                     <span>Pretraga</span>
                 </th>
-                <td mat-cell data-label="Mesto Firme" *matCellDef="let log">
-                    <p class="mat-body-2" *ngIf="log.pretraga">
+                <td mat-cell data-label="Pretraga" *matCellDef="let log">
+                    <p class="mat-body-2 log-pretraga" (click)="traziPoBroju(log.pretraga)" *ngIf="log.pretraga">
                         {{log.pretraga}}
                     </p>
                     <p class="mat-body-2" *ngIf="!log.pretraga">
@@ -49,7 +49,7 @@
                 <th mat-header-cell *matHeaderCellDef>
                     <span>Filter</span>
                 </th>
-                <td mat-cell data-label="firma" *matCellDef="let log">
+                <td mat-cell data-label="Filter" *matCellDef="let log">
                     <p class="mat-body-2" *ngIf="log.filter">
                         {{log.filter}}
                     </p>
@@ -62,7 +62,7 @@
             <!-- Broj stavki Column -->
             <ng-container matColumnDef="proizvodjac">
                 <th mat-header-cell *matHeaderCellDef>Proizvodjac</th>
-                <td mat-cell data-label="Adresa firme" *matCellDef="let log">
+                <td mat-cell data-label="Proizvodjac" *matCellDef="let log">
                     <p class="mat-body-2" *ngIf="log.proizvodjac">
                         {{log.proizvodjac}}
                     </p>

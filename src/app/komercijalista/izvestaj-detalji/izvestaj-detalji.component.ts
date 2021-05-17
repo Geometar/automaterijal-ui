@@ -1,6 +1,6 @@
+import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Params, Router } from '@angular/router';
-import { Observable } from 'rxjs';
+import { ActivatedRoute, Router } from '@angular/router';
 import { map, mergeMap, takeWhile } from 'rxjs/operators';
 import { Partner } from 'src/app/e-shop/model/dto';
 import { LoginService } from 'src/app/e-shop/service/login.service';
@@ -23,13 +23,14 @@ export class IzvestajDetaljiComponent implements OnInit {
     private loginServis: LoginService,
     private izvestajServis: IzvestajService,
     private router: Router,
+    private location: Location,
     private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.loginServis.ulogovaniPartner
       .pipe(takeWhile(() => this.alive))
       .subscribe(partner => {
-        if(!partner || partner.privilegije < 2042) {
+        if (!partner || partner.privilegije < 2042) {
           this.router.navigate(['/naslovna']);
         }
         this.partner = partner
@@ -53,6 +54,6 @@ export class IzvestajDetaljiComponent implements OnInit {
   }
 
   idiNazad() {
-    this.router.navigate(['/izvestaj']);
+    this.location.back();
   }
 }

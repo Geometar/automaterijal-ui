@@ -5,6 +5,7 @@ import { LogoviService } from '../../service/logovi.service';
 import { WebLogPage, WebLog, Partner } from '../../model/dto'
 import { PartnerService } from '../../service/partner.service';
 import { Page } from '../../model/page';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-log-partnera',
@@ -33,6 +34,7 @@ export class LogPartneraComponent implements OnInit, OnDestroy {
   constructor(
     private logoviService: LogoviService,
     private route: ActivatedRoute,
+    private location: Location,
     private partnerServis: PartnerService,
     private router: Router
   ) { }
@@ -59,9 +61,9 @@ export class LogPartneraComponent implements OnInit, OnDestroy {
         this.tableLength = log.totalElements;
         this.rowsPerPage = log.size;
         this.log = log.content;
-        if(this.log.length === 0) {
+        if (this.log.length === 0) {
           this.pronadjenLog = false;
-        } 
+        }
         this.dataSource = this.log;
         this.ucitavanje = false;
       })
@@ -74,8 +76,14 @@ export class LogPartneraComponent implements OnInit, OnDestroy {
     this.pretragaLogova();
   }
 
+
+  traziPoBroju(katBr) {
+    const url = '/roba';
+    this.router.navigate([url], { queryParams: { pretraga: katBr } });
+  }
+
   idiNazad() {
-    this.router.navigate(['admin']);
+    this.location.back();
   }
 
   ngOnDestroy() {

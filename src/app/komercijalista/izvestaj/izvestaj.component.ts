@@ -1,3 +1,4 @@
+import { HttpParams } from '@angular/common/http';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { TransitionCheckState } from '@angular/material/checkbox';
 import { DateAdapter } from '@angular/material/core';
@@ -63,7 +64,7 @@ export class IzvestajComponent implements OnInit, OnDestroy {
     this.loginServis.ulogovaniPartner
       .pipe(takeWhile(() => this.alive))
       .subscribe(partner => {
-        if(!partner || partner.privilegije < 2042) {
+        if (!partner || partner.privilegije < 2042) {
           this.router.navigate(['/naslovna']);
         }
         this.partner = partner;
@@ -113,7 +114,7 @@ export class IzvestajComponent implements OnInit, OnDestroy {
     this.pronadjenIzvestaj = true;
     this.izvestajServis.vratiIzvestaje(
       this.searchValue, this.pageIndex, this.rowsPerPage, this.partner.ppid, this.datumOd, this.datumDo, this.izabraniKomercijalista
-      )
+    )
       .pipe(takeWhile(() => this.alive))
       .subscribe((res: IzvestajPage) => {
         this.error = false;
@@ -198,11 +199,13 @@ export class IzvestajComponent implements OnInit, OnDestroy {
   }
 
   promenaKomercijaliste(partner) {
-    if(partner.value) {
+    if (partner.value) {
       this.izabraniKomercijalista = partner.value.ppid;
     } else {
       this.izabraniKomercijalista = null;
     }
+    this.pageIndex = 0;
+    this.rowsPerPage = 10;
     this.dodajParametreUURL();
   }
 
