@@ -58,7 +58,7 @@ export class Logovanja {
 
 export class FakturaDetalji {
     robaId?: number;
-    slikaId?: number;
+    slika?: Slika;
     naziv?: string;
     kataloskiBroj?: string;
     proizvodjac?: Proizvodjac;
@@ -118,7 +118,7 @@ export class Grupa {
 
 export class Roba {
     public robaid: number;
-    public slika: string;
+    public slika: Slika;
     public katbr: string;
     public katbrpro: string;
     public dozvoljenoZaAnonimusa: boolean;
@@ -133,6 +133,12 @@ export class Roba {
     public tehnickiOpis?: RobaTehnickiOpis[];
     public tdBrojevi?: Map<string, RobaBrojevi[]>;
     public aplikacije?: Map<string, RobaAplikacija[]>;
+}
+
+export class Slika {
+    public slikeByte: string | ArrayBuffer;
+    public slikeUrl: string;
+    public isUrl: boolean;
 }
 
 export class RobaPage extends Page {

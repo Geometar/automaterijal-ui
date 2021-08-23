@@ -9,7 +9,6 @@ import { Korpa } from 'src/app/e-shop/model/porudzbenica';
 import { Router } from '@angular/router';
 import { takeWhile } from 'rxjs/operators';
 import { MatDialog } from '@angular/material/dialog';
-import { ZaboravljenaSifraModalComponent } from 'src/app/shared/modal/zaboravljena-sifra-modal/zaboravljena-sifra-modal.component';
 import { ZabranjenaRobaModalComponent } from 'src/app/shared/modal/zabranjena-roba-modal/zabranjena-roba-modal.component';
 import { isPlatformBrowser } from '@angular/common';
 import { SlikaModalComponent } from 'src/app/shared/modal/slika-modal/slika-modal.component';
@@ -61,6 +60,7 @@ export class TabelaComponent implements OnInit, OnDestroy, OnChanges {
   ngOnChanges(changes: SimpleChanges) {
     if (changes.roba && changes.roba.currentValue) {
       this.utilsService.daLiJeRobaUKorpi(this.korpa, changes.roba.currentValue);
+      this.preispitajSlike(this.roba);
     }
   }
 
@@ -70,6 +70,7 @@ export class TabelaComponent implements OnInit, OnDestroy, OnChanges {
       this.jeMobilni = window.innerWidth > 900;
       this.innerWidth = window.innerWidth;
     }
+    this.preispitajSlike(this.roba);
     this.loginServis.ulogovaniPartner
       .pipe(takeWhile(() => this.alive))
       .subscribe(partner => this.partner = partner);
@@ -80,6 +81,16 @@ export class TabelaComponent implements OnInit, OnDestroy, OnChanges {
       .pipe(takeWhile(() => this.alive))
       .subscribe(bool => this.partnerLogovan = bool);
     this.changeSlideConfiguration();
+  }
+
+  preispitajSlike(roba: Roba[]) {
+    if (roba) {
+      roba.forEach(r => {
+        if (!r.slika.isUrl) {
+          r.slika.slikeUrl = 'data:image/jpeg;base64,' + r.slika.slikeByte;
+        }
+      });
+    }
   }
 
   changeSlideConfiguration() {

@@ -51,6 +51,7 @@ export class FakturaDetaljiComponent implements OnInit, OnDestroy {
           this.error = false;
           this.faktura = res;
           this.fakturaDetalji = res.detalji;
+          this.preispitajSlike();
           this.dataSource = this.fakturaDetalji;
           this.ucitavanje = false;
         },
@@ -59,6 +60,18 @@ export class FakturaDetaljiComponent implements OnInit, OnDestroy {
             this.ucitavanje = false;
           });
     });
+  }
+
+  preispitajSlike() {
+    if (this.fakturaDetalji) {
+      this.fakturaDetalji.forEach(detalji => {
+        if (detalji.slika) {
+          if (!detalji.slika.isUrl) {
+            detalji.slika.slikeUrl = 'data:image/jpeg;base64,' + detalji.slika.slikeByte;
+          }
+        }
+      });
+    }
   }
 
   idiNazad() {

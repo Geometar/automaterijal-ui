@@ -66,7 +66,7 @@
                     <th mat-header-cell *matHeaderCellDef> Kataloški broj </th>
                     <td mat-cell *matCellDef="let faktura">
                         <div class="pozicija">
-                            <img height="120" src={{faktura.slikaId}}
+                            <img height="120" [src]="faktura.slika.slikeUrl"
                                 onError="this.src='assets/slike/ui/roba/slikanijedostupna.jpg'">
                         </div>
                     </td>

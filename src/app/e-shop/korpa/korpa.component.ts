@@ -125,6 +125,7 @@ export class KorpaComponent implements OnInit, OnDestroy {
     this.inicijalizujSveForme();
   }
 
+
   inicijalizujSveForme() {
     if (this.partner) {
       this.drugiNacinPrevoza = this.formBuilder.group({

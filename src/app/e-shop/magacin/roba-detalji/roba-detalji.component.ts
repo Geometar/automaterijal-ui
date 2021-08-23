@@ -56,8 +56,8 @@ export class RobaDetaljiComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     if (isPlatformBrowser(this.platformId)) {
-    this.innerWidth = window.innerWidth;
-    this.velikiEkran = window.innerWidth > 650;
+      this.innerWidth = window.innerWidth;
+      this.velikiEkran = window.innerWidth > 650;
     }
     this.dataService.trenutnaKorpa
       .pipe(takeWhile(() => this.alive))
@@ -104,6 +104,7 @@ export class RobaDetaljiComponent implements OnInit, OnDestroy {
           .subscribe((res: HttpResponse<Roba>) => {
             this.robaDetalji = res.body;
             this.robaDetalji = this.dataService.skiniSaStanjaUkolikoJeUKorpi([this.robaDetalji])[0];
+            this.preispitajSlike();
             this.utilsService.daLiJeRobaUKorpi(this.korpa, [this.robaDetalji]);
             this.popuniAplikacije();
             this.popuniOeBrojeve();
@@ -113,6 +114,13 @@ export class RobaDetaljiComponent implements OnInit, OnDestroy {
               || this.originalniBrojevi.length > 0;
           });
       });
+  }
+  preispitajSlike() {
+    if (this.robaDetalji) {
+      if (!this.robaDetalji.slika.isUrl) {
+        this.robaDetalji.slika.slikeUrl = 'data:image/jpeg;base64,' + this.robaDetalji.slika.slikeByte;
+      }
+    }
   }
 
   sacuvajTekst() {

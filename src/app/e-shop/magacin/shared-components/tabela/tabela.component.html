@@ -1,12 +1,12 @@
-<div class="tabela-div" *ngIf="dataSource != null && dataSource.length > 0">
+<div class="tabela-div" *ngIf="dataSource != null && dataSource.length > 0 && roba != null && roba.length > 0">
   <table [ngClass]="{'admin-tabela': partner && partner.privilegije === 2047}" class="roba-tabela" mat-table [dataSource]="dataSource">
     <!--Slika dela Column -->
     <ng-container matColumnDef="slika">
       <th mat-header-cell *matHeaderCellDef> Slika </th>
       <td mat-cell class="slika-td" *matCellDef="let roba">
-        <div class="centriraj">
-            <img height="160" class="slika-sirina" (click)="uvelicajSliku(roba)" src={{roba.slika}} onError="this.src='assets/slike/ui/roba/slikanijedostupna.jpg'">
-       </div>
+        <div class="centriraj" *ngIf="roba.slika">
+            <img height="160" class="slika-sirina" (click)="uvelicajSliku(roba)" [src]="roba.slika.slikeUrl" onError="this.src='assets/slike/ui/roba/slikanijedostupna.jpg'">
+          </div>
         <div class="prazan-div-ikona" *ngIf="partnerLogovan && !roba.uKorpi">
         </div>
         <div class="prazan-div-ikona" *ngIf="partnerLogovan  && roba.uKorpi">
@@ -121,7 +121,7 @@
               </div>
               <div class="dugme-detalji dugme-mobilni">
                 <a href="/roba/{{roba.robaid}}"></a>
-                <button mat-raised-button [disabled]="roba.slika == 'assets/slike/ui/roba/slikanijedostupna.jpg'"
+                <button mat-raised-button [disabled]="roba.slika.url == 'assets/slike/ui/roba/slikanijedostupna.jpg'"
                   class="dugme button-crveni-50" (click)='detaljiRobe(roba.robaid)'>
                   <i class="material-icons">
                     library_books

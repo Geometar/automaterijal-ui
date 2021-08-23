@@ -62,20 +62,20 @@ export class RobaComponent implements OnInit, OnDestroy {
 
   uzmiParametreIzUrla() {
     this.aktivnaRuta.queryParams
-    .pipe(takeWhile(() => this.alive))
-    .subscribe(params => {
-      this.treutniParametri = params;
-      this.pageIndex = params['strana'];
-      this.rowsPerPage = params['brojKolona'];
-      this.filter.proizvodjacId = params['proizvodjac'];
-      this.filter.naStanju = params['naStanju'];
-      this.filter.grupa = params['grupa'];
-      if (this.searchValue && this.searchValue !== params['pretraga']) {
-        this.filter.pretrazitiGrupe = true;
-      }
-      this.searchValue = params['pretraga'];
-      this.pronadjiSvuRobu();
-    });
+      .pipe(takeWhile(() => this.alive))
+      .subscribe(params => {
+        this.treutniParametri = params;
+        this.pageIndex = params['strana'];
+        this.rowsPerPage = params['brojKolona'];
+        this.filter.proizvodjacId = params['proizvodjac'];
+        this.filter.naStanju = params['naStanju'];
+        this.filter.grupa = params['grupa'];
+        if (this.searchValue && this.searchValue !== params['pretraga']) {
+          this.filter.pretrazitiGrupe = true;
+        }
+        this.searchValue = params['pretraga'];
+        this.pronadjiSvuRobu();
+      });
   }
 
   pronadjiSvuRobu() {
@@ -160,7 +160,7 @@ export class RobaComponent implements OnInit, OnDestroy {
     if (this.searchValue) {
       parameterObject['pretraga'] = this.searchValue;
     }
-      this.router.navigate(['/roba'], { queryParams: parameterObject });
+    this.router.navigate(['/roba'], { queryParams: parameterObject });
   }
 
   toogleFilterDiv(otvoriFilter: boolean) {
