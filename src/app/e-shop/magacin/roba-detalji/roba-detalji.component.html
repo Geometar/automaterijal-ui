@@ -18,8 +18,8 @@
         </div>
         <div *ngIf="!tdArtikalJe" class="p-1 flex-fill mt-auto div-2-obican-artikal">
           <div class="slika-robe">
-            <img src={{robaDetalji.slika.slikeUrl}} height="220px" (click)="uvelicajSliku(robaDetalji)" 
-            class="slika-sirina"  onError="this.src='assets/slike/ui/roba/slikanijedostupna.jpg'">
+            <img *ngIf="!robaDetalji.slika.isUrl" [src]="robaDetalji.slika.slikeUrl" height="220px" (click)="uvelicajSliku(robaDetalji)"  class="slika-sirina"  onError="this.src='assets/slike/ui/roba/slikanijedostupna.jpg'"/>
+            <img *ngIf="robaDetalji.slika.isUrl" src="{{robaDetalji.slika.slikeUrl}}" height="220px" (click)="uvelicajSliku(robaDetalji)" class="slika-sirina"  onError="this.src='assets/slike/ui/roba/slikanijedostupna.jpg'"/>
           </div>
         </div>
         <div *ngIf="tdArtikalJe" class="p-1 flex-fill div-1">

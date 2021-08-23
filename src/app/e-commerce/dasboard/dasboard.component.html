@@ -152,7 +152,7 @@
             </span>
             <mat-card-content (click)='detaljiRobe(roba.robaid)' class="opis">
               <div class="slika-div" (click)='detaljiRobe(roba.robaid)'>
-                <img class="izdvajamo-slika" mat-card-image src="{{roba.slika}}">
+                <img class="izdvajamo-slika" mat-card-image src="{{roba.slika.slikeUrl}}">
               </div>
               <div *ngIf="innerWidth >= 1411">
                 <p>
@@ -300,7 +300,7 @@
             </span>
             <mat-card-content (click)='detaljiRobe(roba.robaid)' class="opis">
               <div class="slika-div">
-                <img class="izdvajamo-slika" mat-card-image src="{{roba.slika}}">
+                <img class="izdvajamo-slika" mat-card-image src="{{roba.slika.slikeUrl}}">
               </div>
               <div *ngIf="innerWidth > 1411">
                 <p>

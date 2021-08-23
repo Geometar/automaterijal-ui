@@ -5,8 +5,9 @@
       <th mat-header-cell *matHeaderCellDef> Slika </th>
       <td mat-cell class="slika-td" *matCellDef="let roba">
         <div class="centriraj" *ngIf="roba.slika">
-            <img height="160" class="slika-sirina" (click)="uvelicajSliku(roba)" [src]="roba.slika.slikeUrl" onError="this.src='assets/slike/ui/roba/slikanijedostupna.jpg'">
-          </div>
+            <img *ngIf="!roba.slika.isUrl" height="160" class="slika-sirina" (click)="uvelicajSliku(roba)" [src]="roba.slika.slikeUrl" onError="this.src='assets/slike/ui/roba/slikanijedostupna.jpg'">
+            <img *ngIf="roba.slika.isUrl" height="160" class="slika-sirina" (click)="uvelicajSliku(roba)" src="{{roba.slika.slikeUrl}}" onError="this.src='assets/slike/ui/roba/slikanijedostupna.jpg'">
+         </div>
         <div class="prazan-div-ikona" *ngIf="partnerLogovan && !roba.uKorpi">
         </div>
         <div class="prazan-div-ikona" *ngIf="partnerLogovan  && roba.uKorpi">
