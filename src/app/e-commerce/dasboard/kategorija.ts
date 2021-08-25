@@ -82,20 +82,20 @@ export class Konastante {
         ///////////////////////
         const mUlja = new Kategorija();
         mUlja.ikonaId = 'label';
-        mUlja.url = '/kategorije/MOTORNA_ULJA';
-        mUlja.naslov = 'Motorna ulja';
+        mUlja.url = '/kategorije/PUTNICKI_PROGRAM';
+        mUlja.naslov = 'Maziva putnički program';
         this.grupe.push(mUlja);
 
         const kUlje = new Kategorija();
         kUlje.ikonaId = 'label';
-        kUlje.url = '/kategorije/KOCIONO_ULJE';
-        kUlje.naslov = 'Kočiono ulje';
+        kUlje.url = '/kategorije/TERETNI_PROGRAM';
+        kUlje.naslov = 'Maziva teretni program';
         this.grupe.push(kUlje);
 
         const dvotaktol = new Kategorija();
         dvotaktol.ikonaId = 'label';
         dvotaktol.url = '/kategorije/DVOTAKTOL';
-        dvotaktol.naslov = 'Dvotaktol';
+        dvotaktol.naslov = 'Moto program';
         this.grupe.push(dvotaktol);
 
         const pPaste = new Kategorija();

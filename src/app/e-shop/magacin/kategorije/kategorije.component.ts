@@ -216,17 +216,25 @@ export class KategorijeComponent implements OnInit {
 
   kategorijaUlja() {
     const uljaVraper = new KategorijaVraper();
-    const motornaUlja = new Kategorije();
-    motornaUlja.naslov = 'Motorna ulja';
-    motornaUlja.slikaId = 'assets/slike/kategorije/m-ulje.jpg';
-    motornaUlja.url = 'motorna_ulja';
-    uljaVraper.kategorije.push(motornaUlja);
+    const motorniProgram = new Kategorije();
+    motorniProgram.naslov = 'Putnički program';
+    motorniProgram.slikaId = 'assets/slike/kategorije/m-ulje.jpg';
+    motorniProgram.url = 'PUTNICKI_PROGRAM';
+    motorniProgram.podkategorije = [
+      'Motorno ulje',
+      'Ulja za menjač i diferencijal',
+      'Antifriz'];
+    uljaVraper.kategorije.push(motorniProgram);
 
-    const menjackoUlje = new Kategorije();
-    menjackoUlje.naslov = 'Menjačko ulje';
-    menjackoUlje.slikaId = 'assets/slike/kategorije/menjacko-ulje.png';
-    menjackoUlje.url = 'menjacka_ulja';
-    uljaVraper.kategorije.push(menjackoUlje);
+    const teretniProgram = new Kategorije();
+    teretniProgram.naslov = 'Teretni program';
+    teretniProgram.slikaId = 'assets/slike/kategorije/menjacko-ulje.png';
+    teretniProgram.url = 'TERETNI_PROGRAM';
+    teretniProgram.podkategorije = [
+      'Motorno ulje',
+      'Menjačko ulje',
+      'Antifriz'];
+    uljaVraper.kategorije.push(teretniProgram);
 
     const antifrim = new Kategorije();
     antifrim.naslov = 'Antifriz';
@@ -241,7 +249,7 @@ export class KategorijeComponent implements OnInit {
     uljaVraper.kategorije.push(kocionoUlje);
 
     const motocikliUlje = new Kategorije();
-    motocikliUlje.naslov = 'Dvotaktol ulje';
+    motocikliUlje.naslov = 'Moto program';
     motocikliUlje.slikaId = 'assets/slike/kategorije/d-ulje.jpg';
     motocikliUlje.url = 'dvotaktol';
     uljaVraper.kategorije.push(motocikliUlje);
@@ -250,29 +258,12 @@ export class KategorijeComponent implements OnInit {
     industrijskaUlja.naslov = 'Industrijska ulja';
     industrijskaUlja.slikaId = 'assets/slike/kategorije/i-ulje.jpg';
     industrijskaUlja.url = 'industrijska_ulja';
-    industrijskaUlja.podkategorije = [
-      'Hidraulično ulje',
-      'Kompresorsko ulje',
-      'Reduktorsko ulje',
-      'Transformatorsko ulje',
-      'Turbinska ulja',
-      'Ulja za pneumatske alate',
-      'Ulja za klizne staze',
-      'Ulja za prenos toplote'];
     uljaVraper.kategorije.push(industrijskaUlja);
 
     const oMetala = new Kategorije();
     oMetala.naslov = 'Obrada metala';
     oMetala.slikaId = 'assets/slike/kategorije/o-metala.jpg';
     oMetala.url = 'obrada_metala';
-    oMetala.podkategorije = [
-      'ANTIKOROZIONA ZAŠTITA',
-      'EMULZIJE I RASTVORI',
-      'REZNO ULJE',
-      'SREDSTVA ZA ČIŠĆENJE I ODMAŠĆIVANJE',
-      'ULJE ZA OBRADU DEFORMACIJOM',
-      'ULJE ZA ELEKTROEROZIJU',
-      'ULJE ZA TERMIČKU OBRADU'];
     uljaVraper.kategorije.push(oMetala);
 
     uljaVraper.naslov = 'Maziva';

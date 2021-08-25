@@ -12,7 +12,7 @@ export const transformator = {
     kategorija_DIHTUNG: 'Dihtunzi',
     kategorija_DISK_PLOCICE: 'Disk pločice',
     kategorija_DISKOVI: 'Diskovi',
-    kategorija_DVOTAKTOL: 'Dvotaktol ulje',
+    kategorija_DVOTAKTOL: 'Moto program',
     kategorija_GREJAC: 'Grejači',
     kategorija_GUMICE: 'Gumice',
     kategorija_HEMIJA: 'Hemija za automobile',
