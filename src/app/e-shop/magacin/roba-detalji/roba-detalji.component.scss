@@ -21,6 +21,37 @@ img {
   background-size: 120%;
 }
 
+.samo-jedinica {
+  text-align: left;
+  width: 100%;
+}
+
+.lista-tehnicki-opis {
+  border-bottom: 1px dotted black;
+}
+
+.dokumenta {
+  margin-left: 70px;
+  text-align: center;
+}
+
+.dokumenta-pojedinacno {
+  margin-right: 20px;
+}
+
+.dokument-ikona {
+  font-size: 40px;
+  cursor: pointer;
+}
+
+.dokument-ikona:hover {
+  color: $automaterijal-primary-100;;
+}
+
+.slika-brenda {
+  margin-bottom: 20px;
+}
+
 .slika-sirina {
   cursor: zoom-in;
 }

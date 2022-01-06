@@ -7,6 +7,7 @@ import { MaterialModule } from 'src/app/shared/material/material.module';
 import { SharedMagacinModule } from '../shared-components/shared-magacin.module';
 import { RobaDetaljiComponent } from '../roba-detalji/roba-detalji.component';
 import { PipeModule } from 'src/app/shared/pipes/pipe.module';
+import { YouTubePlayerModule } from '@angular/youtube-player';
 
 const routes: Routes = [
   {
@@ -22,6 +23,7 @@ const routes: Routes = [
 @NgModule({
   imports: [
     CommonModule,
+    YouTubePlayerModule,
     ReactiveFormsModule,
     FormsModule,
     MaterialModule,

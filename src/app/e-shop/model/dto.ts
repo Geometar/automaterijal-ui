@@ -130,9 +130,22 @@ export class Roba {
     public kolicina: number;
     public uKorpi = false;
     public proizvodjac: Proizvodjac;
+    public proizvodjacLogo: string | ArrayBuffer;
     public tehnickiOpis?: RobaTehnickiOpis[];
     public tdBrojevi?: Map<string, RobaBrojevi[]>;
     public aplikacije?: Map<string, RobaAplikacija[]>;
+    public dokumentacija?: Map<string, TecDocDokumentacija[]>;
+}
+export class TecDocDokumentacija {
+    public docFileTypeName: string;
+    public docId: string;
+    public docLinkId: number;
+    public docText: string;
+    public docTypeId: number;
+    public docTypeName: string;
+    public docUrl: string;
+    public saniraniUrl: string;
+    dokument: string | ArrayBuffer;
 }
 
 export class Slika {

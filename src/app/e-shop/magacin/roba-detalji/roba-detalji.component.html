@@ -11,28 +11,38 @@
           <h1 class="h1-proizvdojac">Proizvodjač: <span
               class="detalji-proizvodjac boja-crvena-10">{{robaDetalji.proizvodjac.naziv}}</span></h1>
           <h2 *ngIf="robaDetalji.podGrupa !== 'ZZZ'" class="h2-kategorije">Kategorija:
-            <span class="kategorija">{{robaDetalji.podGrupa}}</span></h2>
-          <h2 *ngIf="partner && (partner.privilegije === 2047 || partner.privilegije === 2043)" class="komercijalista-stanje">Stanje:
-            <span>{{robaDetalji.stanje}}</span></h2>
+            <span class="kategorija">{{robaDetalji.podGrupa}}</span>
+          </h2>
+          <h2 *ngIf="partner && (partner.privilegije === 2047 || partner.privilegije === 2043)"
+            class="komercijalista-stanje">Stanje:
+            <span>{{robaDetalji.stanje}}</span>
+          </h2>
           <h2 class="h2-naziv">{{robaDetalji.naziv}}</h2>
         </div>
         <div *ngIf="!tdArtikalJe" class="p-1 flex-fill mt-auto div-2-obican-artikal">
           <div class="slika-robe">
-            <img *ngIf="!robaDetalji.slika.isUrl" [src]="robaDetalji.slika.slikeUrl" height="220px" (click)="uvelicajSliku(robaDetalji)"  class="slika-sirina"  onError="this.src='assets/slike/ui/roba/slikanijedostupna.jpg'"/>
-            <img *ngIf="robaDetalji.slika.isUrl" src="{{robaDetalji.slika.slikeUrl}}" height="220px" (click)="uvelicajSliku(robaDetalji)" class="slika-sirina"  onError="this.src='assets/slike/ui/roba/slikanijedostupna.jpg'"/>
+            <img *ngIf="!robaDetalji.slika.isUrl" [src]="robaDetalji.slika.slikeByte" height="220px"
+              (click)="uvelicajSliku(robaDetalji)" class="slika-sirina"
+              onError="this.src='assets/slike/ui/roba/slikanijedostupna.jpg'" />
+            <img *ngIf="robaDetalji.slika.isUrl" src="{{robaDetalji.slika.slikeUrl}}" height="220px"
+              (click)="uvelicajSliku(robaDetalji)" class="slika-sirina"
+              onError="this.src='assets/slike/ui/roba/slikanijedostupna.jpg'" />
           </div>
         </div>
         <div *ngIf="tdArtikalJe" class="p-1 flex-fill div-1">
           <h1 class="h1-proizvdojac">Proizvodjač: <span
               class="detalji-proizvodjac boja-crvena-10">{{robaDetalji.proizvodjac.naziv}}</span></h1>
           <h2 *ngIf="robaDetalji.podGrupa !== 'ZZZ'" class="h2-kategorije">Kategorija:
-            <span class="kategorija">{{robaDetalji.podGrupa}}</span></h2>
-          <h2 *ngIf="partner && (partner.privilegije === 2047 || partner.privilegije === 2043)" class="komercijalista-stanje">Stanje:
-            <span>{{robaDetalji.stanje}}</span></h2>
+            <span class="kategorija">{{robaDetalji.podGrupa}}</span>
+          </h2>
+          <h2 *ngIf="partner && (partner.privilegije === 2047 || partner.privilegije === 2043)"
+            class="komercijalista-stanje">Stanje:
+            <span>{{robaDetalji.stanje}}</span>
+          </h2>
           <h2 class="h2-naziv">{{robaDetalji.naziv}}</h2>
           <div>
             <div class="slika-robe">
-              <img src={{robaDetalji.slika}} height="200px"
+              <img src={{robaDetalji.slika.slikeByte}} height="200px"
                 onError="this.src='assets/slike/ui/roba/slikanijedostupna.jpg'">
             </div>
           </div>
@@ -41,7 +51,7 @@
           <h2 class="h2-2-div boja-glavna-50">Detalji artikla</h2>
           <h3 class="h3-2-div">Kataloški broj: <span class="boja-crvena-10">{{robaDetalji.katbr}}</span></h3>
           <ul class="teh-detalji-ui sirina-detalja">
-            <li *ngFor="let opis of robaDetalji.tehnickiOpis" class="d-flex justify-content-center bd-highlight">
+            <li *ngFor="let opis of robaDetalji.tehnickiOpis" class="d-flex justify-content-center bd-highlight lista-tehnicki-opis">
               <div class="p-1 w-100 bd-highlight"><b>{{opis.oznaka | uppercase}}</b>
                 <span *ngIf="opis.vrednost && opis.jedinica">
                   [{{opis.jedinica}}]:
@@ -102,7 +112,9 @@
               </div>
             </div>
             <div class="dugme-dodaj dugme-mobilni" *ngIf="robaDetalji.stanje > 0">
-              <button mat-raised-button class="dugme button-glavni-100" [class.button-zuto-10]="!partner && !robaDetalji.dozvoljenoZaAnonimusa"  (click)='dodajUKorpu(robaDetalji)'>
+              <button mat-raised-button class="dugme button-glavni-100"
+                [class.button-zuto-10]="!partner && !robaDetalji.dozvoljenoZaAnonimusa"
+                (click)='dodajUKorpu(robaDetalji)'>
                 <i class="material-icons">
                   add_shopping_cart
                 </i>
@@ -187,6 +199,26 @@
                 </div>
               </div>
             </mat-accordion>
+          </div>
+        </div>
+      </div>
+
+      <div *ngIf="dokumentacijaKljucevi.length !== 0" class="d-flex flex-column flex-lg-row sektor-detalja-2">
+        <div class="p-2 sirina-1 flex-fill bd-highlight" *ngFor="let dokKljuc of dokumentacijaKljucevi">
+          <div class="pozadina-glavna-100 granicnik-plavi">
+          </div>
+          <h2 class="h2-sekcija-2">{{dokKljuc}}</h2>
+          <div class="dokumenta">
+            <span class="dokumenta-pojedinacno" *ngFor="let dokument of vratiDokumentacijuPoKljucu(dokKljuc)">
+              <span *ngIf="dokument.docFileTypeName.toUpperCase().indexOf('PDF') > -1">
+                <span class="material-icons dokument-ikona" (click)="otvoriPDF(dokument)">
+                  picture_as_pdf
+                </span>
+              </span>
+              <span *ngIf="dokument.docFileTypeName.toUpperCase().indexOf('URL') > -1">
+                <youtube-player [videoId]="dokument.saniraniUrl"></youtube-player>
+              </span>
+            </span>
           </div>
         </div>
       </div>

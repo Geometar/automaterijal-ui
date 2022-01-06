@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy, Inject, PLATFORM_ID } from '@angular/core';
 import { RobaService } from '../../service/roba.service';
 import { Params, ActivatedRoute, Router } from '@angular/router';
-import { Roba, RobaBrojevi, Partner } from '../../model/dto';
+import { Roba, RobaBrojevi, Partner, TecDocDokumentacija } from '../../model/dto';
 import { takeWhile, finalize, catchError } from 'rxjs/operators';
 import { throwError, EMPTY } from 'rxjs';
 import { HttpResponse } from '@angular/common/http';
@@ -26,6 +26,7 @@ export class RobaDetaljiComponent implements OnInit, OnDestroy {
   public robaDetalji: Roba;
   public kljuceviAplikacija: string[] = [];
   public kluceviRobe: string[] = [];
+  public dokumentacijaKljucevi: string[] = [];
   public originalniBrojevi: OeBrojevi[] = [];
   public partner: Partner;
 
@@ -41,6 +42,8 @@ export class RobaDetaljiComponent implements OnInit, OnDestroy {
   innerWidth;
   public velikiEkran = true;
 
+  private apiLoaded = false;
+
   constructor(
     private robaService: RobaService,
     private dataService: DataService,
@@ -55,6 +58,13 @@ export class RobaDetaljiComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit() {
+
+    if (!this.apiLoaded) {
+      const tag = document.createElement('script');
+      tag.src = 'https://www.youtube.com/iframe_api';
+      document.body.appendChild(tag);
+      this.apiLoaded = true;
+    }
     if (isPlatformBrowser(this.platformId)) {
       this.innerWidth = window.innerWidth;
       this.velikiEkran = window.innerWidth > 650;
@@ -108,6 +118,7 @@ export class RobaDetaljiComponent implements OnInit, OnDestroy {
             this.utilsService.daLiJeRobaUKorpi(this.korpa, [this.robaDetalji]);
             this.popuniAplikacije();
             this.popuniOeBrojeve();
+            this.popuniDokumentaciju();
             this.tdArtikalJe =
               this.kljuceviAplikacija.length > 0
               || this.kluceviRobe.length > 0
@@ -118,7 +129,10 @@ export class RobaDetaljiComponent implements OnInit, OnDestroy {
   preispitajSlike() {
     if (this.robaDetalji) {
       if (!this.robaDetalji.slika.isUrl) {
-        this.robaDetalji.slika.slikeUrl = 'data:image/jpeg;base64,' + this.robaDetalji.slika.slikeByte;
+        this.robaDetalji.slika.slikeByte = 'data:image/jpeg;base64,' + this.robaDetalji.slika.slikeByte;
+      }
+      if (this.robaDetalji.proizvodjacLogo) {
+        this.robaDetalji.proizvodjacLogo = 'data:image/jpeg;base64,' + this.robaDetalji.proizvodjacLogo;
       }
     }
   }
@@ -200,12 +214,37 @@ export class RobaDetaljiComponent implements OnInit, OnDestroy {
     }
   }
 
+  popuniDokumentaciju() {
+    if (this.robaDetalji.dokumentacija != null) {
+      for (const key of Object.keys(this.robaDetalji.dokumentacija)) {
+        this.dokumentacijaKljucevi.push(key);
+      }
+    }
+  }
+
   vratiModelePoAutomobilu(automobil: string) {
     return this.robaDetalji.aplikacije[automobil];
   }
 
   vratiOriginalneBrojevePoProizvodjacu(proizvodjac: string) {
     return this.robaDetalji.tdBrojevi[proizvodjac];
+  }
+
+  vratiDokumentacijuPoKljucu(kljuc: string) {
+    (this.robaDetalji.dokumentacija[kljuc] as TecDocDokumentacija[]).forEach(dok => {
+      if (dok.docFileTypeName.toUpperCase().indexOf('URL') > -1) {
+        dok.saniraniUrl = dok.docUrl.replace('https://www.youtube.com/embed/', '');
+      }
+    })
+    return this.robaDetalji.dokumentacija[kljuc];
+  }
+
+  otvoriPDF(dokument: TecDocDokumentacija) {
+    const source = `data:application/pdf;base64,${dokument.dokument}`;
+    const link = document.createElement("a");
+    link.href = source;
+    link.download = `${dokument.docTypeName}` + '-' + `${this.robaDetalji.katbr}.pdf`;
+    link.click();
   }
 
   idiNazad() {

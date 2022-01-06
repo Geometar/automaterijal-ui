@@ -30,6 +30,7 @@
     "@angular/platform-browser-dynamic": "^10.0.4",
     "@angular/platform-server": "^10.0.5",
     "@angular/router": "^10.0.4",
+    "@angular/youtube-player": "^10.2.7",
     "@nguniversal/express-engine": "^10.0.1",
     "angular-popper": "^2.0.0",
     "bootstrap": "^4.1.3",
