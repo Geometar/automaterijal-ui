@@ -8,7 +8,9 @@
     <div class="detalji-stranica detalji-prvi-div" *ngIf="robaDetalji != null && !ucitavanje">
       <div class="d-flex flex-column flex-lg-row">
         <div *ngIf="!tdArtikalJe" class="align-self-center justify-content-center p-1 flex-fill div-1-obican">
-          <h1 class="h1-proizvdojac">Proizvodjač: <span
+          <img *ngIf="robaDetalji.proizvodjacLogo" [src]="robaDetalji.proizvodjacLogo" height="50px"
+            onError="this.src='assets/slike/ui/roba/slikanijedostupna.jpg'" />
+          <h1 *ngIf="!robaDetalji.proizvodjacLogo" class="h1-proizvdojac">Proizvodjač: <span
               class="detalji-proizvodjac boja-crvena-10">{{robaDetalji.proizvodjac.naziv}}</span></h1>
           <h2 *ngIf="robaDetalji.podGrupa !== 'ZZZ'" class="h2-kategorije">Kategorija:
             <span class="kategorija">{{robaDetalji.podGrupa}}</span>
@@ -30,7 +32,9 @@
           </div>
         </div>
         <div *ngIf="tdArtikalJe" class="p-1 flex-fill div-1">
-          <h1 class="h1-proizvdojac">Proizvodjač: <span
+          <img class="brand-slike" *ngIf="robaDetalji.proizvodjacLogo" [src]="robaDetalji.proizvodjacLogo" height="50px"
+            onError="this.src='assets/slike/ui/roba/slikanijedostupna.jpg'" />
+          <h1 *ngIf="!robaDetalji.proizvodjacLogo" class="h1-proizvdojac">Proizvodjač: <span
               class="detalji-proizvodjac boja-crvena-10">{{robaDetalji.proizvodjac.naziv}}</span></h1>
           <h2 *ngIf="robaDetalji.podGrupa !== 'ZZZ'" class="h2-kategorije">Kategorija:
             <span class="kategorija">{{robaDetalji.podGrupa}}</span>
@@ -51,7 +55,8 @@
           <h2 class="h2-2-div boja-glavna-50">Detalji artikla</h2>
           <h3 class="h3-2-div">Kataloški broj: <span class="boja-crvena-10">{{robaDetalji.katbr}}</span></h3>
           <ul class="teh-detalji-ui sirina-detalja">
-            <li *ngFor="let opis of robaDetalji.tehnickiOpis" class="d-flex justify-content-center bd-highlight lista-tehnicki-opis">
+            <li *ngFor="let opis of robaDetalji.tehnickiOpis"
+              class="d-flex justify-content-center bd-highlight lista-tehnicki-opis">
               <div class="p-1 w-100 bd-highlight"><b>{{opis.oznaka | uppercase}}</b>
                 <span *ngIf="opis.vrednost && opis.jedinica">
                   [{{opis.jedinica}}]:
