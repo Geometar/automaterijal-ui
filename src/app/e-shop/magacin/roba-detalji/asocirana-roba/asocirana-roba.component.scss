@@ -1,0 +1,229 @@
+@import "src/automaterijal-theme.scss";
+@import "src/css/shared/boje.scss";
+
+.centriraj {
+  text-align: center;
+}
+
+// izdvajamo iz ponude
+.cekcija-ponuda {
+  max-width: 1365px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.mat-card-ponuda {
+  width: 250px;
+  height: 400px;
+  margin: 5px;
+  box-shadow: 2px 3px 6px 0px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14),
+    0px 1px 3px 0px rgba(0, 0, 0, 0.12);
+}
+.mat-card-content {
+  margin-bottom: 0px;
+  cursor: pointer;
+}
+
+.mat-card-ponuda:hover {
+  box-shadow: 4px 10px 17px 4px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14),
+    0px 1px 3px 0px rgba(0, 0, 0, 0.12);
+}
+
+.slika-div {
+  height: 150px;
+  margin-top: 5px;
+}
+.izdvajamo-slika {
+  max-width: 160px;
+  max-height: 130px;
+  width: auto;
+}
+.slika-div img {
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+}
+.mat-card-image:first-child {
+  margin-top: 0px;
+}
+.cena {
+  font-weight: bold;
+  font-size: 0.9rem;
+  color: $automaterijal-primary-100;
+  margin-left: 60px;
+}
+.katbr {   
+   margin-left: 7px;
+  font-size: 0.8rem;
+  color: $automaterijal-primary-100;
+}
+.proizvodjac-naziv {
+  margin-left: 34px;
+  margin-top: 5px;
+  color: $automaterijal-primary-100;
+}
+p {
+  font-size: 0.845rem;
+}
+.naziv {
+  height: 40px;
+  margin-top: 5px;
+  text-align: center;
+  color: $automaterijal-primary-100;
+}
+
+.kolicina-div {
+  display: inline-block;
+  width: 120px;
+  height: 24px;
+  border-width: 0.5px;
+  border-style: solid;
+  border-color: $automaterijal-primary-50;
+}
+.kolicina-div span {
+  width: 39px;
+  display: inline-block;
+  text-align: center;
+}
+.kolicina-ikona {
+  font-size: 16px;
+  position: relative;
+  top: 2px;
+}
+.izbrisi-ikona:hover {
+  cursor: pointer;
+  color: $automaterijal-accent-red-50;
+  user-select: none;
+}
+.dodaj-ikona:hover {
+  cursor: pointer;
+  color: $automaterijal-primary-100;
+  user-select: none;
+}
+.input-kolicina-tabela {
+  border: none;
+  text-align: center;
+  width: 42px;
+  font-size: 16px;
+  margin-top: 1px;
+}
+
+/* Chrome, Safari, Edge, Opera */
+.input-kolicina-tabela::-webkit-outer-spin-button,
+.input-kolicina-tabela::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+/* Firefox */
+.input-kolicina-tabela[type="number"] {
+  -moz-appearance: textfield;
+}
+.labela-kolicina {
+  margin: 0px;
+  color: $automaterijal-primary-50;
+  font-size: 0.8rem !important;
+  font-style: italic;
+  display: block;
+}
+.kolicina-labela {
+  width: 70px !important;
+  height: 23px;
+}
+.teh-detalji-ui {
+  width: 220px;
+  margin-bottom: 8px;
+  padding-inline-start: 10px;
+  font-size: 0.8rem;
+}
+
+.stanje-ikona {
+  width: 100px;
+  margin-top: 11px;
+}
+
+.dugme-detalji-u-korpi {
+  width: 150px;
+}
+
+.dugme {
+  background-color: $automaterijal-primary-100;
+  color: white;
+}
+
+@media screen and (max-width: 1557px) {
+  .mat-card-ponuda {
+    width: 220px;
+    height: 405px;
+  }
+  .naziv {
+    height: 40px;
+  }
+  .stanje-ikona {
+    margin-right: 8px;
+  }
+}
+
+@media screen and (max-width: 1410px) {
+  .mat-card-ponuda {
+    width: 190px;
+    height: 405px;
+  }
+  .naziv {
+    height: 40px;
+  }
+  .stanje-ikona {
+    margin-right: 8px;
+  }
+  .proizvodjac-naziv {
+    display: block;
+  }
+  .proizvodjac-naziv {
+    margin-left: 0px;
+  }
+  .stanje-ikona {
+    margin-right: 25px;
+    margin-top: 22px;
+  }
+  .cena {
+    margin-left: 0px;
+  }
+}
+
+@media screen and (max-width: 901px) {
+  .stanje-ikona {
+    margin-right: 25px;
+    margin-top: 22px;
+  }
+}
+
+@media screen and (max-width: 420px) {
+  .mat-card-ponuda {
+    width: 155px;
+    height: 405px;
+  }
+  .stanje-ikona {
+    margin-right: 60px;
+    margin-top: 22px;
+  }
+  img {
+    max-width: 130px;
+  }
+  .izdvajamo-slika {
+    max-width: 135px;
+  }
+}
+@media screen and (max-width: 369px) {
+  .mat-card-ponuda {
+    width: 150px;
+    height: 405px;
+  }
+  .stanje-ikona {
+    margin-right: 60px;
+    margin-top: 22px;
+  }
+  img {
+    max-width: 130px;
+  }
+  .izdvajamo-slika {
+    max-width: 120px;
+  }
+}

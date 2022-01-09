@@ -135,6 +135,7 @@ export class Roba {
     public tdBrojevi?: Map<string, RobaBrojevi[]>;
     public aplikacije?: Map<string, RobaAplikacija[]>;
     public dokumentacija?: Map<string, TecDocDokumentacija[]>;
+    public asociraniArtikli: Roba[];
 }
 export class TecDocDokumentacija {
     public docFileTypeName: string;

@@ -15,6 +15,7 @@ import { Korpa } from 'src/app/e-shop/model/porudzbenica';
 import { MatDialog } from '@angular/material/dialog';
 import { ZabranjenaRobaModalComponent } from 'src/app/shared/modal/zabranjena-roba-modal/zabranjena-roba-modal.component';
 import { SlikaModalComponent } from 'src/app/shared/modal/slika-modal/slika-modal.component';
+import { HostListener } from '@angular/core';
 
 @Component({
   selector: 'app-roba-detalji',
@@ -80,6 +81,12 @@ export class RobaDetaljiComponent implements OnInit, OnDestroy {
       .subscribe(bool => this.partnerLogovan = bool);
     this.uzmiDetaljeRobe();
     this.promeniTabeluDetaljaAutomobila();
+  }
+
+  @HostListener('window:popstate', ['$event'])
+  onPopState(event) {
+    console.log('Back button pressed');
+    window.location.reload();
   }
 
   promeniTabeluDetaljaAutomobila() {

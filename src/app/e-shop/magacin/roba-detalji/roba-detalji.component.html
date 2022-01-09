@@ -220,11 +220,21 @@
                   picture_as_pdf
                 </span>
               </span>
+            </span>
+            <div *ngFor="let dokument of vratiDokumentacijuPoKljucu(dokKljuc)">
               <span *ngIf="dokument.docFileTypeName.toUpperCase().indexOf('URL') > -1">
                 <youtube-player [videoId]="dokument.saniraniUrl"></youtube-player>
               </span>
-            </span>
+            </div>
           </div>
+        </div>
+      </div>
+      <div *ngIf="robaDetalji.asociraniArtikli && robaDetalji.asociraniArtikli.length !== 0" class="d-flex flex-column flex-lg-row sektor-detalja-2">
+        <div class="p-2 sirina-1 flex-fill bd-highlight">
+          <div class="pozadina-glavna-100 granicnik-plavi">
+          </div>
+          <h2 class="h2-sekcija-2">Asocirani artikli</h2>
+          <asocirana-roba [asociraniArtikli]="robaDetalji.asociraniArtikli"></asocirana-roba>
         </div>
       </div>
       <div *ngIf="robaDetalji.tekst || (partner && partner.privilegije === 2047)" class="sektor-detalja-2">
