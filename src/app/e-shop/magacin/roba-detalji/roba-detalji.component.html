@@ -226,6 +226,11 @@
                 <youtube-player [videoId]="dokument.saniraniUrl"></youtube-player>
               </span>
             </div>
+            <div *ngFor="let dokument of vratiDokumentacijuPoKljucu(dokKljuc)">
+              <span *ngIf="dokument.docFileTypeName.indexOf('JPEG') > -1">
+                <img class="tehnicki_crtez" [src]="dokument.dokument"/>
+              </span>
+            </div>
           </div>
         </div>
       </div>

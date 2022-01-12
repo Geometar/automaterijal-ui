@@ -56,8 +56,15 @@ img {
   margin-bottom: 20px;
 }
 
+.tehnicki_crtez {
+  max-width: 200px;
+  max-height: 300px;
+}
+
 .slika-sirina {
   cursor: zoom-in;
+  max-width: 150px;
+  max-height: 200px;
 }
 .slika-sirina:hover {
   opacity: 0.8;

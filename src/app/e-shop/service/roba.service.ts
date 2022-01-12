@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpResponse } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { timeoutWith, catchError } from 'rxjs/operators';
 import { Sort } from '@angular/material/sort';
@@ -10,6 +10,7 @@ import { Filter } from '../model/filter';
 
 const DOMAIN_URL = environment.baseUrl + '/api';
 const ROBA_URL = '/roba';
+const TECDOC_URL = '/tecdoc';
 const FILTERI_URL = '/filteri';
 const AKUMULATORI_URL = '/akumulatori';
 const ULJA_URL = '/ulja';
@@ -30,6 +31,17 @@ export class RobaService {
     const fullUrl = DOMAIN_URL + ROBA_URL + '/' + robaId;
     return this.http
       .get(fullUrl, {observe: 'response'})
+      .pipe(
+        timeoutWith(TIMEOUT, throwError(TIMEOUT_ERROR)),
+        catchError((error: any) => throwError(error))
+      );
+  }
+
+  public vratiTDDokumentParsiran(dokument: string): Observable<HttpResponse<Object>> {
+    const fullUrl = DOMAIN_URL + TECDOC_URL + '/dokument/' + dokument;
+    
+    return this.http
+    .get(fullUrl, {observe: 'response'})
       .pipe(
         timeoutWith(TIMEOUT, throwError(TIMEOUT_ERROR)),
         catchError((error: any) => throwError(error))

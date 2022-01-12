@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy, Inject, PLATFORM_ID } from '@angular/core';
 import { RobaService } from '../../service/roba.service';
 import { Params, ActivatedRoute, Router } from '@angular/router';
-import { Roba, RobaBrojevi, Partner, TecDocDokumentacija } from '../../model/dto';
+import { Roba, RobaBrojevi, Partner, TecDocDokumentacija, Dokument } from '../../model/dto';
 import { takeWhile, finalize, catchError } from 'rxjs/operators';
 import { throwError, EMPTY } from 'rxjs';
 import { HttpResponse } from '@angular/common/http';
@@ -141,6 +141,12 @@ export class RobaDetaljiComponent implements OnInit, OnDestroy {
       if (this.robaDetalji.proizvodjacLogo) {
         this.robaDetalji.proizvodjacLogo = 'data:image/jpeg;base64,' + this.robaDetalji.proizvodjacLogo;
       }
+
+      if (this.robaDetalji.dokumentacija && this.robaDetalji.dokumentacija['Tehnički crtež']) {
+        (this.robaDetalji.dokumentacija['Tehnički crtež'] as TecDocDokumentacija[]).forEach(dokument => {
+          dokument.dokument = 'data:image/jpeg;base64,' + dokument.dokument;
+        })
+      }
     }
   }
 
@@ -247,11 +253,16 @@ export class RobaDetaljiComponent implements OnInit, OnDestroy {
   }
 
   otvoriPDF(dokument: TecDocDokumentacija) {
-    const source = `data:application/pdf;base64,${dokument.dokument}`;
-    const link = document.createElement("a");
-    link.href = source;
-    link.download = `${dokument.docTypeName}` + '-' + `${this.robaDetalji.katbr}.pdf`;
-    link.click();
+    this.robaService.vratiTDDokumentParsiran(dokument.docId)
+    .subscribe((res: HttpResponse<Dokument>) => {
+      if(res?.body?.object) {
+        const source = `data:application/pdf;base64,${res.body.object}`;
+        const link = document.createElement("a");
+        link.href = source;
+        link.download = `${dokument.docTypeName}` + '-' + `${this.robaDetalji.katbr}.pdf`;
+        link.click();
+      }
+    })
   }
 
   idiNazad() {

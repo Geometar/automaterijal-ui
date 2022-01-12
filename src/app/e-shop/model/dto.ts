@@ -115,6 +115,9 @@ export class Grupa {
     grupaid: string;
     naziv: string;
 }
+export class Dokument {
+    object: string | ArrayBuffer;
+}
 
 export class Roba {
     public robaid: number;
