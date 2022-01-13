@@ -9,6 +9,7 @@ import { RobaService } from 'src/app/e-shop/service/roba.service';
 import { Filter } from 'src/app/e-shop/model/filter';
 import { LoginService } from 'src/app/e-shop/service/login.service';
 import { HttpResponse } from '@angular/common/http';
+import { Meta, Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-kategorija-specificna',
@@ -47,6 +48,8 @@ export class KategorijaSpecificnaComponent implements OnInit, OnDestroy {
     private loginServis: LoginService,
     private router: Router,
     private loginService: LoginService,
+    private title: Title,
+    private meta: Meta,
     private _location: Location
   ) { }
 
@@ -119,6 +122,7 @@ export class KategorijaSpecificnaComponent implements OnInit, OnDestroy {
                   this.rowsPerPage = body.robaDto.size;
                   this.pageIndex = body.robaDto.number;
                   this.tableLength = body.robaDto.totalElements;
+                  this.setTitle();
                 },
                 error => {
                   this.roba = null;
@@ -126,6 +130,36 @@ export class KategorijaSpecificnaComponent implements OnInit, OnDestroy {
 
           });
       });
+  }
+
+  setTitle() {
+    let title: string = 'Kategorija - ' + this.naslov + ' - ';
+    if(this.filterGrupe.length > 0) {
+      this.filterGrupe.forEach((grupe: string, index) => {
+        if(grupe !== 'SVE KATEGORIJE') {
+          title += ' ' + grupe;
+          if(index < this.filterGrupe.length -1 ) {
+            title += ',';
+          }
+        }
+      })
+    }
+    this.title.setTitle(title);
+    let proizvodjaci: string = 'Proizvodjaci - ';
+
+    const proizvodjaciUnique = [];
+    this.roba.forEach(roba => {
+      if(!proizvodjaciUnique.includes(roba.proizvodjac.naziv)) {
+        proizvodjaciUnique.push(roba.proizvodjac.naziv);
+      }
+    })
+    proizvodjaciUnique.forEach((proiz, index) => {
+      proizvodjaci += proiz;
+      if(index < proizvodjaciUnique.length - 1) {
+        proizvodjaci += ', ';
+      }
+    })
+    this.meta.updateTag({ name: 'description', content: proizvodjaci });
   }
 
   pronaciPoTrazenojReci(searchValue) {

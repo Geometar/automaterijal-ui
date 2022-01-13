@@ -6,6 +6,7 @@ import { throwError } from 'rxjs';
 import { Poruka } from '../model/dto';
 import { NotifikacijaService } from 'src/app/shared/service/notifikacija.service';
 import { MatSnackBarKlase } from 'src/app/shared/model/konstante';
+import { Meta, Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-kontakt',
@@ -23,12 +24,16 @@ export class KontaktComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.inicijalizujForme();
+    this.title.setTitle('Automaterijal - kontakt - broj telefona, mejl, online upiti za delove');
+    this.meta.updateTag({ name: 'description', content: 'Kontakt informacije: telefon, email kao mogucnost za online upit' });
     }
 
   constructor(
     private formBuilder: FormBuilder,
     private emailServis: EmailService,
-    private notifikacijaServis: NotifikacijaService
+    private notifikacijaServis: NotifikacijaService,
+    private title: Title,
+    private meta: Meta
   ) {}
 
   inicijalizujForme() {

@@ -3,6 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { BrendoviModalComponent } from 'src/app/shared/modal/brendovi-modal/brendovi-modal.component';
 import { Brend, Konastante } from '../dasboard/kategorija';
 import { isPlatformBrowser } from '@angular/common';
+import { Meta, Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-o-nama',
@@ -29,6 +30,8 @@ export class ONamaComponent implements OnInit {
 
   constructor(
     public dialog: MatDialog,
+    private title: Title,
+    private meta: Meta,
     @Inject(PLATFORM_ID) private platformId) { }
 
   ngOnInit() {
@@ -39,6 +42,8 @@ export class ONamaComponent implements OnInit {
     const konstante = new Konastante();
     this.mySlideBrands = konstante.brendovi;
     this.changeSlideConfiguration();
+    this.title.setTitle('Automaterijal prodavnica originalnih i rezervnih auto delova');
+    this.meta.updateTag({ name: 'description', content: 'Automaterijel je osnovan 1990. godine i, sada već preko 29 godina, bavi se snabdevanjem našeg tržišta kvalitetnim rezervnim i originalnim delovima, mazivima i materijalom za održavanje motornih vozila. Poslujemo kao maloprodaja i veleprodaja.' });
   }
 
   @HostListener('window:resize', ['$event'])

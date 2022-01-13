@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy, Inject, PLATFORM_ID } from '@angular/core';
 import { RobaService } from '../../service/roba.service';
 import { Params, ActivatedRoute, Router } from '@angular/router';
-import { Roba, RobaBrojevi, Partner, TecDocDokumentacija, Dokument } from '../../model/dto';
+import { Roba, Partner, TecDocDokumentacija, Dokument } from '../../model/dto';
 import { takeWhile, finalize, catchError } from 'rxjs/operators';
 import { throwError, EMPTY } from 'rxjs';
 import { HttpResponse } from '@angular/common/http';
@@ -16,6 +16,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { ZabranjenaRobaModalComponent } from 'src/app/shared/modal/zabranjena-roba-modal/zabranjena-roba-modal.component';
 import { SlikaModalComponent } from 'src/app/shared/modal/slika-modal/slika-modal.component';
 import { HostListener } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-roba-detalji',
@@ -55,6 +56,7 @@ export class RobaDetaljiComponent implements OnInit, OnDestroy {
     public dialog: MatDialog,
     private location: Location,
     @Inject(PLATFORM_ID) private platformId,
+    private title: Title,
     private route: ActivatedRoute
   ) { }
 
@@ -130,9 +132,16 @@ export class RobaDetaljiComponent implements OnInit, OnDestroy {
               this.kljuceviAplikacija.length > 0
               || this.kluceviRobe.length > 0
               || this.originalniBrojevi.length > 0;
+              this.setTitle();
           });
       });
   }
+
+  setTitle() {
+    const title = this.robaDetalji.katbr + ' - ' + this.robaDetalji.proizvodjac.naziv + ": " + this.robaDetalji.naziv;
+    this.title.setTitle(title);
+  }
+
   preispitajSlike() {
     if (this.robaDetalji) {
       if (!this.robaDetalji.slika.isUrl) {

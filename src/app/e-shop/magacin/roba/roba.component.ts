@@ -8,6 +8,7 @@ import { Filter } from '../../model/filter';
 import { LoginService } from '../../service/login.service';
 import { HttpResponse } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-roba',
@@ -41,7 +42,8 @@ export class RobaComponent implements OnInit, OnDestroy {
     private dataService: DataService,
     private loginService: LoginService,
     private aktivnaRuta: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private title: Title
   ) { }
 
   ngOnInit() {
@@ -57,7 +59,12 @@ export class RobaComponent implements OnInit, OnDestroy {
             }
           });
       });
+      this.setTitle();
     this.uzmiParametreIzUrla();
+  }
+
+  setTitle() {
+    this.title.setTitle("Internet prodavnica auto delova")
   }
 
   uzmiParametreIzUrla() {
