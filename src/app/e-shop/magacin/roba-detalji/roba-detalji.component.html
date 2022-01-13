@@ -223,7 +223,9 @@
             </span>
             <div *ngFor="let dokument of vratiDokumentacijuPoKljucu(dokKljuc)">
               <span *ngIf="dokument.docFileTypeName.toUpperCase().indexOf('URL') > -1">
-                <youtube-player [videoId]="dokument.saniraniUrl"></youtube-player>
+                <span *ngIf="innerWidth > 950"><youtube-player [videoId]="dokument.saniraniUrl"></youtube-player></span>
+                <span *ngIf="innerWidth <= 950 && innerWidth >= 551"><youtube-player [width]="innerWidth-250" [height]="innerWidth-250" [videoId]="dokument.saniraniUrl"></youtube-player></span>
+                <span *ngIf="innerWidth <= 550"><youtube-player [width]="innerWidth-70" [height]="innerWidth-70" [videoId]="dokument.saniraniUrl"></youtube-player></span>
               </span>
             </div>
             <div *ngFor="let dokument of vratiDokumentacijuPoKljucu(dokKljuc)">

@@ -85,6 +85,11 @@ export class RobaDetaljiComponent implements OnInit, OnDestroy {
     this.promeniTabeluDetaljaAutomobila();
   }
 
+  @HostListener('window:resize', ['$event'])
+  onResize(event) {
+    this.innerWidth = window.innerWidth;
+  }
+
   @HostListener('window:popstate', ['$event'])
   onPopState(event) {
     console.log('Back button pressed');
