@@ -86,7 +86,7 @@ export class TabelaComponent implements OnInit, OnDestroy, OnChanges {
   preispitajSlike(roba: Roba[]) {
     if (roba) {
       roba.forEach(r => {
-        if (!r.slika.isUrl) {
+        if (!r.slika.isUrl && r.slika.slikeByte) {
           r.slika.slikeUrl = 'data:image/jpeg;base64,' + r.slika.slikeByte;
         }
       });
