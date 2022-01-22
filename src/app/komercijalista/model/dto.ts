@@ -25,7 +25,7 @@ export class Komentar {
     id?: number;
     komentar?: string;
     firma?: number;
-    datumKreiranja?: string;
+    datumKreiranja?: Date;
     podsetnik?: string;
     ppid?: number;
     komercijalista?: string;

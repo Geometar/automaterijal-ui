@@ -74,7 +74,7 @@
                 </th>
                 <td mat-cell data-label="Datum kreiranja" *matCellDef="let izvestaj">
                     <p class="mat-body-2 text-center vreme-mob iznos-margin">
-                        {{izvestaj.komentarDto.datumKreiranja}}
+                        {{izvestaj.komentarDto.datumKreiranja | date: 'dd-MM-yyyy'}}
                     </p>
                 </td>
             </ng-container>
