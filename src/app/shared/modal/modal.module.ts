@@ -20,48 +20,33 @@ import { GrupeModalComponent } from './grupe-modal/grupe-modal.component';
 import { SlikaModalComponent } from './slika-modal/slika-modal.component';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    ReactiveFormsModule,
-    FormsModule,
-    MaterialModule,
-    SharedMagacinModule,
-  ],
-  declarations: [
-    ZaboravljenaSifraModalComponent,
-    RegistracijaModalComponent,
-    IzmenaKolicineModalComponent,
-    LogoutModalComponent,
-    UspesnoPorucivanjeModalComponent,
-    ZabranjenaRobaModalComponent,
-    NeuspesnoPorucivanjeModalComponent,
-    PorukaModalComponent,
-    SlikaModalComponent,
-    BrendoviModalComponent,
-    DashboardPromenaRobeComponent,
-    GrupeModalComponent,
-    UpitModalComponent,
-    SesijaIsteklaModalComponent,
-    PrvoLogovanjeModalComponent,
-    DashboardPromenaRobeComponent,
-    ZabranjenaRobaModalComponent,
-    GrupeModalComponent,
-    SlikaModalComponent],
-  entryComponents: [
-    ZaboravljenaSifraModalComponent,
-    ZabranjenaRobaModalComponent,
-    RegistracijaModalComponent,
-    IzmenaKolicineModalComponent,
-    SlikaModalComponent,
-    LogoutModalComponent,
-    UspesnoPorucivanjeModalComponent,
-    NeuspesnoPorucivanjeModalComponent,
-    PorukaModalComponent,
-    BrendoviModalComponent,
-    DashboardPromenaRobeComponent,
-    GrupeModalComponent,
-    UpitModalComponent,
-    SesijaIsteklaModalComponent,
-    PrvoLogovanjeModalComponent]
-  })
+    imports: [
+        CommonModule,
+        ReactiveFormsModule,
+        FormsModule,
+        MaterialModule,
+        SharedMagacinModule,
+    ],
+    declarations: [
+        ZaboravljenaSifraModalComponent,
+        RegistracijaModalComponent,
+        IzmenaKolicineModalComponent,
+        LogoutModalComponent,
+        UspesnoPorucivanjeModalComponent,
+        ZabranjenaRobaModalComponent,
+        NeuspesnoPorucivanjeModalComponent,
+        PorukaModalComponent,
+        SlikaModalComponent,
+        BrendoviModalComponent,
+        DashboardPromenaRobeComponent,
+        GrupeModalComponent,
+        UpitModalComponent,
+        SesijaIsteklaModalComponent,
+        PrvoLogovanjeModalComponent,
+        DashboardPromenaRobeComponent,
+        ZabranjenaRobaModalComponent,
+        GrupeModalComponent,
+        SlikaModalComponent
+    ]
+})
 export class ModalModule { }
