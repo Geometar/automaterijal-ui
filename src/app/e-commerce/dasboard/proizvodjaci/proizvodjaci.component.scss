@@ -27,7 +27,7 @@ p {
     max-height: 75vh;
 }
 
-/* :host /deep/ mySelector { */
+/* :host ::ng-deep mySelector { */
 :host ::ng-deep p { 
    margin-top: 20px;
 }

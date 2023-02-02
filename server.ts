@@ -1,4 +1,4 @@
-import 'zone.js/dist/zone-node';
+import 'zone.js/node';
 import 'localstorage-polyfill';
 
 import { ngExpressEngine } from '@nguniversal/express-engine';
