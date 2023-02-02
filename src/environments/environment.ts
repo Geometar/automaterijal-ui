@@ -5,7 +5,8 @@
 export const environment = {
   production: false,
   // baseUrl: ''
-  baseUrl: 'https://localhost:8443'
+  baseUrl: "https://localhost:8443", // Prod
+  // baseUrl: "http://localhost:9000", // Local
 };
 
 /*
