@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { map, startWith, takeWhile } from 'rxjs/operators';
@@ -28,7 +28,7 @@ export const SEKTORI: Sektor[] = [
   styleUrls: ['./kreiranje-izvestaj.component.scss']
 })
 export class KreiranjeIzvestajComponent implements OnInit, OnDestroy {
-  public izvestajForm: FormGroup;
+  public izvestajForm: UntypedFormGroup;
   public izvestajSubmited = false;
 
   minDate: Date;
@@ -45,7 +45,7 @@ export class KreiranjeIzvestajComponent implements OnInit, OnDestroy {
   izabraniSektor: string;
 
   constructor(
-    private formBuilder: FormBuilder,
+    private formBuilder: UntypedFormBuilder,
     private izvestajServise: IzvestajService,
     private notifikacijaService: NotifikacijaService,
     private loginServis: LoginService,

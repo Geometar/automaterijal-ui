@@ -7,7 +7,7 @@ import { MatTable } from '@angular/material/table';
 import { takeWhile, finalize, catchError } from 'rxjs/operators';
 import { throwError } from 'rxjs';
 import { ValueHelp, Partner, Fakutra, FakturaDetalji, Roba } from '../model/dto';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { UntypedFormGroup, UntypedFormBuilder, Validators } from '@angular/forms';
 import { LoginService } from '../service/login.service';
 import { FakturaService } from '../service/faktura.service';
 import { Router } from '@angular/router';
@@ -38,9 +38,9 @@ export class KorpaComponent implements OnInit, OnDestroy {
   private faktura: Fakutra;
 
   // sve forme
-  public drugiNacinPrevoza: FormGroup;
-  public adresaForm: FormGroup;
-  public anonimanKupacForm: FormGroup;
+  public drugiNacinPrevoza: UntypedFormGroup;
+  public adresaForm: UntypedFormGroup;
+  public anonimanKupacForm: UntypedFormGroup;
   public dugmeZaPorucivanjeStisnuto = false;
 
   public displayedColumns: string[] = ['slika', 'opis', 'cena'
@@ -66,7 +66,7 @@ export class KorpaComponent implements OnInit, OnDestroy {
     private loginServis: LoginService,
     public storage: LocalStorageService,
     public dialog: MatDialog,
-    private formBuilder: FormBuilder,
+    private formBuilder: UntypedFormBuilder,
     private fakturaServis: FakturaService,
     @Inject(PLATFORM_ID) private platformId,
     private router: Router,

@@ -1,5 +1,5 @@
 import { Component, OnInit, Inject, OnDestroy } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { UntypedFormGroup, UntypedFormBuilder, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { PartnerService } from 'src/app/e-shop/service/partner.service';
 import { PromenaSifre, Partner } from 'src/app/e-shop/model/dto';
@@ -14,7 +14,7 @@ import { Router } from '@angular/router';
 })
 export class PrvoLogovanjeModalComponent implements OnInit, OnDestroy {
 
-  public promenaSifreForm: FormGroup;
+  public promenaSifreForm: UntypedFormGroup;
   public submitted = false;
   public partner: Partner;
 
@@ -26,7 +26,7 @@ export class PrvoLogovanjeModalComponent implements OnInit, OnDestroy {
     public dialogRef: MatDialogRef<PrvoLogovanjeModalComponent>,
     private partnerServis: PartnerService,
     public router: Router,
-    private formBuilder: FormBuilder,
+    private formBuilder: UntypedFormBuilder,
     @Inject(MAT_DIALOG_DATA) public data) { }
 
   ngOnInit() {
@@ -42,7 +42,7 @@ export class PrvoLogovanjeModalComponent implements OnInit, OnDestroy {
     }, { validator: this.proveriSifre });
   }
 
-  proveriSifre(group: FormGroup) {
+  proveriSifre(group: UntypedFormGroup) {
     const pass = group.controls.pass1.value;
     const confirmPass = group.controls.pass2.value;
 

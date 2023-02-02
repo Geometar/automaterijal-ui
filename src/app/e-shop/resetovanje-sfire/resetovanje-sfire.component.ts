@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { FormGroup, Validators, FormBuilder } from '@angular/forms';
+import { UntypedFormGroup, Validators, UntypedFormBuilder } from '@angular/forms';
 import { PromenaSifre } from '../model/dto';
 import { takeWhile, finalize, catchError } from 'rxjs/operators';
 import { throwError, EMPTY } from 'rxjs';
@@ -15,7 +15,7 @@ import { MatSnackBarKlase } from 'src/app/shared/model/konstante';
   styleUrls: ['./resetovanje-sfire.component.scss']
 })
 export class ResetovanjeSfireComponent implements OnInit, OnDestroy {
-  public promenaSifreForm: FormGroup;
+  public promenaSifreForm: UntypedFormGroup;
   public submitted = false;
   public uspesnoLogovanje = true;
   private staraSifra: string;
@@ -26,7 +26,7 @@ export class ResetovanjeSfireComponent implements OnInit, OnDestroy {
   public uspesnaPromena = true;
 
   constructor(
-    private formBuilder: FormBuilder,
+    private formBuilder: UntypedFormBuilder,
     private route: ActivatedRoute,
     private partnerServis: PartnerService,
     private notifikacijaServis: NotifikacijaService,

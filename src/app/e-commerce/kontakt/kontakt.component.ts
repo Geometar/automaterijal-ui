@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { EmailService } from 'src/app/shared/service/email.service';
 import { takeWhile, finalize, catchError } from 'rxjs/operators';
 import { throwError } from 'rxjs';
@@ -14,7 +14,7 @@ import { Meta, Title } from '@angular/platform-browser';
   styleUrls: ['./kontakt.component.scss']
 })
 export class KontaktComponent implements OnInit, OnDestroy {
-  public porukaForm: FormGroup;
+  public porukaForm: UntypedFormGroup;
   public porukaSubmited = false;
 
   // boolean za unistavanje observera
@@ -29,7 +29,7 @@ export class KontaktComponent implements OnInit, OnDestroy {
     }
 
   constructor(
-    private formBuilder: FormBuilder,
+    private formBuilder: UntypedFormBuilder,
     private emailServis: EmailService,
     private notifikacijaServis: NotifikacijaService,
     private title: Title,

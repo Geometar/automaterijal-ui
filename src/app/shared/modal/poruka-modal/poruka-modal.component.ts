@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { FormBuilder, Validators, FormGroup } from '@angular/forms';
+import { UntypedFormBuilder, Validators, UntypedFormGroup } from '@angular/forms';
 import { Poruka } from 'src/app/e-commerce/model/dto';
 import { takeWhile, finalize, catchError } from 'rxjs/operators';
 import { throwError, EMPTY } from 'rxjs';
@@ -14,7 +14,7 @@ import { MatSnackBarKlase } from '../../model/konstante';
   styleUrls: ['./poruka-modal.component.scss']
 })
 export class PorukaModalComponent implements OnInit, OnDestroy {
-  public porukaForm: FormGroup;
+  public porukaForm: UntypedFormGroup;
   public porukaSubmited = false;
   public porukaPoslata = false;
 
@@ -23,7 +23,7 @@ export class PorukaModalComponent implements OnInit, OnDestroy {
 
   constructor(
     public dialogRef: MatDialogRef<PorukaModalComponent>,
-    private formBuilder: FormBuilder,
+    private formBuilder: UntypedFormBuilder,
     private emailServis: EmailService,
     private notifikacijaServis: NotifikacijaService
   ) { }

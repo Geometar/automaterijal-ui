@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { takeWhile, finalize, catchError } from 'rxjs/operators';
 import { throwError, EMPTY } from 'rxjs';
 import { EmailService } from 'src/app/shared/service/email.service';
@@ -20,14 +20,14 @@ export class ZaboravljenaSifraModalComponent implements OnInit, OnDestroy {
   public mailPoslatPartneru = false;
 
   // forme
-  public zaboravljeSifraForma: FormGroup;
+  public zaboravljeSifraForma: UntypedFormGroup;
   public formaSubmited = false;
 
   private alive = true;
   public ucitavanje = false;
   constructor(
     public dialogRef: MatDialogRef<ZaboravljenaSifraModalComponent>,
-    private formBuilder: FormBuilder,
+    private formBuilder: UntypedFormBuilder,
     private emailService: EmailService,
     private notifikacijaServis: NotifikacijaService) { }
 

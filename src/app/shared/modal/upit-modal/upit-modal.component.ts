@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Upit } from 'src/app/e-commerce/model/dto';
-import { Validators, FormBuilder, FormGroup, RequiredValidator } from '@angular/forms';
+import { Validators, UntypedFormBuilder, UntypedFormGroup, RequiredValidator } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { EmailService } from 'src/app/shared/service/email.service';
 import { takeWhile, finalize, catchError } from 'rxjs/operators';
@@ -15,7 +15,7 @@ import { MatSnackBarKlase } from '../../model/konstante';
 })
 export class UpitModalComponent implements OnInit, OnDestroy {
 
-  public upitForm: FormGroup;
+  public upitForm: UntypedFormGroup;
   public upitSubmited = false;
   public porukaJePoslata = false;
 
@@ -36,7 +36,7 @@ export class UpitModalComponent implements OnInit, OnDestroy {
 
   constructor(
     public dialogRef: MatDialogRef<UpitModalComponent>,
-    private formBuilder: FormBuilder,
+    private formBuilder: UntypedFormBuilder,
     private emailServis: EmailService,
     private notifikacijaServis: NotifikacijaService
   ) { }

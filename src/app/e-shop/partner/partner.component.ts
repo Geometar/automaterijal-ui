@@ -3,7 +3,7 @@ import { LoginService } from '../service/login.service';
 import { Partner } from '../model/dto';
 import { takeWhile, finalize, catchError } from 'rxjs/operators';
 import { throwError, EMPTY } from 'rxjs';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { UntypedFormGroup, UntypedFormBuilder, Validators } from '@angular/forms';
 import { PartnerService } from '../service/partner.service';
 import { NotifikacijaService } from 'src/app/shared/service/notifikacija.service';
 import { MatSnackBarKlase } from 'src/app/shared/model/konstante';
@@ -25,17 +25,17 @@ export class PartnerComponent implements OnInit, OnDestroy {
   private alive = true;
 
   // sve forme
-  public adresaForm: FormGroup;
+  public adresaForm: UntypedFormGroup;
   public adresaSubmited = false;
-  public emailForm: FormGroup;
+  public emailForm: UntypedFormGroup;
   public emailSubmited = false;
-  public usernameForm: FormGroup;
+  public usernameForm: UntypedFormGroup;
   public usernameSubmited = false;
-  public passwordForm: FormGroup;
+  public passwordForm: UntypedFormGroup;
   public passwordSubmited = false;
 
   constructor(
-    private formBuilder: FormBuilder,
+    private formBuilder: UntypedFormBuilder,
     private partnerServis: PartnerService,
     private notifikacijaServis: NotifikacijaService,
     private loginServis: LoginService) { }

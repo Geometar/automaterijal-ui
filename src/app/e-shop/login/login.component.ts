@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Credentials, Partner } from '../model/dto';
 import { LoginService } from '../service/login.service';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { RegistracijaModalComponent } from 'src/app/shared/modal/registracija-modal/registracija-modal.component';
 import { ZaboravljenaSifraModalComponent } from 'src/app/shared/modal/zaboravljena-sifra-modal/zaboravljena-sifra-modal.component';
@@ -20,7 +20,7 @@ import { TokenStorageService } from '../service/token-storage.service';
 })
 export class LoginComponent implements OnInit, OnDestroy {
 
-  public registerForm: FormGroup;
+  public registerForm: UntypedFormGroup;
   public submitted = false;
   public credentials: Credentials = {};
   public partner: Partner;
@@ -31,7 +31,7 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   constructor(
     private loginServis: LoginService,
-    private formBuilder: FormBuilder,
+    private formBuilder: UntypedFormBuilder,
     public dataService: LocalStorageService,
     public router: Router,
     private korpaServis: DataService,

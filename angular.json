@@ -178,7 +178,6 @@
       }
     }
   },
-  "defaultProject": "automaterijal-web",
   "schematics": {
     "@schematics/angular:component": {
       "style": "scss"
