@@ -108,6 +108,13 @@ export class DasboardComponent implements OnInit, OnDestroy {
         if (this.innerWidth < 657 || (this.innerWidth < 1058 && this.innerWidth > 857)) {
           this.robaPonuda.splice(-1, 1);
         }
+
+
+        this.robaPonuda.forEach(roba => {
+          if (roba.slika) {
+            roba.slika.slikeByte = 'data:image/jpeg;base64,' + roba.slika.slikeByte;
+          }
+        })
       });
   }
 
@@ -119,6 +126,12 @@ export class DasboardComponent implements OnInit, OnDestroy {
         if (this.innerWidth < 657 || (this.innerWidth < 1058 && this.innerWidth > 857)) {
           this.robaNajbolje.splice(-1, 1);
         }
+
+        this.robaNajbolje.forEach(roba => {
+          if (roba.slika) {
+            roba.slika.slikeByte = 'data:image/jpeg;base64,' + roba.slika.slikeByte;
+          }
+        })
       });
   }
 
