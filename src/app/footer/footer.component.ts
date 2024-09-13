@@ -13,7 +13,7 @@ import { environment } from 'src/environments/environment';
 })
 export class FooterComponent implements OnInit {
 
-  public img_logo = environment.baseUrl + '/assets/slike/logo/automaterijal.png';
+  public img_logo = '/assets/slike/logo/automaterijal.png';
   constructor(
     public dialog: MatDialog
   ) { }
